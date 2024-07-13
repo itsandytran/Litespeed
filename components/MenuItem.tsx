@@ -26,7 +26,6 @@ const styles = StyleSheet.create({
     borderRadius: 7,
     padding: 10,
     margin: 2,
-    backgroundColor: "#6D9496",
   },
   itemName: {
     flex: 1,
