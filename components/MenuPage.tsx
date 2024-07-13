@@ -11,14 +11,22 @@ let menu: {
   { itemName: "Tuna Sandwich", itemPrice: "21.00", buttonColor: "#e1b382" },
   { itemName: "Steak Sandwich", itemPrice: "21.00", buttonColor: "#2d545e" },
   { itemName: "Cheese Burger", itemPrice: "16.00", buttonColor: "#12343b" },
-  { itemName: "BLT", itemPrice: "16.00", buttonColor: "#ffaaab" },
+  { itemName: "Backon Burger", itemPrice: "16.00", buttonColor: "#6D9496" },
+  { itemName: "Veggie Sandwich", itemPrice: "9.00", buttonColor: "#6D9496" },
+  {
+    itemName: "Cheese Veggie Sandwich",
+    itemPrice: "11.00",
+    buttonColor: "#6D9496",
+  },
+  { itemName: "Grilled Cheese", itemPrice: "12.00", buttonColor: "#6D9496" },
+  { itemName: "Hotdog", itemPrice: "12.00", buttonColor: "#6D9496" },
+  { itemName: "BLT", itemPrice: "16.00", buttonColor: "#6D9496" },
 ]
-
 
 function MenuPage() {
   return (
     <View style={styles.background}>
-      <View style={styles.menuItemRow}>
+      <View style={styles.menuItemsContainer}>
         {menu.map((item) => (
           <View key={item.itemName}>
             <MenuItem
@@ -38,10 +46,12 @@ export default MenuPage;
 const styles = StyleSheet.create({
   background: {
     backgroundColor: "black",
-    width: 624
+    width: 622
   },
-  menuItemRow: {
+  menuItemsContainer: {
     flexDirection: "row",
-    justifyContent: "center",
+    marginLeft: 1,
+    marginTop: 1,
+    flexWrap: "wrap"
   },
 });
