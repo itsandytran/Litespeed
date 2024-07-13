@@ -1,12 +1,13 @@
-import { View, Text, StyleSheet } from "react-native"
+import { View, StyleSheet } from "react-native"
 
-import MenuPage from "../components/MenuPage"
+import MenuPage from "@components/MenuPage"
+import OrderSummary from "@components/OrderSummary"
 
 function RegisterScreen() {
   return (
     <View style={styles.register}>
-      <Text>Register</Text>
-      <MenuPage />
+        <MenuPage />
+        <OrderSummary />
     </View>
   )
 }
@@ -17,5 +18,7 @@ const styles = StyleSheet.create({
   register: {
     paddingLeft: 80,
     paddingTop: 80,
+    flexDirection: "row",
+    backgroundColor: "black",
   },
 })
