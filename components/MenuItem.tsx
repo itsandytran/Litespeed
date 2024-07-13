@@ -1,22 +1,23 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native"
 
 type MenuItemProps = {
-  itemName: string;
-  itemPrice: string;
-};
+  itemName: string
+  itemPrice: string
+  buttonColor: string
+}
 
 const MenuItem = (props: MenuItemProps) => {
   return (
-    <View style={styles.button}>
+    <View style={[styles.button, {backgroundColor: props.buttonColor}]}>
       <View style={styles.itemName}>
         <Text style={styles.itemNameText}>{props.itemName}</Text>
       </View>
       <Text style={styles.itemPriceText}>{props.itemPrice}</Text>
     </View>
-  );
-};
+  )
+}
 
-export default MenuItem;
+export default MenuItem
 
 const styles = StyleSheet.create({
   button: {
@@ -40,4 +41,4 @@ const styles = StyleSheet.create({
     color: "white",
     textAlign: "right",
   },
-});
+})
