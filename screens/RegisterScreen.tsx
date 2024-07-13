@@ -1,6 +1,6 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet } from "react-native"
 
-import MenuPage from "../components/MenuPage";
+import MenuPage from "../components/MenuPage"
 
 function RegisterScreen() {
   return (
@@ -8,13 +8,14 @@ function RegisterScreen() {
       <Text>Register</Text>
       <MenuPage />
     </View>
-  );
+  )
 }
 
-export default RegisterScreen;
+export default RegisterScreen
 
 const styles = StyleSheet.create({
   register: {
-    padding: 80,
+    paddingLeft: 80,
+    paddingTop: 80,
   },
-});
+})
