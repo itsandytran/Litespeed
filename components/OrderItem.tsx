@@ -1,6 +1,18 @@
 import { FC } from "react"
-import { Text } from "react-native"
+import { Text, View } from "react-native"
 
-export const OrderItem: FC = () => {
-  return <Text>Hello world</Text>
+export type OrderItemProps = {
+  name: string
+  quantity: number
+  price: number
+}
+
+export const OrderItem: FC<OrderItemProps> = ({ name, quantity, price }) => {
+  return (
+    <View>
+      <Text aria-label="quantity">{quantity}</Text>
+      <Text aria-label="name">{name}</Text>
+      <Text aria-label="price">{price}</Text>
+    </View>
+  )
 }
