@@ -22,12 +22,6 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    },
-    "plugins": [
-      "expo-font", 
-      {
-        "fonts": ["./assets/fonts/fraunces/Fraunces-VariableFont_SOFT,WONK,opsz,wght.ttf"]
-      }
-    ]
+    }
   }
 }

@@ -33,11 +33,11 @@ const styles = StyleSheet.create({
   itemNameText: {
     fontSize: 20,
     fontWeight: "bold",
-    color: "black",
+    color: "white",
   },
   itemPriceText: {
     fontSize: 12,
-    color: "black",
+    color: "white",
     textAlign: "right",
   },
 })
