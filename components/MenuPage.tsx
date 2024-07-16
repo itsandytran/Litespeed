@@ -1,47 +1,64 @@
 import { View, ScrollView, StyleSheet } from "react-native"
 
 import MenuItem from "./MenuItem"
+import Colors from "../constants/colors"
 
 let menu: {
   itemName: string
   itemPrice: string
   buttonColor: string
 }[] = [
-  { itemName: "Ham Sandwich", itemPrice: "16.00", buttonColor: "#6D9496" },
-  { itemName: "Tuna Sandwich", itemPrice: "21.00", buttonColor: "#e1b382" },
-  { itemName: "Steak Sandwich", itemPrice: "21.00", buttonColor: "#2d545e" },
-  { itemName: "Cheese Burger", itemPrice: "16.00", buttonColor: "#12343b" },
-  { itemName: "Backon Burger", itemPrice: "16.00", buttonColor: "#6D9496" },
-  { itemName: "Veggie Sandwich", itemPrice: "9.00", buttonColor: "#6D9496" },
+  { itemName: "Fries", itemPrice: "5.00", buttonColor: Colors.orange1 },
+  { itemName: "Poutine", itemPrice: "7.00", buttonColor: Colors.orange1 },
+  { itemName: "Gravy", itemPrice: "1.5", buttonColor: Colors.orange1 },
+  { itemName: "Ham Burger", itemPrice: "7.50", buttonColor: Colors.orange1 },
+  { itemName: "Cheese Burger", itemPrice: "8.25", buttonColor: Colors.orange1 },
   {
-    itemName: "Cheese Veggie Sandwich",
-    itemPrice: "11.00",
-    buttonColor: "#6D9496",
+    itemName: "Bacon Cheese Burger",
+    itemPrice: "10.75",
+    buttonColor: Colors.yellow1,
   },
-  { itemName: "Grilled Cheese", itemPrice: "12.00", buttonColor: "#6D9496" },
-  { itemName: "Hotdog", itemPrice: "12.00", buttonColor: "#6D9496" },
-  { itemName: "BLT", itemPrice: "16.00", buttonColor: "#6D9496" },
-  { itemName: "Grilled Cheese 2", itemPrice: "12.00", buttonColor: "#ffaaab" },
-  { itemName: "Hotdog 2", itemPrice: "12.00", buttonColor: "#ffaaab" },
-  { itemName: "BLT 2", itemPrice: "16.00", buttonColor: "#ffaaab" },
-  { itemName: "Grilled Cheese 3", itemPrice: "12.00", buttonColor: "#ffaaab" },
-  { itemName: "Hotdog 3", itemPrice: "12.00", buttonColor: "#ffaaab" },
-  { itemName: "BLT 3", itemPrice: "16.00", buttonColor: "#ffaaab" },
-  { itemName: "Grilled Cheese 4", itemPrice: "12.00", buttonColor: "#ffaaab" },
-  { itemName: "Hotdog 4", itemPrice: "12.00", buttonColor: "#ffaaab" },
-  { itemName: "BLT 4", itemPrice: "16.00", buttonColor: "#ffaaab" },
-  { itemName: "Grilled Cheese 5", itemPrice: "12.00", buttonColor: "#ffaaab" },
-  { itemName: "Hotdog 5", itemPrice: "12.00", buttonColor: "#ffaaab" },
-  { itemName: "BLT 5", itemPrice: "16.00", buttonColor: "#ffaaab" },
-  { itemName: "Grilled Cheese 6", itemPrice: "12.00", buttonColor: "#ffaaab" },
-  { itemName: "Hotdog 6", itemPrice: "12.00", buttonColor: "#ffaaab" },
-  { itemName: "BLT 6", itemPrice: "16.00", buttonColor: "#ffaaab" },
-  { itemName: "Grilled Cheese 7", itemPrice: "12.00", buttonColor: "#ffaaab" },
-  { itemName: "Hotdog 7", itemPrice: "12.00", buttonColor: "#ffaaab" },
-  { itemName: "BLT 7", itemPrice: "16.00", buttonColor: "#ffaaab" },
-  { itemName: "Grilled Cheese 8", itemPrice: "12.00", buttonColor: "#ffaaab" },
-  { itemName: "Hotdog 8", itemPrice: "12.00", buttonColor: "#ffaaab" },
-  { itemName: "BLT 8", itemPrice: "16.00", buttonColor: "#ffaaab" },
+  {
+    itemName: "Hotdog",
+    itemPrice: "3.00",
+    buttonColor: Colors.yellow1,
+  },
+  { itemName: "Cheese Dog", itemPrice: "3.75", buttonColor: Colors.yellow1 },
+  {
+    itemName: "Bacon Cheese Dog",
+    itemPrice: "6.25",
+    buttonColor: Colors.yellow1,
+  },
+  {
+    itemName: "Italian Sausage",
+    itemPrice: "7.00",
+    buttonColor: Colors.yellow1,
+  },
+  { itemName: "Polish Sausage", itemPrice: "7.00", buttonColor: Colors.green1 },
+  {
+    itemName: "Chicken Fingers",
+    itemPrice: "12.00",
+    buttonColor: Colors.green1,
+  },
+  {
+    itemName: "Popcorn Chicken",
+    itemPrice: "16.00",
+    buttonColor: Colors.green1,
+  },
+  { itemName: "Pogo", itemPrice: "3.00", buttonColor: Colors.green1 },
+  { itemName: "Onion Rings", itemPrice: "7.00", buttonColor: Colors.green1 },
+  { itemName: "Chicken Burger", itemPrice: "7.00", buttonColor: Colors.green2 },
+  {
+    itemName: "Mozzarella Sticks",
+    itemPrice: "8.00",
+    buttonColor: Colors.green2,
+  },
+  {
+    itemName: "Deep Fried Cheese Curds",
+    itemPrice: "10.00",
+    buttonColor: Colors.green2,
+  },
+  { itemName: "Pop Drink", itemPrice: "1.75", buttonColor: Colors.green2 },
 ]
 
 function MenuPage() {
@@ -68,7 +85,7 @@ export default MenuPage
 
 const styles = StyleSheet.create({
   background: {
-    backgroundColor: "black",
+    backgroundColor: "white",
     width: 622,
     height: "100%",
   },
