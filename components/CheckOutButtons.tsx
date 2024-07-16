@@ -5,7 +5,6 @@ import CheckOutButton from "./CheckOutButton"
 import Colors from "../constants/colors"
 
 function CheckOutButtons() {
-  
   // Display and update the time every second
   const [date, setDate] = useState(new Date())
   useEffect(() => {
@@ -31,7 +30,7 @@ function CheckOutButtons() {
         <CheckOutButton buttonName="Cash" />
         <CheckOutButton buttonName="Card" />
       </View>
-      <View style={styles.checkOutButtonsRow}>
+      <View style={[styles.checkOutButtonsRow, { paddingBottom: 20 }]}>
         <CheckOutButton buttonName="39.90" />
         <CheckOutButton buttonName="40" />
         <CheckOutButton buttonName="50" />
@@ -45,7 +44,7 @@ export default CheckOutButtons
 
 const styles = StyleSheet.create({
   checkOutContainer: {
-    backgroundColor: Colors.gray1,
+    backgroundColor: Colors.gray2,
     paddingBottom: 5,
   },
   checkOutButtonsRow: {
@@ -58,11 +57,12 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   dateTimeText: {
-    color: "white",
+    color: "black",
+    fontSize: 20,
   },
   orderTotalText: {
-    color: "white",
-    fontSize: 20,
+    color: "black",
+    fontSize: 24,
     fontWeight: "bold",
   },
 })
