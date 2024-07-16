@@ -2,9 +2,9 @@ import { View, Text, StyleSheet } from "react-native"
 import { useState, useEffect } from "react"
 
 import CheckOutButton from "./CheckOutButton"
-import Colors from "../constants/colors"
 
 function CheckOutButtons() {
+  
   // Display and update the time every second
   const [date, setDate] = useState(new Date())
   useEffect(() => {
@@ -30,7 +30,7 @@ function CheckOutButtons() {
         <CheckOutButton buttonName="Cash" />
         <CheckOutButton buttonName="Card" />
       </View>
-      <View style={[styles.checkOutButtonsRow, { paddingBottom: 20 }]}>
+      <View style={styles.checkOutButtonsRow}>
         <CheckOutButton buttonName="39.90" />
         <CheckOutButton buttonName="40" />
         <CheckOutButton buttonName="50" />
@@ -44,12 +44,12 @@ export default CheckOutButtons
 
 const styles = StyleSheet.create({
   checkOutContainer: {
-    backgroundColor: Colors.gray2,
+    backgroundColor: "#2F3135",
     paddingBottom: 5,
   },
   checkOutButtonsRow: {
     flexDirection: "row",
-    paddingBottom: 4,
+    paddingHorizontal: 2,
   },
   orderTotalRow: {
     flexDirection: "row",
@@ -57,12 +57,11 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   dateTimeText: {
-    color: "black",
-    fontSize: 20,
+    color: "white",
   },
   orderTotalText: {
-    color: "black",
-    fontSize: 24,
+    color: "white",
+    fontSize: 20,
     fontWeight: "bold",
   },
 })
