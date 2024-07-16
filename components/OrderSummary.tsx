@@ -7,12 +7,6 @@ import Colors from "../constants/colors"
 function OrderSummary() {
   return (
     <View style={styles.background}>
-      <Text style={{ color: "white", fontSize: 16, padding: 8 }}>
-        Customer Ticket Number: 46
-      </Text>
-      <OrderItem />
-      <OrderItem />
-      <OrderItem />
       <CheckOutButtons />
     </View>
   )
