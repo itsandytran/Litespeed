@@ -2,6 +2,7 @@ import { View, Text, StyleSheet } from "react-native"
 import { useState, useEffect } from "react"
 
 import CheckOutButton from "./CheckOutButton"
+import Colors from "../constants/colors"
 
 function CheckOutButtons() {
   
@@ -44,12 +45,12 @@ export default CheckOutButtons
 
 const styles = StyleSheet.create({
   checkOutContainer: {
-    backgroundColor: "#2F3135",
+    backgroundColor: Colors.gray1,
     paddingBottom: 5,
   },
   checkOutButtonsRow: {
     flexDirection: "row",
-    paddingHorizontal: 2,
+    paddingBottom: 4,
   },
   orderTotalRow: {
     flexDirection: "row",
