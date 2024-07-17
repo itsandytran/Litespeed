@@ -29,7 +29,7 @@ export const OrderItem: FC<OrderItemProps> = ({
       <Text aria-label="price" style={style.number}>
         {price}
       </Text>
-      <Button title="" onPress={() => {}} />
+      <Button title="Delete" onPress={onDelete ? onDelete : () => {}} />
     </View>
   )
 }
