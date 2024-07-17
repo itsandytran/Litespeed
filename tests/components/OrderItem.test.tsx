@@ -28,9 +28,10 @@ describe("<OrderItem />", () => {
   })
 
   describe("Delete button", () => {
-    it("deletes the item when pressed", async () => {
+    const onDelete = jest.fn()
+
+    beforeEach(() => {
       jest.useFakeTimers()
-      const onDelete = jest.fn()
       render(
         <OrderItem
           name={name}
@@ -39,10 +40,18 @@ describe("<OrderItem />", () => {
           onDelete={onDelete}
         />
       )
+    })
+
+    it("deletes the item when pressed", async () => {
       const deleteButton = screen.getByRole("button")
       const user = userEvent.setup()
       await user.press(deleteButton)
       expect(onDelete).toHaveBeenCalledTimes(1)
+    })
+
+    it("has a red background color", () => {
+      const deleteButton = screen.getByRole("button")
+      expect(deleteButton).toHaveStyle({ backgroundColor: "red" })
     })
   })
 })
