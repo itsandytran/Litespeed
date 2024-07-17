@@ -1,13 +1,25 @@
 import { FC } from "react"
-import { StyleSheet, Text, View } from "react-native"
+import {
+  Button,
+  GestureResponderEvent,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native"
 
 export type OrderItemProps = {
   name: string
   quantity: number
   price: number
+  onDelete?: (event: GestureResponderEvent) => void
 }
 
-export const OrderItem: FC<OrderItemProps> = ({ name, quantity, price }) => {
+export const OrderItem: FC<OrderItemProps> = ({
+  name,
+  quantity,
+  price,
+  onDelete,
+}) => {
   return (
     <View style={style.container}>
       <Text aria-label="quantity" style={style.number}>
@@ -17,6 +29,7 @@ export const OrderItem: FC<OrderItemProps> = ({ name, quantity, price }) => {
       <Text aria-label="price" style={style.number}>
         {price}
       </Text>
+      <Button title="" onPress={() => {}} />
     </View>
   )
 }
