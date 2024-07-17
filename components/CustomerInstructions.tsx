@@ -15,6 +15,7 @@ function CustomerInstructions() {
         style={styles.textInput}
         placeholder="Add note"
         onChangeText={onChangeText}
+        multiline={true}
       />
     </View>
   )
@@ -25,12 +26,10 @@ export default CustomerInstructions
 const styles = StyleSheet.create({
   background: {
     flexDirection: "row",
-    alignItems: "center",
+    paddingBottom: 12,
   },
   textInput: {
-    //height: 40,
-    margin: 12,
-    padding: 10,
+    marginHorizontal: 12,
     fontSize: 20,
     color: Colors.gray3,
   },
@@ -39,5 +38,6 @@ const styles = StyleSheet.create({
     height: 24,
     width: 24,
     marginLeft: 8,
+    marginTop: 8,
   },
 })
