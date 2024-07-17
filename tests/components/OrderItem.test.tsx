@@ -53,5 +53,10 @@ describe("<OrderItem />", () => {
       const deleteButton = screen.getByRole("button")
       expect(deleteButton).toHaveStyle({ backgroundColor: "red" })
     })
+
+    it("is hidden by default", () => {
+      const deleteButton = screen.getByRole("button")
+      expect(deleteButton).not.toBeVisible()
+    })
   })
 })
