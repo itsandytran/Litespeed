@@ -27,20 +27,22 @@ describe("<OrderItem />", () => {
     expect(deleteButton).toHaveTextContent("Delete")
   })
 
-  it("deletes itself when delete button is pressed", async () => {
-    jest.useFakeTimers()
-    const onDelete = jest.fn()
-    render(
-      <OrderItem
-        name={name}
-        quantity={quantity}
-        price={price}
-        onDelete={onDelete}
-      />
-    )
-    const deleteButton = screen.getByRole("button")
-    const user = userEvent.setup()
-    await user.press(deleteButton)
-    expect(onDelete).toHaveBeenCalledTimes(1)
+  describe("Delete button", () => {
+    it("deletes the item when pressed", async () => {
+      jest.useFakeTimers()
+      const onDelete = jest.fn()
+      render(
+        <OrderItem
+          name={name}
+          quantity={quantity}
+          price={price}
+          onDelete={onDelete}
+        />
+      )
+      const deleteButton = screen.getByRole("button")
+      const user = userEvent.setup()
+      await user.press(deleteButton)
+      expect(onDelete).toHaveBeenCalledTimes(1)
+    })
   })
 })
