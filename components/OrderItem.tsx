@@ -1,7 +1,7 @@
 import { FC } from "react"
 import {
-  Button,
   GestureResponderEvent,
+  Pressable,
   StyleSheet,
   Text,
   View,
@@ -29,7 +29,13 @@ export const OrderItem: FC<OrderItemProps> = ({
       <Text aria-label="price" style={style.number}>
         {price}
       </Text>
-      <Button title="Delete" onPress={onDelete ? onDelete : () => {}} />
+      <Pressable
+        onPress={onDelete ? onDelete : () => {}}
+        role="button"
+        style={style.deleteButton}
+      >
+        <Text>Delete</Text>
+      </Pressable>
     </View>
   )
 }
@@ -45,5 +51,8 @@ const style = StyleSheet.create({
   number: {
     flexBasis: 18,
     textAlign: "right",
+  },
+  deleteButton: {
+    backgroundColor: "red",
   },
 })
