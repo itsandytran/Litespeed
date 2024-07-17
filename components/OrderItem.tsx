@@ -1,5 +1,5 @@
 import { FC } from "react"
-import { Text, View } from "react-native"
+import { StyleSheet, Text, View } from "react-native"
 
 export type OrderItemProps = {
   name: string
@@ -9,10 +9,28 @@ export type OrderItemProps = {
 
 export const OrderItem: FC<OrderItemProps> = ({ name, quantity, price }) => {
   return (
-    <View>
-      <Text aria-label="quantity">{quantity}</Text>
+    <View style={style.container}>
+      <Text aria-label="quantity" style={style.number}>
+        {quantity}
+      </Text>
       <Text aria-label="name">{name}</Text>
-      <Text aria-label="price">{price}</Text>
+      <Text aria-label="price" style={style.number}>
+        {price}
+      </Text>
     </View>
   )
 }
+
+const style = StyleSheet.create({
+  container: {
+    display: "flex",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    maxWidth: 250,
+    padding: 4,
+  },
+  number: {
+    flexBasis: 18,
+    textAlign: "right",
+  },
+})
