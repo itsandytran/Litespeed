@@ -22,5 +22,6 @@ const styles = StyleSheet.create({
   register: {
     flexDirection: "row",
     backgroundColor: "white",
+    height: "100%",
   },
 })
