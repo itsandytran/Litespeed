@@ -1,17 +1,17 @@
 import { FC } from "react"
-import {
-  GestureResponderEvent,
-  Pressable,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native"
+import { Pressable, StyleSheet, Text, View } from "react-native"
 
-export type OrderItemProps = {
+export type OrderItemProps = OrderItemDetails &
+  OnDeleteCallBack<OrderItemDetails>
+
+export type OrderItemDetails = {
   name: string
   quantity: number
   price: number
-  onDelete?: (event: GestureResponderEvent) => void
+}
+
+export type OnDeleteCallBack<T> = {
+  onDelete?: (item: T) => void
 }
 
 export const OrderItem: FC<OrderItemProps> = ({
@@ -22,34 +22,55 @@ export const OrderItem: FC<OrderItemProps> = ({
 }) => {
   return (
     <View>
-      <View style={[style.orderItem]}>
-        <Text aria-label="quantity" style={[style.text, style.number]}>
-          {quantity}
-        </Text>
-        <Text aria-label="name" style={[style.text]}>
-          {name}
-        </Text>
-        <Text aria-label="price" style={[style.text, style.number]}>
-          {price}
-        </Text>
-      </View>
-      <Pressable
-        onPress={onDelete ? onDelete : () => {}}
-        role="button"
-        style={style.deleteButton}
-      >
-        <Text
-          style={[
-            style.text,
-            {
-              color: "white",
-            },
-          ]}
-        >
-          Delete
-        </Text>
-      </Pressable>
+      <OrderItemDetails name={name} price={price} quantity={quantity} />
+      <OrderItemDeleteButton
+        onDelete={onDelete}
+        item={{ name, price, quantity }}
+      />
     </View>
+  )
+}
+
+const OrderItemDetails: FC<OrderItemDetails> = ({ name, price, quantity }) => {
+  return (
+    <View style={[style.orderItem]}>
+      <Text aria-label="quantity" style={[style.text, style.number]}>
+        {quantity}
+      </Text>
+      <Text aria-label="name" style={[style.text]}>
+        {name}
+      </Text>
+      <Text aria-label="price" style={[style.text, style.number]}>
+        {price}
+      </Text>
+    </View>
+  )
+}
+
+const OrderItemDeleteButton: FC<
+  OnDeleteCallBack<OrderItemDetails> & {
+    item: OrderItemDetails
+  }
+> = ({ onDelete, item }) => {
+  return (
+    <Pressable
+      onPress={() => {
+        if (onDelete) onDelete(item)
+      }}
+      role="button"
+      style={style.deleteButton}
+    >
+      <Text
+        style={[
+          style.text,
+          {
+            color: "white",
+          },
+        ]}
+      >
+        Delete
+      </Text>
+    </Pressable>
   )
 }
 
