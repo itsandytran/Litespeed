@@ -34,13 +34,39 @@ export const OrderItem: FC<OrderItemProps> = ({
 const OrderItemDetails: FC<OrderItemDetails> = ({ name, price, quantity }) => {
   return (
     <View style={[style.orderItem]}>
-      <Text aria-label="quantity" style={[style.text, style.number]}>
+      <Text
+        aria-label="quantity"
+        style={[
+          style.text,
+          style.number,
+          {
+            flexGrow: 0,
+          },
+        ]}
+      >
         {quantity}
       </Text>
-      <Text aria-label="name" style={[style.text]}>
+      <Text
+        aria-label="name"
+        style={[
+          style.text,
+          {
+            flexGrow: 0.8,
+          },
+        ]}
+      >
         {name}
       </Text>
-      <Text aria-label="price" style={[style.text, style.number]}>
+      <Text
+        aria-label="price"
+        style={[
+          style.text,
+          style.number,
+          {
+            flexGrow: 0,
+          },
+        ]}
+      >
         {price}
       </Text>
     </View>
