@@ -65,7 +65,7 @@ let menu: {
 function MenuPage() {
   return (
     <View style={styles.background}>
-      <ScrollView>
+      <ScrollView alwaysBounceVertical={false}>
         <View style={styles.menuItemsContainer}>
           {menu.map((item) => (
             <View key={item.itemName}>
