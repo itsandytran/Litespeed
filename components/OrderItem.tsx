@@ -58,7 +58,12 @@ const OrderItemDeleteButton: FC<
         if (onDelete) onDelete(item)
       }}
       role="button"
-      style={style.deleteButton}
+      style={[
+        style.deleteButton,
+        {
+          opacity: 0,
+        },
+      ]}
     >
       <Text
         style={[
