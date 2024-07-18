@@ -31,10 +31,10 @@ const styles = StyleSheet.create({
   textInput: {
     marginHorizontal: 12,
     fontSize: 20,
-    color: Colors.gray3,
+    color: Colors.gray4,
   },
   icon: {
-    tintColor: Colors.gray3,
+    tintColor: Colors.gray4,
     height: 24,
     width: 24,
     marginLeft: 8,

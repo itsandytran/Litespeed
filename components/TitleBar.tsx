@@ -19,7 +19,7 @@ export default TitleBar
 
 const styles = StyleSheet.create({
   background: {
-    backgroundColor: Colors.gray4,
+    backgroundColor: Colors.gray5,
     width: "100%",
     paddingVertical: 20,
   },

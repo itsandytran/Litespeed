@@ -2,6 +2,7 @@ import { View, ScrollView, StyleSheet } from "react-native"
 
 import MenuItem from "./MenuItem"
 import Colors from "../constants/colors"
+import ItemCustomization from "./ItemCustomization"
 
 let menu: {
   itemName: string
@@ -85,9 +86,7 @@ export default MenuPage
 
 const styles = StyleSheet.create({
   background: {
-    backgroundColor: "white",
     width: 622,
-    height: "100%",
   },
   menuItemsContainer: {
     flexDirection: "row",
