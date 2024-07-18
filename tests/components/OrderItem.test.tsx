@@ -19,6 +19,10 @@ describe("<OrderItem />", () => {
     expect(nameText).toBeVisible()
     expect(priceText).toBeVisible()
     expect(quantityText).toBeVisible()
+
+    expect(nameText).toHaveTextContent(name)
+    expect(priceText).toHaveTextContent(`${price}`)
+    expect(quantityText).toHaveTextContent(`${quantity}`)
   })
 
   it("shows special instructions when specified", () => {
