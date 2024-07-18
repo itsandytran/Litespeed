@@ -21,6 +21,22 @@ describe("<OrderItem />", () => {
     expect(quantityText).toBeVisible()
   })
 
+  it("shows special instructions when specified", () => {
+    const instructions = "add tomato, no onions"
+    render(
+      <OrderItem
+        name={name}
+        quantity={quantity}
+        price={price}
+        specialInstructions={instructions}
+      />
+    )
+
+    const instructionsText = screen.getByRole("text", { name: "instructions" })
+    expect(instructionsText).toBeVisible()
+    expect(instructionsText).toHaveTextContent(instructions)
+  })
+
   it("has a delete button", () => {
     render(<OrderItem name={name} quantity={quantity} price={price} />)
     const deleteButton = screen.getByRole("button")

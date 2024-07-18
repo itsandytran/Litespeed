@@ -8,6 +8,7 @@ export type OrderItemDetails = {
   name: string
   quantity: number
   price: number
+  specialInstructions?: string
 }
 
 export type OnDeleteCallBack<T> = {
@@ -31,7 +32,12 @@ export const OrderItem: FC<OrderItemProps> = ({
   )
 }
 
-const OrderItemDetails: FC<OrderItemDetails> = ({ name, price, quantity }) => {
+const OrderItemDetails: FC<OrderItemDetails> = ({
+  name,
+  price,
+  quantity,
+  specialInstructions,
+}) => {
   return (
     <View style={[style.orderItem]}>
       <Text
