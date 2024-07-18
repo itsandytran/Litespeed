@@ -19,11 +19,17 @@ export const OrderItem: FC<OrderItemProps> = ({
   name,
   quantity,
   price,
+  specialInstructions,
   onDelete,
 }) => {
   return (
     <View>
-      <OrderItemDetails name={name} price={price} quantity={quantity} />
+      <OrderItemDetails
+        name={name}
+        price={price}
+        quantity={quantity}
+        specialInstructions={specialInstructions}
+      />
       <OrderItemDeleteButton
         onDelete={onDelete}
         item={{ name, price, quantity }}
@@ -39,42 +45,51 @@ const OrderItemDetails: FC<OrderItemDetails> = ({
   specialInstructions,
 }) => {
   return (
-    <View style={[style.orderItem]}>
-      <Text
-        aria-label="quantity"
-        style={[
-          style.text,
-          style.number,
-          {
-            flexGrow: 0,
-          },
-        ]}
-      >
-        {quantity}
-      </Text>
-      <Text
-        aria-label="name"
-        style={[
-          style.text,
-          {
-            flexGrow: 0.8,
-          },
-        ]}
-      >
-        {name}
-      </Text>
-      <Text
-        aria-label="price"
-        style={[
-          style.text,
-          style.number,
-          {
-            flexGrow: 0,
-          },
-        ]}
-      >
-        {price}
-      </Text>
+    <View>
+      <View style={[style.orderItem]}>
+        <Text
+          aria-label="quantity"
+          style={[
+            style.text,
+            style.number,
+            {
+              flexGrow: 0,
+            },
+          ]}
+        >
+          {quantity}
+        </Text>
+        <Text
+          aria-label="name"
+          style={[
+            style.text,
+            {
+              flexGrow: 0.8,
+            },
+          ]}
+        >
+          {name}
+        </Text>
+        <Text
+          aria-label="price"
+          style={[
+            style.text,
+            style.number,
+            {
+              flexGrow: 0,
+            },
+          ]}
+        >
+          {price}
+        </Text>
+      </View>
+      {specialInstructions && (
+        <View>
+          <Text aria-label="instructions" style={[style.text]}>
+            {specialInstructions}
+          </Text>
+        </View>
+      )}
     </View>
   )
 }
