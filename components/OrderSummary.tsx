@@ -31,12 +31,20 @@ const sampleData: OrderItemDetails[] = [
 ]
 
 function OrderSummary() {
+  const orderItems = sampleData.map((item) => {
+    const { name, price, quantity, specialInstructions } = item
+    return (
+      <OrderItem
+        name={name}
+        price={price}
+        quantity={quantity}
+        specialInstructions={specialInstructions}
+      />
+    )
+  })
   return (
     <View style={styles.background}>
-      <OrderItem name={"Ham Burger"} quantity={4} price={50.0} />
-      <OrderItem name={"Ham Burger"} quantity={4} price={50.0} />
-      <OrderItem name={"Ham Burger"} quantity={4} price={50.0} />
-      <OrderItem name={"Ham Burger"} quantity={4} price={50.0} />
+      {orderItems}
       <CustomerInstructions />
       <CheckOutButtons />
     </View>
