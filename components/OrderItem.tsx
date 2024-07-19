@@ -23,7 +23,7 @@ export const OrderItem: FC<OrderItemProps> = ({
   onDelete,
 }) => {
   return (
-    <View>
+    <View style={style.container}>
       <OrderItemDetails
         name={name}
         price={price}
@@ -32,7 +32,7 @@ export const OrderItem: FC<OrderItemProps> = ({
       />
       <OrderItemDeleteButton
         onDelete={onDelete}
-        item={{ name, price, quantity }}
+        item={{ name, price, quantity, specialInstructions }}
       />
     </View>
   )
@@ -44,52 +44,37 @@ const OrderItemDetails: FC<OrderItemDetails> = ({
   quantity,
   specialInstructions,
 }) => {
+  const nameText = (
+    <Text aria-label="name" style={[style.text, style.itemName]}>
+      {name}
+    </Text>
+  )
+  const specialInstructionsText = specialInstructions && (
+    <Text
+      aria-label="instructions"
+      style={[style.text, style.itemInstructions]}
+    >
+      {specialInstructions}
+    </Text>
+  )
+  const priceText = (
+    <Text aria-label="price" style={[style.text, style.numbers]}>
+      {price}
+    </Text>
+  )
+  const quantityText = (
+    <Text aria-label="quantity" style={[style.text, style.numbers]}>
+      {quantity}
+    </Text>
+  )
   return (
-    <View>
-      <View style={[style.orderItem]}>
-        <Text
-          aria-label="quantity"
-          style={[
-            style.text,
-            style.number,
-            {
-              flexGrow: 0,
-            },
-          ]}
-        >
-          {quantity}
-        </Text>
-        <Text
-          aria-label="name"
-          style={[
-            style.text,
-            {
-              flexGrow: 0.8,
-            },
-          ]}
-        >
-          {name}
-        </Text>
-        <Text
-          aria-label="price"
-          style={[
-            style.text,
-            style.number,
-            {
-              flexGrow: 0,
-            },
-          ]}
-        >
-          {price}
-        </Text>
+    <View style={[style.orderItem]}>
+      {quantityText}
+      <View style={[style.itemNameAndInstructions]}>
+        {nameText}
+        {specialInstructionsText}
       </View>
-      {specialInstructions && (
-        <View>
-          <Text aria-label="instructions" style={[style.text]}>
-            {specialInstructions}
-          </Text>
-        </View>
-      )}
+      {priceText}
     </View>
   )
 }
@@ -105,44 +90,42 @@ const OrderItemDeleteButton: FC<
         if (onDelete) onDelete(item)
       }}
       role="button"
-      style={[
-        style.deleteButton,
-        {
-          opacity: 0,
-        },
-      ]}
+      style={[style.deleteButton]}
     >
-      <Text
-        style={[
-          style.text,
-          {
-            color: "white",
-          },
-        ]}
-      >
-        Delete
-      </Text>
+      <Text style={[style.text, style.deleteButtonText]}>Delete</Text>
     </Pressable>
   )
 }
 
 const style = StyleSheet.create({
+  container: {},
   orderItem: {
     display: "flex",
     flexDirection: "row",
-    justifyContent: "space-between",
-    padding: 8,
+  },
+  itemNameAndInstructions: {
+    display: "flex",
+    flexDirection: "column",
+  },
+  itemName: {},
+  itemInstructions: {
+    color: "darkgray",
   },
   deleteButton: {
     backgroundColor: "red",
+    height: "100%",
     justifyContent: "center",
-    padding: 8,
+    position: "absolute",
+    right: 0,
+    zIndex: -1,
   },
-  number: {
-    flexBasis: 32,
-    textAlign: "right",
+  deleteButtonText: {
+    color: "white",
   },
   text: {
     fontSize: 22,
+  },
+  numbers: {
+    textAlign: "right",
   },
 })
