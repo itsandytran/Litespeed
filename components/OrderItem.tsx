@@ -23,7 +23,7 @@ export const OrderItem: FC<OrderItemProps> = ({
   onDelete,
 }) => {
   return (
-    <View style={style.container}>
+    <View>
       <OrderItemDetails
         name={name}
         price={price}
@@ -45,10 +45,11 @@ const OrderItemDetails: FC<OrderItemDetails> = ({
   specialInstructions,
 }) => {
   const nameText = (
-    <Text aria-label="name" style={[style.text, style.itemName]}>
+    <Text aria-label="name" style={[style.text]}>
       {name}
     </Text>
   )
+
   const specialInstructionsText = specialInstructions && (
     <Text
       aria-label="instructions"
@@ -57,16 +58,25 @@ const OrderItemDetails: FC<OrderItemDetails> = ({
       {specialInstructions}
     </Text>
   )
+
   const priceText = (
-    <Text aria-label="price" style={[style.text, style.numbers]}>
+    <Text
+      aria-label="price"
+      style={[style.text, style.number, style.itemPrice]}
+    >
       {price}
     </Text>
   )
+
   const quantityText = (
-    <Text aria-label="quantity" style={[style.text, style.numbers]}>
+    <Text
+      aria-label="quantity"
+      style={[style.text, style.number, style.itemQuantity]}
+    >
       {quantity}
     </Text>
   )
+
   return (
     <View style={[style.orderItem]}>
       {quantityText}
@@ -98,23 +108,33 @@ const OrderItemDeleteButton: FC<
 }
 
 const style = StyleSheet.create({
-  container: {},
   orderItem: {
+    borderBottomColor: "darkgray",
+    borderBottomWidth: 1,
     display: "flex",
     flexDirection: "row",
+    justifyContent: "space-between",
+    padding: 8,
   },
   itemNameAndInstructions: {
     display: "flex",
     flexDirection: "column",
+    width: "70%",
   },
-  itemName: {},
   itemInstructions: {
     color: "darkgray",
+  },
+  itemPrice: {
+    width: "12%",
+  },
+  itemQuantity: {
+    width: "8%",
   },
   deleteButton: {
     backgroundColor: "red",
     height: "100%",
     justifyContent: "center",
+    paddingHorizontal: 8,
     position: "absolute",
     right: 0,
     zIndex: -1,
@@ -125,7 +145,7 @@ const style = StyleSheet.create({
   text: {
     fontSize: 22,
   },
-  numbers: {
+  number: {
     textAlign: "right",
   },
 })
