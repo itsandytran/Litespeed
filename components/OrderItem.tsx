@@ -119,7 +119,8 @@ const style = StyleSheet.create({
     display: "flex",
     flexDirection: "row",
     justifyContent: "space-between",
-    padding: 8,
+    paddingHorizontal: 16,
+    paddingVertical: 8,
   },
   itemNameAndInstructions: {
     display: "flex",
@@ -133,7 +134,7 @@ const style = StyleSheet.create({
     width: "12%",
   },
   itemQuantity: {
-    width: "8%",
+    width: "6%",
   },
   deleteButton: {
     backgroundColor: "red",
