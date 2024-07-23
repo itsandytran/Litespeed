@@ -50,6 +50,7 @@ const styles = StyleSheet.create({
   checkOutButtonsRow: {
     flexDirection: "row",
     paddingBottom: 4,
+    paddingHorizontal: 8,
   },
   orderTotalRow: {
     flexDirection: "row",

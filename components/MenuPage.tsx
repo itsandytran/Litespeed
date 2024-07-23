@@ -1,7 +1,9 @@
 import { View, ScrollView, StyleSheet } from "react-native"
+import { useState } from "react"
 
 import MenuItem from "./MenuItem"
 import Colors from "../constants/colors"
+import ItemCustomization from "./ItemCustomization"
 
 let menu: {
   itemName: string
@@ -62,9 +64,12 @@ let menu: {
 ]
 
 function MenuPage() {
+  const [modalVisible, setModalVisible] = useState(false)
+
   return (
     <View style={styles.background}>
-      <ScrollView>
+      {/* <ItemCustomization itemName="Cheese Dog" itemOptions={["ketchup", "mustard", "mayo"]} visible={true} /> */}
+      <ScrollView alwaysBounceVertical={false}>
         <View style={styles.menuItemsContainer}>
           {menu.map((item) => (
             <View key={item.itemName}>
@@ -85,9 +90,7 @@ export default MenuPage
 
 const styles = StyleSheet.create({
   background: {
-    backgroundColor: "white",
     width: 622,
-    height: "100%",
   },
   menuItemsContainer: {
     flexDirection: "row",

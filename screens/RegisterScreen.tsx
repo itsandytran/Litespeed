@@ -6,9 +6,9 @@ import OrderSummary from "@components/OrderSummary"
 
 function RegisterScreen() {
   return (
-    <View>
+    <View style={styles.register}>
       <TitleBar />
-      <View style={styles.register}>
+      <View style={styles.menuAndSummary}>
         <MenuPage />
         <OrderSummary />
       </View>
@@ -20,6 +20,10 @@ export default RegisterScreen
 
 const styles = StyleSheet.create({
   register: {
+    flex: 1,
+  },
+  menuAndSummary: {
+    flex: 1,
     flexDirection: "row",
     backgroundColor: "white",
   },
