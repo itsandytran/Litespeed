@@ -4,6 +4,7 @@ import { useState } from "react"
 import MenuItem from "./MenuItem"
 import Colors from "../constants/colors"
 import ItemCustomization from "./ItemCustomization"
+import MenuCategories from "./MenuCategories"
 
 let menu: {
   itemName: string
@@ -69,19 +70,24 @@ function MenuPage() {
   return (
     <View style={styles.background}>
       {/* <ItemCustomization itemName="Cheese Dog" itemOptions={["ketchup", "mustard", "mayo"]} visible={true} /> */}
-      <ScrollView alwaysBounceVertical={false}>
-        <View style={styles.menuItemsContainer}>
-          {menu.map((item) => (
-            <View key={item.itemName}>
-              <MenuItem
-                itemName={item.itemName}
-                itemPrice={item.itemPrice}
-                buttonColor={item.buttonColor}
-              />
-            </View>
-          ))}
-        </View>
-      </ScrollView>
+      <View>
+        <MenuCategories />
+      </View>
+      <View>
+        <ScrollView alwaysBounceVertical={false}>
+          <View style={styles.menuItemsContainer}>
+            {menu.map((item) => (
+              <View key={item.itemName}>
+                <MenuItem
+                  itemName={item.itemName}
+                  itemPrice={item.itemPrice}
+                  buttonColor={item.buttonColor}
+                />
+              </View>
+            ))}
+          </View>
+        </ScrollView>
+      </View>
     </View>
   )
 }
@@ -90,12 +96,15 @@ export default MenuPage
 
 const styles = StyleSheet.create({
   background: {
-    width: 622,
+    flex: 1,
+    flexDirection: "row",
+    //backgroundColor: "blue",
   },
   menuItemsContainer: {
     flexDirection: "row",
-    marginLeft: 1,
-    marginTop: 1,
+    marginHorizontal: 8,
+    marginTop: 8,
     flexWrap: "wrap",
+    //flex: 1,
   },
 })
