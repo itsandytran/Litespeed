@@ -1,4 +1,5 @@
 import { View, ScrollView, StyleSheet } from "react-native"
+import { useState } from "react"
 
 import MenuItem from "./MenuItem"
 import Colors from "../constants/colors"
@@ -63,8 +64,11 @@ let menu: {
 ]
 
 function MenuPage() {
+  const [modalVisible, setModalVisible] = useState(false)
+
   return (
     <View style={styles.background}>
+      {/* <ItemCustomization itemName="Cheese Dog" itemOptions={["ketchup", "mustard", "mayo"]} visible={true} /> */}
       <ScrollView alwaysBounceVertical={false}>
         <View style={styles.menuItemsContainer}>
           {menu.map((item) => (
