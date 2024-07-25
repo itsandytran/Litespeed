@@ -1,18 +1,16 @@
+import { FC } from "react"
 import { View, Text, StyleSheet } from "react-native"
 
-type MenuItemProps = {
-  itemName: string
-  itemPrice: string
-  buttonColor: string
-}
+import { MenuItemType } from "@lib/sample-data"
+import Keyed from "@lib/keyed"
 
-const MenuItem = (props: MenuItemProps) => {
+const MenuItem: FC<MenuItemType & Keyed<string>> = ({ name, price, color }) => {
   return (
-    <View style={[styles.button, {backgroundColor: props.buttonColor}]}>
+    <View style={[styles.button, { backgroundColor: color }]}>
       <View style={styles.itemName}>
-        <Text style={styles.itemNameText}>{props.itemName}</Text>
+        <Text style={styles.itemNameText}>{name}</Text>
       </View>
-      <Text style={styles.itemPriceText}>{props.itemPrice}</Text>
+      <Text style={styles.itemPriceText}>{price}</Text>
     </View>
   )
 }
