@@ -13,6 +13,8 @@ export interface OrderItemType {
   itemCustomization?: string
 }
 
+export interface ItemCustomizationOption extends MenuItemType {}
+
 export const sampleMenuItems: MenuItemType[] = [
   { name: "Fries", price: 5, color: Colors.orange1 },
   { name: "Poutine", price: 7, color: Colors.orange1 },
@@ -44,4 +46,17 @@ export const sampleOrderItems: OrderItemType[] = [
   { menuItem: sampleMenuItems[4], quantity: 1 },
   { menuItem: sampleMenuItems[5], quantity: 2 },
   { menuItem: sampleMenuItems[17], quantity: 2 },
+]
+
+export const sampleCustomizationOptions: ItemCustomizationOption[] = [
+  { name: "Lettuce", price: 0.5, color: Colors.yellow1 },
+  { name: "Bacon", price: 2, color: Colors.yellow1 },
+  { name: "Tomatoes", price: 1.2, color: Colors.orange1 },
+  { name: "Extra cheese", price: 1.5, color: Colors.orange1 },
+  { name: "Mustard", price: 0.5, color: Colors.yellow1 },
+  { name: "Ketchup", price: 0.5, color: Colors.red1 },
+  { name: "Pickles", price: 0.5, color: Colors.green1 },
+  { name: "Relish", price: 0.5, color: Colors.green1 },
+  { name: "Salt", price: 0.2, color: Colors.gray1 },
+  { name: "Vinegar", price: 0.2, color: Colors.yellow1 },
 ]
