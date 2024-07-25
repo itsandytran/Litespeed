@@ -2,9 +2,8 @@ import { FC } from "react"
 import { View, Text, StyleSheet } from "react-native"
 
 import { MenuItemType } from "@lib/sample-data"
-import Keyed from "@lib/keyed"
 
-const MenuItem: FC<MenuItemType & Keyed<string>> = ({ name, price, color }) => {
+const MenuItem: FC<MenuItemType> = ({ name, price, color }) => {
   return (
     <View style={[styles.button, { backgroundColor: color }]}>
       <View style={styles.itemName}>

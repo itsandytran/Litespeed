@@ -2,11 +2,8 @@ import { FC } from "react"
 import { Pressable, StyleSheet, Text, View } from "react-native"
 
 import { OrderItemType } from "@lib/sample-data"
-import Keyed from "@lib/keyed"
 
-export type OrderItemProps = OrderItemType &
-  Keyed<string> &
-  OnDeleteCallBack<OrderItemType>
+export type OrderItemProps = OrderItemType & OnDeleteCallBack<OrderItemType>
 
 export type OnDeleteCallBack<T> = {
   onDelete?: (item: T) => void
