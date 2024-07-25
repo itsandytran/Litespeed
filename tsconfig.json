@@ -2,8 +2,9 @@
     "extends": "@tsconfig/react-native/tsconfig.json",
     "compilerOptions": {
         "paths": {
+            "@assets/*": ["./assets/*"],
             "@components/*": ["./components/*"],
-            "@assets/*": ["./assets/*"]
+            "@constants/*": ["./constants/*"]
         }
     }
 }
