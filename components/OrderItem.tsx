@@ -1,61 +1,44 @@
 import { FC } from "react"
+import { OrderItemType } from "@lib/sample-data"
 import { Pressable, StyleSheet, Text, View } from "react-native"
 
-export type OrderItemProps = OrderItemDetails &
-  OnDeleteCallBack<OrderItemDetails>
-
-export type OrderItemDetails = {
-  name: string
-  quantity: number
-  price: number
-  specialInstructions?: string
-}
+export type OrderItemProps = OrderItemType & OnDeleteCallBack<OrderItemType>
 
 export type OnDeleteCallBack<T> = {
   onDelete?: (item: T) => void
 }
 
-export const OrderItem: FC<OrderItemProps> = ({
-  name,
-  quantity,
-  price,
-  specialInstructions,
-  onDelete,
-}) => {
+export const OrderItem: FC<OrderItemProps> = (item) => {
+  const { menuItem, quantity, itemCustomization, onDelete } = item
   return (
     <View>
       <OrderItemDetails
-        name={name}
-        price={price}
+        menuItem={menuItem}
         quantity={quantity}
-        specialInstructions={specialInstructions}
+        itemCustomization={itemCustomization}
       />
-      <OrderItemDeleteButton
-        onDelete={onDelete}
-        item={{ name, price, quantity, specialInstructions }}
-      />
+      <OrderItemDeleteButton onDelete={onDelete} item={item} />
     </View>
   )
 }
 
-const OrderItemDetails: FC<OrderItemDetails> = ({
-  name,
-  price,
+const OrderItemDetails: FC<OrderItemType> = ({
+  menuItem,
   quantity,
-  specialInstructions,
+  itemCustomization,
 }) => {
   const nameText = (
     <Text aria-label="name" style={[style.text]}>
-      {name}
+      {menuItem.name}
     </Text>
   )
 
-  const specialInstructionsText = specialInstructions && (
+  const itemCustomizationText = itemCustomization && (
     <Text
-      aria-label="instructions"
-      style={[style.text, style.itemInstructions]}
+      aria-label="item customization"
+      style={[style.text, style.itemCustomization]}
     >
-      {specialInstructions}
+      {itemCustomization}
     </Text>
   )
 
@@ -64,7 +47,7 @@ const OrderItemDetails: FC<OrderItemDetails> = ({
       aria-label="price"
       style={[style.text, style.number, style.itemPrice]}
     >
-      {price}
+      {menuItem.price}
     </Text>
   )
 
@@ -82,7 +65,7 @@ const OrderItemDetails: FC<OrderItemDetails> = ({
       {quantityText}
       <View style={[style.itemNameAndInstructions]}>
         {nameText}
-        {specialInstructionsText}
+        {itemCustomizationText}
       </View>
       {priceText}
     </View>
@@ -90,9 +73,7 @@ const OrderItemDetails: FC<OrderItemDetails> = ({
 }
 
 const OrderItemDeleteButton: FC<
-  OnDeleteCallBack<OrderItemDetails> & {
-    item: OrderItemDetails
-  }
+  OnDeleteCallBack<OrderItemType> & { item: OrderItemType }
 > = ({ onDelete, item }) => {
   return (
     <Pressable
@@ -127,7 +108,7 @@ const style = StyleSheet.create({
     flexDirection: "column",
     width: "70%",
   },
-  itemInstructions: {
+  itemCustomization: {
     color: "darkgray",
   },
   itemPrice: {
