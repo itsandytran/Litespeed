@@ -9,8 +9,12 @@ function RegisterScreen() {
     <View style={styles.register}>
       <TitleBar />
       <View style={styles.menuAndSummary}>
-        <MenuPage />
-        <OrderSummary />
+        <View style={styles.menu}>
+          <MenuPage />
+        </View>
+        <View style={styles.orderSummary}>
+          <OrderSummary />
+        </View>
       </View>
     </View>
   )
@@ -25,6 +29,11 @@ const styles = StyleSheet.create({
   menuAndSummary: {
     flex: 1,
     flexDirection: "row",
-    backgroundColor: "white",
+  },
+  menu: {
+    flex: 2,
+  },
+  orderSummary: {
+    flex: 1,
   },
 })

@@ -4,6 +4,7 @@ import { View, ScrollView, StyleSheet } from "react-native"
 import { sampleCustomizationOptions, sampleMenuItems } from "@lib/sample-data"
 import ItemCustomization from "./ItemCustomization"
 import MenuItem from "./MenuItem"
+import MenuCategories from "./MenuCategories"
 
 const MenuPage: FC = () => {
   const [modalVisible, setModalVisible] = useState(true)
@@ -19,6 +20,9 @@ const MenuPage: FC = () => {
         options={sampleCustomizationOptions}
         visible={modalVisible}
       />
+      <View>
+        <MenuCategories />
+      </View>
       <ScrollView alwaysBounceVertical={false}>
         <View style={styles.menuItemsContainer}>{menuItems}</View>
       </ScrollView>
@@ -30,12 +34,15 @@ export default MenuPage
 
 const styles = StyleSheet.create({
   background: {
-    width: 622,
+    flex: 1,
+    flexDirection: "row",
+    //backgroundColor: "blue",
   },
   menuItemsContainer: {
     flexDirection: "row",
-    marginLeft: 1,
-    marginTop: 1,
+    marginHorizontal: 8,
+    marginTop: 8,
     flexWrap: "wrap",
+    //flex: 1,
   },
 })
