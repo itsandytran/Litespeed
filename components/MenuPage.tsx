@@ -1,12 +1,12 @@
 import { FC, useState } from "react"
 import { View, ScrollView, StyleSheet } from "react-native"
 
-import { sampleMenuItems } from "@lib/sample-data"
+import { sampleCustomizationOptions, sampleMenuItems } from "@lib/sample-data"
 import ItemCustomization from "./ItemCustomization"
 import MenuItem from "./MenuItem"
 
 const MenuPage: FC = () => {
-  const [modalVisible, setModalVisible] = useState(false)
+  const [modalVisible, setModalVisible] = useState(true)
 
   const menuItems = sampleMenuItems.map(({ name, price, color }) => {
     return <MenuItem key={name} name={name} price={price} color={color} />
@@ -16,7 +16,7 @@ const MenuPage: FC = () => {
     <View style={styles.background}>
       <ItemCustomization
         itemName="Cheese Dog"
-        itemOptions={["ketchup", "mustard", "mayo"]}
+        options={sampleCustomizationOptions}
         visible={modalVisible}
       />
       <ScrollView alwaysBounceVertical={false}>
