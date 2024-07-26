@@ -1,19 +1,20 @@
+import { View, Text, StyleSheet } from "react-native"
+
 import { OrderItem } from "./OrderItem"
 import { sampleOrderItems } from "@lib/sample-data"
-import { View, Text, StyleSheet } from "react-native"
 import CheckOutButtons from "./CheckOutButtons"
 import Colors from "@constants/colors"
 import CustomerInstructions from "./CustomerInstructions"
 
 function OrderSummary() {
   const orderItems = sampleOrderItems.map(
-    ({ menuItem, quantity, itemCustomization }) => {
+    ({ menuItem, quantity, customizationOptions }) => {
       return (
         <OrderItem
           key={menuItem.name}
           menuItem={menuItem}
           quantity={quantity}
-          itemCustomization={itemCustomization}
+          customizationOptions={customizationOptions}
         />
       )
     }
