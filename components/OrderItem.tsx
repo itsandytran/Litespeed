@@ -9,16 +9,23 @@ export type OnDeleteCallBack<T> = {
   onDelete?: (item: T) => void
 }
 
-export const OrderItem: FC<OrderItemProps> = (item) => {
-  const { menuItem, quantity, itemCustomization, onDelete } = item
+export const OrderItem: FC<OrderItemProps> = ({
+  menuItem,
+  quantity,
+  customizationOptions,
+  onDelete,
+}) => {
   return (
     <View>
       <OrderItemDetails
         menuItem={menuItem}
         quantity={quantity}
-        itemCustomization={itemCustomization}
+        customizationOptions={customizationOptions}
       />
-      <OrderItemDeleteButton onDelete={onDelete} item={item} />
+      <OrderItemDeleteButton
+        onDelete={onDelete}
+        item={{ menuItem, quantity, customizationOptions }}
+      />
     </View>
   )
 }
@@ -26,7 +33,7 @@ export const OrderItem: FC<OrderItemProps> = (item) => {
 const OrderItemDetails: FC<OrderItemType> = ({
   menuItem,
   quantity,
-  itemCustomization,
+  customizationOptions = [],
 }) => {
   const nameText = (
     <Text aria-label="name" style={[style.text]}>
@@ -34,12 +41,12 @@ const OrderItemDetails: FC<OrderItemType> = ({
     </Text>
   )
 
-  const itemCustomizationText = itemCustomization && (
+  const itemCustomizationText = customizationOptions.length > 0 && (
     <Text
       aria-label="item customization"
       style={[style.text, style.itemCustomization]}
     >
-      {itemCustomization}
+      {customizationOptions.map((option) => option.name).join(", ")}
     </Text>
   )
 
