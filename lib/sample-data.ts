@@ -10,7 +10,7 @@ export interface MenuItemType {
 export interface OrderItemType {
   menuItem: MenuItemType
   quantity: number
-  itemCustomization?: string
+  customizationOptions?: ItemCustomizationOption[]
 }
 
 export interface ItemCustomizationOption extends MenuItemType {}
@@ -41,13 +41,6 @@ export const sampleMenuItems: MenuItemType[] = [
   { name: "Pop Drink", price: 1.75, color: Colors.green2 },
 ]
 
-export const sampleOrderItems: OrderItemType[] = [
-  { menuItem: sampleMenuItems[3], quantity: 1 },
-  { menuItem: sampleMenuItems[4], quantity: 1 },
-  { menuItem: sampleMenuItems[5], quantity: 2 },
-  { menuItem: sampleMenuItems[17], quantity: 2 },
-]
-
 export const sampleCustomizationOptions: ItemCustomizationOption[] = [
   { name: "Lettuce", price: 0.5, color: Colors.yellow1 },
   { name: "Bacon", price: 2, color: Colors.yellow1 },
@@ -59,4 +52,22 @@ export const sampleCustomizationOptions: ItemCustomizationOption[] = [
   { name: "Relish", price: 0.5, color: Colors.green1 },
   { name: "Salt", price: 0.2, color: Colors.gray1 },
   { name: "Vinegar", price: 0.2, color: Colors.yellow1 },
+]
+
+export const sampleOrderItems: OrderItemType[] = [
+  { menuItem: sampleMenuItems[3], quantity: 1, customizationOptions: [] },
+  {
+    menuItem: sampleMenuItems[4],
+    quantity: 1,
+    customizationOptions: [sampleCustomizationOptions[2]],
+  },
+  {
+    menuItem: sampleMenuItems[5],
+    quantity: 2,
+    customizationOptions: [
+      sampleCustomizationOptions[2],
+      sampleCustomizationOptions[5],
+    ],
+  },
+  { menuItem: sampleMenuItems[17], quantity: 2, customizationOptions: [] },
 ]
