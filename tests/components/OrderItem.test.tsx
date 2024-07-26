@@ -1,16 +1,15 @@
 import "@testing-library/react-native/extend-expect"
 import { render, screen, userEvent } from "@testing-library/react-native"
-import { OrderItem, OrderItemProps } from "@components/OrderItem"
+
+import { OrderItem } from "@components/OrderItem"
+import { sampleCustomizationOptions, sampleOrderItems } from "@lib/sample-data"
 
 describe("<OrderItem />", () => {
-  const { name, quantity, price }: OrderItemProps = {
-    name: "Ham Sandwich",
-    quantity: 1,
-    price: 1,
-  }
+  const { menuItem, quantity } = sampleOrderItems[0]
+  const { name, price } = menuItem
 
   it("shows details of given order item", () => {
-    render(<OrderItem name={name} quantity={quantity} price={price} />)
+    render(<OrderItem menuItem={menuItem} quantity={quantity} />)
 
     const nameText = screen.getByRole("text", { name: "name" })
     const priceText = screen.getByRole("text", { name: "price" })
@@ -26,23 +25,33 @@ describe("<OrderItem />", () => {
   })
 
   it("shows special instructions when specified", () => {
-    const instructions = "add tomato, no onions"
+    const customizationOptions = [
+      sampleCustomizationOptions[0],
+      sampleCustomizationOptions[1],
+      sampleCustomizationOptions[2],
+    ]
+
+    const optionsText = customizationOptions
+      .map((option) => option.name)
+      .join(", ")
+
     render(
       <OrderItem
-        name={name}
+        menuItem={menuItem}
         quantity={quantity}
-        price={price}
-        specialInstructions={instructions}
+        customizationOptions={customizationOptions}
       />
     )
 
-    const instructionsText = screen.getByRole("text", { name: "instructions" })
-    expect(instructionsText).toBeVisible()
-    expect(instructionsText).toHaveTextContent(instructions)
+    const customizationText = screen.getByRole("text", {
+      name: "item customization",
+    })
+    expect(customizationText).toBeVisible()
+    expect(customizationText).toHaveTextContent(optionsText)
   })
 
   it("has a delete button", () => {
-    render(<OrderItem name={name} quantity={quantity} price={price} />)
+    render(<OrderItem menuItem={menuItem} quantity={quantity} />)
     const deleteButton = screen.getByRole("button")
     expect(deleteButton).toHaveTextContent("Delete")
   })
@@ -54,9 +63,8 @@ describe("<OrderItem />", () => {
       jest.useFakeTimers()
       render(
         <OrderItem
-          name={name}
+          menuItem={menuItem}
           quantity={quantity}
-          price={price}
           onDelete={onDelete}
         />
       )

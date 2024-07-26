@@ -1,31 +1,30 @@
+import { FC } from "react"
 import { Text, Modal, View, StyleSheet } from "react-native"
+
+import { ItemCustomizationOption } from "@lib/sample-data"
 import MenuItem from "./MenuItem"
-import Colors from "../constants/colors"
 
 type ItemCustomizationProps = {
   itemName: string
-  itemOptions: string[]
+  options: ItemCustomizationOption[]
   visible: boolean
 }
 
-function ItemCustomization(props: ItemCustomizationProps) {
+const ItemCustomization: FC<ItemCustomizationProps> = ({
+  itemName,
+  options,
+  visible,
+}) => {
+  const customizationOptions = options.map(({ name, price, color }) => (
+    <MenuItem key={name} name={name} price={price} color={color} />
+  ))
+
   return (
     <View>
-      <Modal transparent={true} visible={true}>
+      <Modal transparent={true} visible={visible}>
         <View style={styles.background}>
-          <Text style={styles.itemNameText}>{props.itemName} Options</Text>
-          <View style={styles.optionsRow}>
-            <MenuItem
-              itemName="Salt"
-              itemPrice="2.00"
-              buttonColor={Colors.gray3}
-            />
-            <MenuItem
-              itemName="Pepper"
-              itemPrice="2.00"
-              buttonColor={Colors.gray3}
-            />
-          </View>
+          <Text style={styles.itemNameText}>{itemName} Options</Text>
+          <View style={styles.optionsRow}>{customizationOptions}</View>
         </View>
       </Modal>
     </View>
