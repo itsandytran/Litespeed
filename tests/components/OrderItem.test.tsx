@@ -1,7 +1,8 @@
 import "@testing-library/react-native/extend-expect"
-import { OrderItem } from "@components/OrderItem"
 import { render, screen, userEvent } from "@testing-library/react-native"
-import { sampleOrderItems } from "@lib/sample-data"
+
+import { OrderItem } from "@components/OrderItem"
+import { sampleCustomizationOptions, sampleOrderItems } from "@lib/sample-data"
 
 describe("<OrderItem />", () => {
   const { menuItem, quantity } = sampleOrderItems[0]
@@ -24,12 +25,21 @@ describe("<OrderItem />", () => {
   })
 
   it("shows special instructions when specified", () => {
-    const customization = "add tomato, no onions"
+    const customizationOptions = [
+      sampleCustomizationOptions[0],
+      sampleCustomizationOptions[1],
+      sampleCustomizationOptions[2],
+    ]
+
+    const optionsText = customizationOptions
+      .map((option) => option.name)
+      .join(", ")
+
     render(
       <OrderItem
         menuItem={menuItem}
         quantity={quantity}
-        itemCustomization={customization}
+        customizationOptions={customizationOptions}
       />
     )
 
@@ -37,7 +47,7 @@ describe("<OrderItem />", () => {
       name: "item customization",
     })
     expect(customizationText).toBeVisible()
-    expect(customizationText).toHaveTextContent(customization)
+    expect(customizationText).toHaveTextContent(optionsText)
   })
 
   it("has a delete button", () => {
