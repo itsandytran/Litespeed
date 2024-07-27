@@ -4,8 +4,18 @@ import { render, screen } from "@testing-library/react-native"
 import ItemCustomization from "@components/ItemCustomization"
 
 describe("<ItemCustomization />", () => {
+  const itemName = "Test Item"
+
+  it("shows the name of the item being customized", () => {
+    render(
+      <ItemCustomization itemName={itemName} options={[]} visible={true} />
+    )
+    const view = screen.root
+    expect(view).toHaveTextContent(itemName, { exact: false })
+  })
+
   it("is not shown by default", () => {
-    render(<ItemCustomization itemName="Test" options={[]} />)
+    render(<ItemCustomization itemName={itemName} options={[]} />)
     const view = screen.root
     expect(view).toBeUndefined()
   })
