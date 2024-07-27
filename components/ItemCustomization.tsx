@@ -13,7 +13,7 @@ type ItemCustomizationProps = {
 const ItemCustomization: FC<ItemCustomizationProps> = ({
   itemName,
   options,
-  visible = true,
+  visible = false,
 }) => {
   const customizationOptions = options.map(({ name, price, color }) => (
     <MenuItem key={name} name={name} price={price} color={color} />
