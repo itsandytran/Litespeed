@@ -1,7 +1,8 @@
 import { FC } from "react"
-import { Text, Modal, View, StyleSheet, Pressable } from "react-native"
+import { Text, Modal, View, StyleSheet } from "react-native"
 
 import { ItemCustomizationOption } from "@lib/sample-data"
+import Button from "./Button"
 import Colors from "@constants/colors"
 import MenuItem from "./MenuItem"
 
@@ -26,9 +27,7 @@ const ItemCustomization: FC<ItemCustomizationProps> = ({
         <View style={[styles.container, styles.centeredView, styles.shadow]}>
           <Text style={styles.itemNameText}>{itemName} Options</Text>
           <View style={styles.optionsRow}>{customizationOptions}</View>
-          <Pressable role="button">
-            <Text>OK</Text>
-          </Pressable>
+          <Button text="OK" />
         </View>
       </Modal>
     </View>

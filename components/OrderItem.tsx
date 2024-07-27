@@ -1,7 +1,8 @@
 import { FC } from "react"
-import { Pressable, StyleSheet, Text, View } from "react-native"
+import { StyleSheet, Text, View } from "react-native"
 
 import { OrderItemType } from "@lib/sample-data"
+import Button from "./Button"
 
 export type OrderItemProps = OrderItemType & OnDeleteCallBack<OrderItemType>
 
@@ -82,24 +83,21 @@ const OrderItemDetails: FC<OrderItemType> = ({
 
 const OrderItemDeleteButton: FC<
   OnDeleteCallBack<OrderItemType> & { item: OrderItemType }
-> = ({ onDelete, item }) => {
-  return (
-    <Pressable
-      onPress={() => {
-        if (onDelete) onDelete(item)
-      }}
-      role="button"
-      style={[
-        style.deleteButton,
-        {
-          opacity: 0,
-        },
-      ]}
-    >
-      <Text style={[style.text, style.deleteButtonText]}>Delete</Text>
-    </Pressable>
-  )
-}
+> = ({ onDelete, item }) => (
+  <Button
+    action={() => {
+      if (onDelete) onDelete(item)
+    }}
+    buttonStyle={[
+      style.deleteButton,
+      {
+        opacity: 0,
+      },
+    ]}
+    text="Delete"
+    textStyle={[style.text, style.deleteButtonText]}
+  />
+)
 
 const style = StyleSheet.create({
   orderItem: {
