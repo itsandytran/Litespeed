@@ -20,12 +20,14 @@ const ItemCustomization: FC<ItemCustomizationProps> = ({
   ))
 
   return (
-    <Modal transparent={true} visible={visible}>
-      <View style={styles.background}>
-        <Text style={styles.itemNameText}>{itemName} Options</Text>
-        <View style={styles.optionsRow}>{customizationOptions}</View>
-      </View>
-    </Modal>
+    <View style={{ display: visible ? "flex" : "none" }}>
+      <Modal transparent={true} visible={visible}>
+        <View style={styles.background}>
+          <Text style={styles.itemNameText}>{itemName} Options</Text>
+          <View style={styles.optionsRow}>{customizationOptions}</View>
+        </View>
+      </Modal>
+    </View>
   )
 }
 
