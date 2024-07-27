@@ -1,5 +1,5 @@
 import { FC } from "react"
-import { Text, Modal, View, StyleSheet } from "react-native"
+import { Text, Modal, View, StyleSheet, Pressable } from "react-native"
 
 import { ItemCustomizationOption } from "@lib/sample-data"
 import Colors from "@constants/colors"
@@ -26,6 +26,9 @@ const ItemCustomization: FC<ItemCustomizationProps> = ({
         <View style={[styles.container, styles.centeredView, styles.shadow]}>
           <Text style={styles.itemNameText}>{itemName} Options</Text>
           <View style={styles.optionsRow}>{customizationOptions}</View>
+          <Pressable role="button">
+            <Text>OK</Text>
+          </Pressable>
         </View>
       </Modal>
     </View>
