@@ -1,7 +1,7 @@
 import "@testing-library/react-native/extend-expect"
 import { render, screen, userEvent } from "@testing-library/react-native"
 
-import { OrderItem } from "@components/OrderItem"
+import { OrderItem } from "@components/order/OrderItem"
 import { sampleCustomizationOptions, sampleOrderItems } from "@lib/sample-data"
 
 describe("<OrderItem />", () => {

@@ -2,9 +2,9 @@ import { FC } from "react"
 import { Text, Modal, View, StyleSheet } from "react-native"
 
 import { ItemCustomizationOption } from "@lib/sample-data"
-import Button from "./Button"
+import Button from "./common/Button"
 import Colors from "@constants/colors"
-import MenuItem from "./MenuItem"
+import MenuItem from "./menu/MenuItem"
 
 type ItemCustomizationProps = {
   itemName: string

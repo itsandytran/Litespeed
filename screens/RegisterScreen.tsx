@@ -1,8 +1,8 @@
 import { View, StyleSheet } from "react-native"
 
 import TitleBar from "@components/TitleBar"
-import MenuPage from "@components/MenuPage"
-import OrderSummary from "@components/OrderSummary"
+import MenuPage from "@components/menu/MenuPage"
+import OrderSummary from "@components/order/OrderSummary"
 
 function RegisterScreen() {
   return (

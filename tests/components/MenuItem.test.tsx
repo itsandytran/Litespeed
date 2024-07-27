@@ -2,7 +2,7 @@ import "@testing-library/react-native/extend-expect"
 import { render, screen } from "@testing-library/react-native"
 
 import { sampleMenuItems } from "@lib/sample-data"
-import MenuItem from "@components/MenuItem"
+import MenuItem from "@components/menu/MenuItem"
 
 describe("<MenuItem />", () => {
   const { name, price, color } = sampleMenuItems[0]

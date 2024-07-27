@@ -1,7 +1,7 @@
 import "@testing-library/react-native/extend-expect"
 import { render, screen, userEvent } from "@testing-library/react-native"
 
-import Button from "@components/Button"
+import Button from "@components/common/Button"
 
 describe("<Button />", () => {
   const buttonText = "Test"

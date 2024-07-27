@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Image, View, TextInput, StyleSheet } from "react-native"
-import Colors from "../constants/colors"
+import Colors from "@constants/colors"
 
 function CustomerInstructions() {
   const [instructionsText, onChangeText] = useState("Add note")

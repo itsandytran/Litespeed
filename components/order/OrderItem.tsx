@@ -2,7 +2,7 @@ import { FC } from "react"
 import { StyleSheet, Text, View } from "react-native"
 
 import { OrderItemType } from "@lib/sample-data"
-import Button from "./Button"
+import Button from "../common/Button"
 
 export type OrderItemProps = OrderItemType & OnDeleteCallBack<OrderItemType>
 

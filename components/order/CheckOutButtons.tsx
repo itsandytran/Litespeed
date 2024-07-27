@@ -2,7 +2,7 @@ import { View, Text, StyleSheet } from "react-native"
 import { useState, useEffect } from "react"
 
 import CheckOutButton from "./CheckOutButton"
-import Colors from "../constants/colors"
+import Colors from "@constants/colors"
 
 function CheckOutButtons() {
   // Display and update the time every second

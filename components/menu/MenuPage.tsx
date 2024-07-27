@@ -2,7 +2,7 @@ import { FC, useState } from "react"
 import { View, ScrollView, StyleSheet } from "react-native"
 
 import { sampleCustomizationOptions, sampleMenuItems } from "@lib/sample-data"
-import ItemCustomization from "./ItemCustomization"
+import ItemCustomization from "../ItemCustomization"
 import MenuItem from "./MenuItem"
 import MenuCategories from "./MenuCategories"
 
