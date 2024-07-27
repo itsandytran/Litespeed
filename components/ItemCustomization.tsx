@@ -7,27 +7,25 @@ import MenuItem from "./MenuItem"
 type ItemCustomizationProps = {
   itemName: string
   options: ItemCustomizationOption[]
-  visible: boolean
+  visible?: boolean
 }
 
 const ItemCustomization: FC<ItemCustomizationProps> = ({
   itemName,
   options,
-  visible,
+  visible = true,
 }) => {
   const customizationOptions = options.map(({ name, price, color }) => (
     <MenuItem key={name} name={name} price={price} color={color} />
   ))
 
   return (
-    <View>
-      <Modal transparent={true} visible={visible}>
-        <View style={styles.background}>
-          <Text style={styles.itemNameText}>{itemName} Options</Text>
-          <View style={styles.optionsRow}>{customizationOptions}</View>
-        </View>
-      </Modal>
-    </View>
+    <Modal transparent={true} visible={visible}>
+      <View style={styles.background}>
+        <Text style={styles.itemNameText}>{itemName} Options</Text>
+        <View style={styles.optionsRow}>{customizationOptions}</View>
+      </View>
+    </Modal>
   )
 }
 
