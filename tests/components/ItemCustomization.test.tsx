@@ -5,11 +5,12 @@ import ItemCustomization from "@components/ItemCustomization"
 
 describe("<ItemCustomization />", () => {
   const itemName = "Test Item"
+  const component = (
+    <ItemCustomization itemName={itemName} options={[]} visible={true} />
+  )
 
   it("shows the name of the item being customized", () => {
-    render(
-      <ItemCustomization itemName={itemName} options={[]} visible={true} />
-    )
+    render(component)
     const view = screen.root
     expect(view).not.toBeUndefined()
     expect(view).toHaveTextContent(itemName, { exact: false })
@@ -23,11 +24,15 @@ describe("<ItemCustomization />", () => {
   })
 
   it("is shown when specified", () => {
-    render(
-      <ItemCustomization itemName={itemName} options={[]} visible={true} />
-    )
+    render(component)
     const view = screen.root
     expect(view).not.toBeUndefined()
     expect(view).toBeVisible()
+  })
+
+  it('has an "OK" button', () => {
+    render(component)
+    const okButton = screen.getByRole("button")
+    expect(okButton).toBeVisible()
   })
 })
