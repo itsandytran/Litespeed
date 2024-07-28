@@ -1,7 +1,7 @@
 import { View, StyleSheet } from "react-native"
 
 import TitleBar from "@components/TitleBar"
-import MenuPage from "@components/menu/MenuPage"
+import Menu from "@components/menu/Menu"
 import OrderSummary from "@components/order/OrderSummary"
 
 function RegisterScreen() {
@@ -10,7 +10,7 @@ function RegisterScreen() {
       <TitleBar />
       <View style={styles.menuAndSummary}>
         <View style={styles.menu}>
-          <MenuPage />
+          <Menu />
         </View>
         <View style={styles.orderSummary}>
           <OrderSummary />
