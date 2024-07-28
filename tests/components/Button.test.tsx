@@ -21,6 +21,7 @@ describe("<Button />", () => {
   })
 
   it("performs the action when pressed", async () => {
+    jest.useFakeTimers()
     const action = jest.fn()
     const component = <Button action={action} text={buttonText} />
     render(component)
