@@ -1,10 +1,10 @@
-import { View, Text, StyleSheet } from "react-native"
-import { useState, useEffect } from "react"
+import { FC, useEffect, useState } from "react"
+import { StyleSheet, Text, View } from "react-native"
 
 import CheckOutButton from "./CheckOutButton"
 import Colors from "@constants/colors"
 
-function CheckOutButtons() {
+const CheckoutOptions: FC = () => {
   // Display and update the time every second
   const [date, setDate] = useState(new Date())
   useEffect(() => {
@@ -40,7 +40,7 @@ function CheckOutButtons() {
   )
 }
 
-export default CheckOutButtons
+export default CheckoutOptions
 
 const styles = StyleSheet.create({
   checkOutContainer: {

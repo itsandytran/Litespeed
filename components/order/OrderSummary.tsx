@@ -2,7 +2,7 @@ import { View, Text, StyleSheet } from "react-native"
 
 import { OrderItem } from "./OrderItem"
 import { sampleOrderItems } from "@lib/sample-data"
-import CheckOutButtons from "./CheckOutButtons"
+import CheckoutOptions from "./CheckoutOptions"
 import Colors from "@constants/colors"
 import CustomerInstructions from "./CustomerInstructions"
 
@@ -30,7 +30,7 @@ function OrderSummary() {
         <CustomerInstructions />
       </View>
       <View>
-        <CheckOutButtons />
+        <CheckoutOptions />
       </View>
     </View>
   )
