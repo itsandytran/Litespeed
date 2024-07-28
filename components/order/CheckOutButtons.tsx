@@ -19,7 +19,7 @@ function CheckOutButtons() {
       <View style={styles.orderTotalRow}>
         <Text style={styles.dateTimeText}>
           {date.toLocaleString("en-CA", {
-            timeZone: "EDT",
+            timeZone: "America/Toronto",
             timeStyle: "short",
             dateStyle: "medium",
           })}
