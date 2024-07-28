@@ -1,7 +1,11 @@
 import { FC, useState } from "react"
 import { View, ScrollView, StyleSheet } from "react-native"
 
-import { sampleCustomizationOptions, sampleMenuItems } from "@lib/sample-data"
+import {
+  sampleCustomizationOptions,
+  sampleMenuCategories,
+  sampleMenuItems,
+} from "@lib/sample-data"
 import ItemCustomization from "../ItemCustomization"
 import MenuItem from "./MenuItem"
 import MenuCategories from "./MenuCategories"
@@ -21,7 +25,7 @@ const MenuPage: FC = () => {
         visible={modalVisible}
       />
       <View>
-        <MenuCategories />
+        <MenuCategories categories={sampleMenuCategories} />
       </View>
       <ScrollView alwaysBounceVertical={false}>
         <View style={styles.menuItemsContainer}>{menuItems}</View>
