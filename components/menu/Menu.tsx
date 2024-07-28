@@ -11,7 +11,7 @@ import MenuItem from "./MenuItem"
 import MenuCategories from "./MenuCategories"
 
 const MenuPage: FC = () => {
-  const [modalVisible, setModalVisible] = useState(true)
+  const [modalVisible, setModalVisible] = useState(false)
 
   const menuItems = sampleMenuItems.map(({ name, price, color }) => {
     return <MenuItem key={name} name={name} price={price} color={color} />
