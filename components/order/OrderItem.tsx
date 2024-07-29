@@ -112,16 +112,16 @@ const style = StyleSheet.create({
   itemNameAndInstructions: {
     display: "flex",
     flexDirection: "column",
-    width: "70%",
+    width: "65%",
   },
   itemCustomization: {
     color: "darkgray",
   },
   itemPrice: {
-    width: "12%",
+    width: "18%",
   },
   itemQuantity: {
-    width: "6%",
+    width: "9%",
   },
   deleteButton: {
     backgroundColor: "red",
