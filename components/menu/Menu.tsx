@@ -10,7 +10,7 @@ import ItemCustomization from "../ItemCustomization"
 import MenuItem from "./MenuItem"
 import MenuCategories from "./MenuCategories"
 
-const MenuPage: FC = () => {
+const Menu: FC = () => {
   const [modalVisible, setModalVisible] = useState(false)
 
   const menuItems = sampleMenuItems.map(({ name, price, color }) => {
@@ -34,7 +34,7 @@ const MenuPage: FC = () => {
   )
 }
 
-export default MenuPage
+export default Menu
 
 const styles = StyleSheet.create({
   background: {
