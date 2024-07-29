@@ -5,7 +5,10 @@ import { MenuItemType } from "@lib/sample-data"
 
 const MenuItem: FC<MenuItemType> = ({ name, price, color }) => {
   return (
-    <View style={[styles.button, { backgroundColor: color }]}>
+    <View
+      aria-label="menu item"
+      style={[styles.button, { backgroundColor: color }]}
+    >
       <Text aria-label="name" style={[styles.itemName, styles.itemNameText]}>
         {name}
       </Text>

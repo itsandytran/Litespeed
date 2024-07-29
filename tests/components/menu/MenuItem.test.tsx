@@ -7,9 +7,16 @@ import MenuItem from "@components/menu/MenuItem"
 describe("<MenuItem />", () => {
   const { name, price, color } = sampleMenuItems[0]
 
-  it("shows the name and price", () => {
+  beforeEach(() => {
     render(<MenuItem name={name} price={price} color={color} />)
+  })
 
+  it('is labeled as "menu item"', () => {
+    const item = screen.root
+    expect(item).toHaveAccessibleName("menu item")
+  })
+
+  it("shows the name and price", () => {
     const nameText = screen.getByRole("text", { name: "name" })
     const priceText = screen.getByRole("text", { name: "price" })
 

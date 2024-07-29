@@ -1,5 +1,6 @@
 import { View, StyleSheet } from "react-native"
 
+import { sampleMenuItems } from "@lib/sample-data"
 import TitleBar from "@components/TitleBar"
 import Menu from "@components/menu/Menu"
 import OrderSummary from "@components/order/OrderSummary"
@@ -10,7 +11,7 @@ function RegisterScreen() {
       <TitleBar />
       <View style={styles.menuAndSummary}>
         <View style={styles.menu}>
-          <Menu />
+          <Menu items={sampleMenuItems} />
         </View>
         <View style={styles.orderSummary}>
           <OrderSummary />
