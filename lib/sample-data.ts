@@ -38,6 +38,14 @@ export const SampleCustomizationOptions: {
   vinegar: { name: "Vinegar", price: 0.2, color: Colors.yellow1 },
 }
 
+const burgersCustomizationOptions: ItemCustomizationOption[] = [
+  SampleCustomizationOptions.lettuce,
+  SampleCustomizationOptions.bacon,
+  SampleCustomizationOptions.tomatoes,
+  SampleCustomizationOptions.extraCheese,
+  SampleCustomizationOptions.pickles,
+]
+
 export const SampleMenuItems: {
   [key: string]: MenuItemType
 } = {
@@ -45,11 +53,16 @@ export const SampleMenuItems: {
     name: "Fries",
     price: 5,
     color: Colors.orange1,
+    customizatioinOptions: [
+      SampleCustomizationOptions.ketchup,
+      SampleCustomizationOptions.salt,
+    ],
   },
   poutine: {
     name: "Poutine",
     price: 7,
     color: Colors.orange1,
+    customizatioinOptions: [SampleCustomizationOptions.extraCheese],
   },
   gravy: {
     name: "Gravy",
@@ -60,31 +73,46 @@ export const SampleMenuItems: {
     name: "Ham Burger",
     price: 7.5,
     color: Colors.orange1,
+    customizatioinOptions: burgersCustomizationOptions,
   },
   cheeseBurger: {
     name: "Cheese Burger",
     price: 8.25,
     color: Colors.orange1,
+    customizatioinOptions: burgersCustomizationOptions,
   },
   baconCheeseBurger: {
     name: "Bacon Cheese Burger",
     price: 10.75,
     color: Colors.yellow1,
+    customizatioinOptions: burgersCustomizationOptions,
   },
   hotdog: {
     name: "Hotdog",
     price: 3,
     color: Colors.yellow1,
+    customizatioinOptions: [
+      SampleCustomizationOptions.ketchup,
+      SampleCustomizationOptions.mustard,
+    ]
   },
   cheeseDog: {
     name: "Cheese Dog",
     price: 3.75,
     color: Colors.yellow1,
+    customizatioinOptions: [
+      SampleCustomizationOptions.ketchup,
+      SampleCustomizationOptions.mustard,
+    ]
   },
   baconCheeseDog: {
     name: "Bacon Cheese Dog",
     price: 6.25,
     color: Colors.yellow1,
+    customizatioinOptions: [
+      SampleCustomizationOptions.ketchup,
+      SampleCustomizationOptions.mustard,
+    ]
   },
   italianSausage: {
     name: "Italian Sausage",
@@ -120,6 +148,7 @@ export const SampleMenuItems: {
     name: "Chicken Burger",
     price: 7,
     color: Colors.green2,
+    customizatioinOptions: burgersCustomizationOptions,
   },
   mozzarellaSticks: {
     name: "Mozzarella Sticks",
