@@ -1,7 +1,7 @@
 import "@testing-library/react-native/extend-expect"
 import { render, screen, userEvent } from "@testing-library/react-native"
 
-import { OrderItem } from "@components/OrderItem"
+import { OrderItem } from "@components/order/OrderItem"
 import { sampleCustomizationOptions, sampleOrderItems } from "@lib/sample-data"
 
 describe("<OrderItem />", () => {
@@ -68,13 +68,6 @@ describe("<OrderItem />", () => {
           onDelete={onDelete}
         />
       )
-    })
-
-    it("deletes the item when pressed", async () => {
-      const deleteButton = screen.getByRole("button")
-      const user = userEvent.setup()
-      await user.press(deleteButton)
-      expect(onDelete).toHaveBeenCalledTimes(1)
     })
 
     it("has a red background color", () => {

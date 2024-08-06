@@ -1,15 +1,23 @@
 import { FC, useState } from "react"
 import { View, ScrollView, StyleSheet } from "react-native"
 
-import { sampleCustomizationOptions, sampleMenuItems } from "@lib/sample-data"
-import ItemCustomization from "./ItemCustomization"
+import {
+  MenuItemType,
+  sampleCustomizationOptions,
+  sampleMenuCategories,
+} from "@lib/sample-data"
+import ItemCustomization from "../ItemCustomization"
 import MenuItem from "./MenuItem"
 import MenuCategories from "./MenuCategories"
 
-const MenuPage: FC = () => {
-  const [modalVisible, setModalVisible] = useState(true)
+type MenuProps = {
+  items?: MenuItemType[]
+}
 
-  const menuItems = sampleMenuItems.map(({ name, price, color }) => {
+const Menu: FC<MenuProps> = ({ items = [] }) => {
+  const [modalVisible, setModalVisible] = useState(false)
+
+  const menuItems = items.map(({ name, price, color }) => {
     return <MenuItem key={name} name={name} price={price} color={color} />
   })
 
@@ -21,7 +29,7 @@ const MenuPage: FC = () => {
         visible={modalVisible}
       />
       <View>
-        <MenuCategories />
+        <MenuCategories categories={sampleMenuCategories} />
       </View>
       <ScrollView alwaysBounceVertical={false}>
         <View style={styles.menuItemsContainer}>{menuItems}</View>
@@ -30,7 +38,7 @@ const MenuPage: FC = () => {
   )
 }
 
-export default MenuPage
+export default Menu
 
 const styles = StyleSheet.create({
   background: {

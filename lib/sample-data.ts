@@ -71,3 +71,10 @@ export const sampleOrderItems: OrderItemType[] = [
   },
   { menuItem: sampleMenuItems[17], quantity: 2, customizationOptions: [] },
 ]
+
+export const sampleMenuCategories = [
+  "Burgers",
+  "Drinks",
+  "Desserts",
+  "Breakfast",
+]
