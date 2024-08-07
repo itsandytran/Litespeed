@@ -1,33 +1,48 @@
 import { FC } from "react"
-import { Text, Modal, View, StyleSheet } from "react-native"
+import {
+  Text,
+  Modal,
+  View,
+  StyleSheet,
+  GestureResponderEvent,
+} from "react-native"
 
-import { ItemCustomizationOption } from "@lib/sample-data"
+import { MenuItemType } from "@lib/sample-data"
 import Button from "./common/Button"
 import Colors from "@constants/colors"
 import MenuItem from "./menu/MenuItem"
 
 type ItemCustomizationProps = {
-  itemName: string
-  options: ItemCustomizationOption[]
-  visible?: boolean
+  item?: MenuItemType
+  onConfirm?: (event: GestureResponderEvent) => void
+  onCancel?: (event: GestureResponderEvent) => void
 }
 
 const ItemCustomization: FC<ItemCustomizationProps> = ({
-  itemName,
-  options,
-  visible = false,
+  item,
+  onConfirm = () => {},
+  onCancel = () => {},
 }) => {
+  const options = item?.customizatioinOptions ?? []
   const customizationOptions = options.map(({ name, price, color }) => (
     <MenuItem key={name} name={name} price={price} color={color} />
   ))
 
   return (
-    <View style={{ display: visible ? "flex" : "none" }}>
-      <Modal transparent={true} visible={visible}>
+    <View style={{ display: item ? "flex" : "none" }}>
+      <Modal transparent={true} visible={!!item}>
         <View style={[styles.container, styles.centeredView, styles.shadow]}>
-          <Text style={styles.itemNameText}>{itemName} Options</Text>
-          <View style={styles.optionsRow}>{customizationOptions}</View>
-          <Button text="OK" />
+          {item && options.length > 0 ? (
+            <>
+              <Text style={styles.itemNameText}>{item.name} Options</Text>
+              <View style={styles.optionsRow}>{customizationOptions}</View>
+            </>
+          ) : (
+            // TODO: style as an alert
+            <Text style={styles.itemNameText}>No menu item selected.</Text>
+          )}
+          <Button text="OK" action={onConfirm} />
+          <Button text="Cancel" action={onCancel} />
         </View>
       </Modal>
     </View>
