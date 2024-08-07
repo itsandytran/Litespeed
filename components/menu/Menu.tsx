@@ -1,11 +1,7 @@
 import { FC, useState } from "react"
 import { View, ScrollView, StyleSheet } from "react-native"
 
-import {
-  MenuItemType,
-  sampleCustomizationOptions,
-  sampleMenuCategories,
-} from "@lib/sample-data"
+import { MenuItemType, sampleMenuCategories } from "@lib/sample-data"
 import ItemCustomization from "../ItemCustomization"
 import MenuItem from "./MenuItem"
 import MenuCategories from "./MenuCategories"
@@ -14,19 +10,44 @@ type MenuProps = {
   items?: MenuItemType[]
 }
 
-const Menu: FC<MenuProps> = ({ items = [] }) => {
-  const [modalVisible, setModalVisible] = useState(false)
+type CustomizationMenuState = {
+  item?: MenuItemType
+}
 
-  const menuItems = items.map(({ name, price, color }) => {
-    return <MenuItem key={name} name={name} price={price} color={color} />
+const Menu: FC<MenuProps> = ({ items = [] }) => {
+  const [customizationMenu, setCustomizationMenu] = useState(
+    {} as CustomizationMenuState
+  )
+
+  const menuItems = items.map((item) => {
+    return (
+      <MenuItem
+        key={item.name}
+        name={item.name}
+        price={item.price}
+        color={item.color}
+        customizatioinOptions={item.customizatioinOptions}
+        onPress={() => {
+          if ((item.customizatioinOptions ?? []).length > 0) {
+            setCustomizationMenu({ item })
+          } else {
+            // TODO: directly add the item to the order
+          }
+        }}
+      />
+    )
   })
 
   return (
     <View style={styles.background}>
       <ItemCustomization
-        itemName="Cheese Dog"
-        options={sampleCustomizationOptions}
-        visible={modalVisible}
+        item={customizationMenu.item}
+        onConfirm={() => {
+          // TODO: add item to order
+        }}
+        onCancel={() => {
+          setCustomizationMenu({})
+        }}
       />
       <View>
         <MenuCategories categories={sampleMenuCategories} />
