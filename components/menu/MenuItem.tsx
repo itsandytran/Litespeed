@@ -1,21 +1,43 @@
 import { FC } from "react"
-import { View, Text, StyleSheet } from "react-native"
+import {
+  GestureResponderEvent,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native"
 
 import { MenuItemType } from "@lib/sample-data"
 
-const MenuItem: FC<MenuItemType> = ({ name, price, color }) => {
+type MenuItemProps = MenuItemType & {
+  onPress?: (event: GestureResponderEvent) => void
+}
+
+const MenuItem: FC<MenuItemProps> = ({
+  name,
+  price,
+  color,
+  customizatioinOptions = [],
+  onPress = () => {},
+}) => {
   return (
-    <View
-      aria-label="menu item"
-      style={[styles.button, { backgroundColor: color }]}
+    <Pressable
+      onPress={(event) => {
+        if (customizatioinOptions.length > 0) onPress(event)
+      }}
     >
-      <Text aria-label="name" style={[styles.itemName, styles.itemNameText]}>
-        {name}
-      </Text>
-      <Text aria-label="price" style={styles.itemPriceText}>
-        {price}
-      </Text>
-    </View>
+      <View
+        aria-label="menu item"
+        style={[styles.button, { backgroundColor: color }]}
+      >
+        <Text aria-label="name" style={[styles.itemName, styles.itemNameText]}>
+          {name}
+        </Text>
+        <Text aria-label="price" style={styles.itemPriceText}>
+          {price}
+        </Text>
+      </View>
+    </Pressable>
   )
 }
 
