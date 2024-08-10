@@ -30,19 +30,33 @@ const ItemCustomization: FC<ItemCustomizationProps> = ({
 
   return (
     <View style={{ display: item ? "flex" : "none" }}>
-      <Modal transparent={true} visible={!!item}>
+      <Modal animationType="fade" transparent={true} visible={!!item}>
         <View style={[styles.container, styles.centeredView, styles.shadow]}>
-          {item && options.length > 0 ? (
-            <>
-              <Text style={styles.itemNameText}>{item.name} Options</Text>
-              <View style={styles.optionsRow}>{customizationOptions}</View>
-            </>
-          ) : (
-            // TODO: style as an alert
-            <Text style={styles.itemNameText}>No menu item selected.</Text>
-          )}
-          <Button text="OK" action={onConfirm} />
-          <Button text="Cancel" action={onCancel} />
+          <View>
+            {item && options.length > 0 ? (
+              <>
+                <Text style={styles.itemNameText}>{item.name} Options</Text>
+                <View style={styles.optionsRow}>{customizationOptions}</View>
+              </>
+            ) : (
+              // TODO: style as an alert
+              <Text style={styles.itemNameText}>No menu item selected.</Text>
+            )}
+          </View>
+          <View style={styles.buttons}>
+            <Button
+              text="OK"
+              action={onConfirm}
+              buttonStyle={[styles.button, { backgroundColor: Colors.green2 }]}
+              textStyle={styles.buttonText}
+            />
+            <Button
+              text="Cancel"
+              action={onCancel}
+              buttonStyle={[styles.button, { backgroundColor: Colors.red2 }]}
+              textStyle={styles.buttonText}
+            />
+          </View>
         </View>
       </Modal>
     </View>
@@ -52,6 +66,24 @@ const ItemCustomization: FC<ItemCustomizationProps> = ({
 export default ItemCustomization
 
 const styles = StyleSheet.create({
+  button: {
+    borderColor: "black",
+    borderRadius: 8,
+    borderWidth: 2,
+    paddingVertical: 12,
+    width: 240,
+  },
+  buttonText: {
+    fontSize: 20,
+    textAlign: "center",
+    fontWeight: "700",
+  },
+  buttons: {
+    flexDirection: "row-reverse",
+    justifyContent: "space-between",
+    marginVertical: 24,
+    width: 496,
+  },
   centeredView: {
     margin: "auto",
   },
