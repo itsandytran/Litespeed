@@ -1,42 +1,27 @@
-import { Text, View, StyleSheet, Image } from "react-native"
-import Colors from "../constants/colors"
+import { View, StyleSheet, Image } from "react-native";
 
 function TitleBar() {
   return (
     <View style={styles.background}>
-      <View style={styles.logo}>
-        <Image
-          source={require("@assets/icons/Money-Payments-Self-Payment--Streamline-Pixel.png")}
-          style={styles.logoImage}
-        />
-        <Text style={styles.logoText}>litespeed.</Text>
-      </View>
+      <Image
+        source={require("@assets/logo/logo.png")}
+        style={styles.logoImage}
+      />
     </View>
-  )
+  );
 }
 
-export default TitleBar
+export default TitleBar;
 
 const styles = StyleSheet.create({
   background: {
-    backgroundColor: Colors.gray5,
-    width: "100%",
-    paddingVertical: 20,
-  },
-  logo: {
+    backgroundColor: "black",
     flexDirection: "row",
+    paddingVertical: 4,
     justifyContent: "center",
   },
   logoImage: {
-    tintColor: "white",
-    height: 36,
-    width: 36,
-    marginRight: 8,
+    height: 48,
+    width: 180,
   },
-  logoText: {
-    fontFamily: "Fraunces",
-    fontSize: 32,
-    fontWeight: "bold",
-    color: "white",
-  },
-})
+});
