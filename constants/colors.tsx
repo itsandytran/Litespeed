@@ -9,6 +9,8 @@ const Colors = {
   orange1: "#FCA64D",
   red1: "#FC791B",
   yellow1: "#FCC74A",
+
+  backgroundGray: "#F2F2F7",
 }
 
 export default Colors
