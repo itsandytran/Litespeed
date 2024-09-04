@@ -62,6 +62,9 @@ function Receipt() {
         bold={true}
         underlined={false}
       />
+      <View style={styles.customerNotesRow}>
+        <Text style={TextStyles.italic}>Note: Customer needs extra cutlery.</Text>
+      </View>
     </View>
   )
 }
@@ -169,4 +172,7 @@ const styles = StyleSheet.create({
   row: {
     flexDirection: "row",
   },
+  customerNotesRow: {
+    marginTop: 16,
+  }
 })
