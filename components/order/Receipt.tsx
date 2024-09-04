@@ -146,9 +146,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.16,
     shadowRadius: 4,
     paddingHorizontal: 24,
-    paddingTop: 24,
+    paddingVertical: 24,
     width: 500,
-    height: "88%",
+    minHeight: "88%",
   },
   orderNo: {
     flexDirection: "row",

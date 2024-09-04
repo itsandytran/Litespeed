@@ -29,13 +29,15 @@ function CheckOutScreen() {
             placeholder="Other amount"
           />
           <View style={styles.changeDueRow}>
-            <Text style={TextStyles.header}>Change due:  </Text>
+            <Text style={TextStyles.header}>Change due: </Text>
             <View style={styles.changeDueAmountContainer}>
               <Text style={TextStyles.header}>3.00</Text>
             </View>
           </View>
         </View>
-        <Receipt />
+        <View style={styles.receiptContainer}>
+          <Receipt />
+        </View>
       </View>
     </View>
   )
@@ -50,12 +52,15 @@ const styles = StyleSheet.create({
   },
   calculatorAndReceiptContainer: {
     flexDirection: "row",
-    padding: 8,
-    height: "100%",
+    paddingHorizontal: 8,
+    flex: 1,
   },
   calculatorContainer: {
     width: 640,
     paddingHorizontal: 16,
+  },
+  receiptContainer: {
+    justifyContent: "center",
   },
   acceptCashHeader: {
     paddingTop: 122,
@@ -85,7 +90,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   changeDueAmountContainer: {
-    backgroundColor: "white",
+    backgroundColor: Colors.backgroundGray,
     borderWidth: 1,
     borderRadius: 8,
     height: 64,
