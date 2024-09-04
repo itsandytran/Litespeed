@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
     height: 64,
-    margin: 2,
+    margin: 4,
     borderRadius: 7,
     justifyContent: "center",
     borderWidth: 2,

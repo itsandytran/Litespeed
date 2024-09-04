@@ -1,22 +1,29 @@
 import CheckOutButton from "@components/order/CheckOutButton"
+import Receipt from "@components/order/Receipt"
 import TitleBar from "@components/TitleBar"
 import Colors from "@constants/colors"
 import TextStyles from "@constants/textStyles"
-import { StyleSheet, Text, View } from "react-native"
+import { StyleSheet, Text, TextInput, View } from "react-native"
 
 function CheckOutScreen() {
   return (
     <View style={styles.screenBackground}>
       <TitleBar />
-      <View style={styles.calculator}>
-        <Text style={TextStyles.header}>Accept cash</Text>
-        <Text style={TextStyles.subheader}>Amount received</Text>
-        <View style={styles.checkOutButtonsRow}>
-          <CheckOutButton buttonName="66.83" />
-          <CheckOutButton buttonName="67" />
-          <CheckOutButton buttonName="70" />
-          <CheckOutButton buttonName="80" />
+      <View style={styles.calculatorAndReceipt}>
+        <View style={styles.calculator}>
+          <Text style={[styles.header, TextStyles.header]}>Accept cash</Text>
+          <Text style={[styles.subheader, TextStyles.subheader]}>
+            Amount received
+          </Text>
+          <View style={styles.checkOutButtonsRow}>
+            <CheckOutButton buttonName="617.00" />
+            <CheckOutButton buttonName="618" />
+            <CheckOutButton buttonName="620" />
+            <CheckOutButton buttonName="650" />
+          </View>
+          <TextInput style={styles.otherAmount} keyboardType="numeric" placeholder="Other amount"/>
         </View>
+        <Receipt />
       </View>
     </View>
   )
@@ -30,17 +37,34 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.backgroundGray,
   },
   calculator: {
-    padding: 24,
+    width: 640,
+    paddingHorizontal: 16,
   },
-  headerText: {
-    fontWeight: "bold",
-    fontSize: 36,
+  header: {
+    paddingTop: 122,
   },
-  regularText: {
-    fontWeight: "bold",
-    fontSize: 20,
+  subheader: {
+    paddingTop: 24,
+    paddingBottom: 16,
+  },
+  calculatorAndReceipt: {
+    flexDirection: "row",
+    padding: 8,
+    height: "100%"
   },
   checkOutButtonsRow: {
     flexDirection: "row",
+    paddingBottom: 16,
+  },
+  otherAmount: {
+    fontSize: 20,
+    fontWeight: "bold",
+    color: "black",
+    height: 64,
+    paddingHorizontal: 16,
+    marginHorizontal: 4,
+    borderWidth: 1,
+    borderRadius: 8,
+    backgroundColor: "white",
   },
 })
