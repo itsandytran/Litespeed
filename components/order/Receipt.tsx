@@ -2,10 +2,14 @@ import { StyleSheet, Text, View } from "react-native"
 import TextStyles from "@constants/textStyles"
 
 function Receipt() {
+  const date = new Date()
+  const formattedDate = date.toLocaleString("en-US", {year: 'numeric', month: 'numeric', day: 'numeric', hour: '2-digit', minute:'2-digit'});
+
   return (
     <View style={styles.background}>
       <View style={styles.orderNo}>
         <Text style={TextStyles.bold}>Order no. 134</Text>
+        <Text style={TextStyles.gray}>{formattedDate}</Text>
       </View>
       <ReceiptItem quantity="1" item="Ham Sandwich" price="8.00" />
       <ReceiptItem quantity="2" item="Tuna Sandwich" price="16.00" />
@@ -63,7 +67,9 @@ function Receipt() {
         underlined={false}
       />
       <View style={styles.customerNotesRow}>
-        <Text style={TextStyles.italic}>Note: Customer needs extra cutlery.</Text>
+        <Text style={TextStyles.italic}>
+          Note: Customer needs extra cutlery.
+        </Text>
       </View>
     </View>
   )
@@ -145,7 +151,9 @@ const styles = StyleSheet.create({
     height: "88%",
   },
   orderNo: {
+    flexDirection: "row",
     paddingBottom: 12,
+    justifyContent: "space-between",
   },
   quantityColumn: {
     width: "10%",
@@ -174,5 +182,5 @@ const styles = StyleSheet.create({
   },
   customerNotesRow: {
     marginTop: 16,
-  }
+  },
 })

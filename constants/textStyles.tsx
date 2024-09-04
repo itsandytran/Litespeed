@@ -5,15 +5,19 @@ export default StyleSheet.create({
     fontWeight: "bold",
     fontSize: 36,
   },
+  regular: {
+    fontSize: 20,
+  },
   bold: {
     fontWeight: "bold",
     fontSize: 20,
   },
-  regular: {
-    fontSize: 20,
-  },
   italic: {
-    fontSize: 20,
     fontStyle: "italic",
+    fontSize: 20,
   },
+  gray: {
+    color: "#777777",
+    fontSize: 20,
+  }
 })
