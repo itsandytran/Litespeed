@@ -5,7 +5,7 @@ export default StyleSheet.create({
     fontWeight: "bold",
     fontSize: 36,
   },
-  subheader: {
+  bold: {
     fontWeight: "bold",
     fontSize: 20,
   },

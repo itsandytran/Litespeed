@@ -12,7 +12,7 @@ function CheckOutScreen() {
       <View style={styles.calculatorAndReceipt}>
         <View style={styles.calculator}>
           <Text style={[styles.header, TextStyles.header]}>Accept cash</Text>
-          <Text style={[styles.subheader, TextStyles.subheader]}>
+          <Text style={[styles.subheader, TextStyles.bold]}>
             Amount received
           </Text>
           <View style={styles.checkOutButtonsRow}>
