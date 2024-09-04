@@ -12,4 +12,8 @@ export default StyleSheet.create({
   regular: {
     fontSize: 20,
   },
+  italic: {
+    fontSize: 20,
+    fontStyle: "italic",
+  },
 })

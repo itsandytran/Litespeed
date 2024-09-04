@@ -9,15 +9,24 @@ function Receipt() {
       </View>
       <ReceiptItem quantity="1" item="Ham Sandwich" price="8.00" />
       <ReceiptItem quantity="2" item="Tuna Sandwich" price="16.00" />
-      <ReceiptItem quantity="1" item="Bacon Cheese Burger" price="22.00" />
-      <ReceiptItem quantity="1" item="Golden Egg Salad Sandwich" price="500.00" />
-      <ReceiptTax description="Subtotal" amount="546.00"/>
-      <ReceiptTax description="HST" amount="70.98"/>
-      <ReceiptTax description="Total" amount="616.98"/>
-      <ReceiptTax description="Rounding" amount="0.02"/>
-      <ReceiptTax description="" amount="617.00"/>
-      <ReceiptTax description="Cash" amount="620.00"/>
-      <ReceiptTax description="Change due" amount="3.00"/>
+      <ReceiptItem
+        quantity="1"
+        item="Bacon Cheese Burger"
+        customization="Lettuce, Onions, Pickles, Ketchup, Mayonnaise, Mustard, Relish"
+        price="22.00"
+      />
+      <ReceiptItem
+        quantity="1"
+        item="Golden Egg Salad Sandwich"
+        price="500.00"
+      />
+      <ReceiptTax description="Subtotal" amount="546.00" />
+      <ReceiptTax description="HST" amount="70.98" />
+      <ReceiptTax description="Total" amount="616.98" />
+      <ReceiptTax description="Rounding" amount="0.02" />
+      <ReceiptTax description="" amount="617.00" />
+      <ReceiptTax description="Cash" amount="620.00" />
+      <ReceiptTax description="Change due" amount="3.00" />
     </View>
   )
 }
@@ -28,16 +37,30 @@ type ReceiptItemProps = {
   quantity: string
   item: string
   price: string
+  customization?: string
 }
 const ReceiptItem = (props: ReceiptItemProps) => {
+  let item = (
+    <View style={styles.item}>
+      <Text style={TextStyles.regular}>{props.item}</Text>
+    </View>
+  )
+
+  if (props.customization) {
+    item = (
+      <View style={styles.item}>
+        <Text style={TextStyles.regular}>{props.item}</Text>
+        <Text style={TextStyles.italic}>{props.customization}</Text>
+      </View>
+    )
+  }
+
   return (
     <View style={styles.receiptItem}>
       <View style={styles.quantity}>
         <Text style={TextStyles.regular}>{props.quantity}</Text>
       </View>
-      <View style={styles.item}>
-        <Text style={TextStyles.regular}>{props.item}</Text>
-      </View>
+      {item}
       <View style={styles.price}>
         <Text style={TextStyles.regular}>{props.price}</Text>
       </View>
@@ -97,10 +120,10 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   receiptTax: {
-    flexDirection: "row"
+    flexDirection: "row",
   },
   tax: {
     width: "80%",
     paddingLeft: 200,
-  }
+  },
 })
