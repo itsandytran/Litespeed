@@ -1,33 +1,62 @@
 import { FC } from "react"
-import { Text, Modal, View, StyleSheet } from "react-native"
+import {
+  Text,
+  Modal,
+  View,
+  StyleSheet,
+  GestureResponderEvent,
+} from "react-native"
 
-import { ItemCustomizationOption } from "@lib/sample-data"
+import { MenuItemType } from "@lib/sample-data"
 import Button from "./common/Button"
 import Colors from "@constants/colors"
 import MenuItem from "./menu/MenuItem"
 
 type ItemCustomizationProps = {
-  itemName: string
-  options: ItemCustomizationOption[]
-  visible?: boolean
+  item?: MenuItemType
+  onConfirm?: (event: GestureResponderEvent) => void
+  onCancel?: (event: GestureResponderEvent) => void
 }
 
 const ItemCustomization: FC<ItemCustomizationProps> = ({
-  itemName,
-  options,
-  visible = false,
+  item,
+  onConfirm = () => {},
+  onCancel = () => {},
 }) => {
+  const options = item?.customizatioinOptions ?? []
   const customizationOptions = options.map(({ name, price, color }) => (
     <MenuItem key={name} name={name} price={price} color={color} />
   ))
 
   return (
-    <View style={{ display: visible ? "flex" : "none" }}>
-      <Modal transparent={true} visible={visible}>
+    <View style={{ display: item ? "flex" : "none" }}>
+      <Modal animationType="fade" transparent={true} visible={!!item}>
         <View style={[styles.container, styles.centeredView, styles.shadow]}>
-          <Text style={styles.itemNameText}>{itemName} Options</Text>
-          <View style={styles.optionsRow}>{customizationOptions}</View>
-          <Button text="OK" />
+          <View>
+            {item && options.length > 0 ? (
+              <>
+                <Text style={styles.itemNameText}>{item.name} Options</Text>
+                <View style={styles.optionsRow}>{customizationOptions}</View>
+              </>
+            ) : (
+              // TODO: style as an alert
+              <Text style={styles.itemNameText}>No menu item selected.</Text>
+            )}
+          </View>
+          <View style={styles.buttons}>
+            <Button
+              text="OK"
+              action={onConfirm}
+              buttonStyle={[styles.button, { backgroundColor: Colors.green2 }]}
+              textStyle={styles.buttonText}
+            />
+            <Button
+              text="Cancel"
+              action={onCancel}
+              buttonStyle={[styles.button, { backgroundColor: Colors.red2 }]}
+              textStyle={styles.buttonText}
+            />
+          </View>
         </View>
       </Modal>
     </View>
@@ -37,6 +66,24 @@ const ItemCustomization: FC<ItemCustomizationProps> = ({
 export default ItemCustomization
 
 const styles = StyleSheet.create({
+  button: {
+    borderColor: "black",
+    borderRadius: 8,
+    borderWidth: 2,
+    paddingVertical: 12,
+    width: 240,
+  },
+  buttonText: {
+    fontSize: 20,
+    textAlign: "center",
+    fontWeight: "700",
+  },
+  buttons: {
+    flexDirection: "row-reverse",
+    justifyContent: "space-between",
+    marginVertical: 24,
+    width: 496,
+  },
   centeredView: {
     margin: "auto",
   },
