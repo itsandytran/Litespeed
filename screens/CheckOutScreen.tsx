@@ -60,6 +60,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16,
   },
   receiptContainer: {
+    flex: 1,
+    alignItems: "center",
     justifyContent: "center",
   },
   acceptCashHeader: {
