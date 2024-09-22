@@ -7,18 +7,9 @@ import Colors from "@constants/colors"
 import CustomerInstructions from "./CustomerInstructions"
 
 function OrderSummary() {
-  const orderItems = sampleOrderItems.map(
-    ({ menuItem, quantity, customizationOptions }) => {
-      return (
-        <OrderItem
-          key={menuItem.name}
-          menuItem={menuItem}
-          quantity={quantity}
-          customizationOptions={customizationOptions}
-        />
-      )
-    }
-  )
+  const orderItems = sampleOrderItems.map((item) => (
+    <OrderItem key={item.menuItem.name} {...item} />
+  ))
 
   return (
     <View style={styles.background}>

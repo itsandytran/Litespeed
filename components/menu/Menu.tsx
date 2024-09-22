@@ -23,10 +23,7 @@ const Menu: FC<MenuProps> = ({ items = [] }) => {
     return (
       <MenuItem
         key={item.name}
-        name={item.name}
-        price={item.price}
-        color={item.color}
-        customizatioinOptions={item.customizatioinOptions}
+        {...item}
         onPress={() => {
           if ((item.customizatioinOptions ?? []).length > 0) {
             setCustomizationMenu({ item })
