@@ -10,14 +10,23 @@ type MenuProps = {
   items?: MenuItemType[]
 }
 
-type CustomizationMenuState = {
-  item?: MenuItemType
-}
-
 const Menu: FC<MenuProps> = ({ items = [] }) => {
-  const [customizationMenu, setCustomizationMenu] = useState(
-    {} as CustomizationMenuState
+  const [selectedItem, setSelectedItem] = useState(
+    null as MenuItemType | null
   )
+
+  const customizationMenu = (selectedItem) ? (
+    <CustomizationMenu
+      item={selectedItem}
+      onConfirm={() => {
+        // TODO: add item to order
+        setSelectedItem(null)
+      }}
+      onCancel={() => {
+        setSelectedItem(null)
+      }}
+    />
+  ) : null
 
   const menuItems = items.map((item) => {
     return (
@@ -26,7 +35,7 @@ const Menu: FC<MenuProps> = ({ items = [] }) => {
         {...item}
         onPress={() => {
           if ((item.customizatioinOptions ?? []).length > 0) {
-            setCustomizationMenu({ item })
+            setSelectedItem(item)
           } else {
             // TODO: directly add the item to the order
           }
@@ -37,15 +46,7 @@ const Menu: FC<MenuProps> = ({ items = [] }) => {
 
   return (
     <View style={styles.background}>
-      <CustomizationMenu
-        item={customizationMenu.item}
-        onConfirm={() => {
-          // TODO: add item to order
-        }}
-        onCancel={() => {
-          setCustomizationMenu({})
-        }}
-      />
+      {customizationMenu}
       <View>
         <MenuCategories categories={sampleMenuCategories} />
       </View>
