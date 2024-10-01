@@ -2,9 +2,9 @@ import { FC, useState } from "react"
 import { View, ScrollView, StyleSheet } from "react-native"
 
 import { MenuItemType, sampleMenuCategories } from "@lib/sample-data"
-import ItemCustomization from "../ItemCustomization"
-import MenuItem from "./MenuItem"
+import CustomizationMenu from "../CustomizationMenu"
 import MenuCategories from "./MenuCategories"
+import MenuItem from "./MenuItem"
 
 type MenuProps = {
   items?: MenuItemType[]
@@ -37,7 +37,7 @@ const Menu: FC<MenuProps> = ({ items = [] }) => {
 
   return (
     <View style={styles.background}>
-      <ItemCustomization
+      <CustomizationMenu
         item={customizationMenu.item}
         onConfirm={() => {
           // TODO: add item to order
