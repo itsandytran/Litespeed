@@ -29,21 +29,19 @@ const Menu: FC<MenuProps> = ({ items = [], onAddItem = () => {} }) => {
     />
   ) : null
 
-  const menuItems = items.map((item) => {
-    return (
-      <MenuItem
-        key={item.name}
-        {...item}
-        onPress={() => {
-          if ((item.customizatioinOptions ?? []).length > 0) {
-            setSelectedItem(item)
-          } else {
-            onAddItem(item)
-          }
-        }}
-      />
-    )
-  })
+  const menuItems = items.map((item) => (
+    <MenuItem
+      key={item.name}
+      {...item}
+      onPress={() => {
+        if ((item.customizatioinOptions ?? []).length > 0) {
+          setSelectedItem(item)
+        } else {
+          onAddItem(item)
+        }
+      }}
+    />
+  ))
 
   return (
     <View style={styles.background}>
