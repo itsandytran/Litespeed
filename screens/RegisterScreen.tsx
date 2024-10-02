@@ -1,24 +1,29 @@
-import { FC } from "react"
+import { FC, useState } from "react"
 import { View, StyleSheet } from "react-native"
 
-import { sampleMenuItems } from "@lib/sample-data"
+import { sampleMenuItems, sampleOrderItems } from "@lib/sample-data"
 import TitleBar from "@components/TitleBar"
 import Menu from "@components/menu/Menu"
 import OrderSummary from "@components/order/OrderSummary"
 
-const RegisterScreen: FC = () => (
-  <View style={styles.register}>
-    <TitleBar />
-    <View style={styles.menuAndSummary}>
-      <View style={styles.menu}>
-        <Menu items={sampleMenuItems} />
-      </View>
-      <View style={styles.orderSummary}>
-        <OrderSummary />
+const RegisterScreen: FC = () => {
+  const [menuItems, setMenuItems] = useState(sampleMenuItems)
+  const [orderItems, setOrderItems] = useState(sampleOrderItems)
+
+  return (
+    <View style={styles.register}>
+      <TitleBar />
+      <View style={styles.menuAndSummary}>
+        <View style={styles.menu}>
+          <Menu items={menuItems} />
+        </View>
+        <View style={styles.orderSummary}>
+          <OrderSummary items={orderItems} />
+        </View>
       </View>
     </View>
-  </View>
-)
+  )
+}
 
 export default RegisterScreen
 
