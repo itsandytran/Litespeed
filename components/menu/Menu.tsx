@@ -8,9 +8,10 @@ import MenuItem from "./MenuItem"
 
 type MenuProps = {
   items?: MenuItemType[]
+  onAddItem?: (item: MenuItemType) => void
 }
 
-const Menu: FC<MenuProps> = ({ items = [] }) => {
+const Menu: FC<MenuProps> = ({ items = [], onAddItem = () => {} }) => {
   const [selectedItem, setSelectedItem] = useState(
     null as MenuItemType | null
   )
@@ -19,8 +20,8 @@ const Menu: FC<MenuProps> = ({ items = [] }) => {
     <CustomizationMenu
       item={selectedItem}
       onConfirm={() => {
-        // TODO: add item to order
         setSelectedItem(null)
+        onAddItem(selectedItem)
       }}
       onCancel={() => {
         setSelectedItem(null)
@@ -37,7 +38,7 @@ const Menu: FC<MenuProps> = ({ items = [] }) => {
           if ((item.customizatioinOptions ?? []).length > 0) {
             setSelectedItem(item)
           } else {
-            // TODO: directly add the item to the order
+            onAddItem(item)
           }
         }}
       />
