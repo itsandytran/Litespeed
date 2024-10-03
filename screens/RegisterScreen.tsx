@@ -15,7 +15,12 @@ const RegisterScreen: FC = () => {
       <TitleBar />
       <View style={styles.menuAndSummary}>
         <View style={styles.menu}>
-          <Menu items={menuItems} />
+          <Menu items={menuItems} onAddItem={(item) => {
+            setOrderItems([
+              ...orderItems,
+              { menuItem: item, quantity: 1 }
+            ])
+          }} />
         </View>
         <View style={styles.orderSummary}>
           <OrderSummary items={orderItems} />
