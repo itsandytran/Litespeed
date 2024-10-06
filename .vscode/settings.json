@@ -1,0 +1,7 @@
+{
+    "prettier.semi": false,
+    "typescript.format.enable": false,
+    "javascript.format.enable": false,
+    "prettier.useTabs": false,
+    "prettier.tabWidth": 2
+}
