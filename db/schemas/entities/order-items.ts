@@ -8,7 +8,6 @@ import {
 import { addOnCombinationsOfOrderItems } from "@db/schemas/relations/add-ons-of-order-items"
 import { menuItems } from "@db/schemas/entities/menu-items"
 import { orders } from "@db/schemas/entities/orders"
-import { reference } from "@db/schemas/helpers"
 
 /**
  * Items of completed orders.
@@ -18,8 +17,12 @@ import { reference } from "@db/schemas/helpers"
 export const orderItems = sqliteTable(
   "order_items",
   {
-    orderID: reference("order_id", () => orders.id),
-    menuItemID: reference("menu_item_id", () => menuItems.id),
+    orderID: integer("order_id")
+      .notNull()
+      .references(() => orders.id),
+    menuItemID: integer("menu_item_id")
+      .notNull()
+      .references(() => menuItems.id),
     quantity: integer("quantity").notNull(),
 
     /**
@@ -27,10 +30,8 @@ export const orderItems = sqliteTable(
      *
      * May be `null` as not all items include add-ons.
      */
-    addOnCombinationID: reference(
-      "add_on_combination_id",
-      () => addOnCombinationsOfOrderItems.id,
-      false
+    addOnCombinationID: integer("add_on_combination_id").references(
+      () => addOnCombinationsOfOrderItems.id
     ),
   },
   (table) => ({
@@ -50,7 +51,7 @@ export const orderItems = sqliteTable(
       ],
     }),
 
-    orderIndex: index("order_index").on(table.orderID),
-    menuItemIndex: index("menu_item_index").on(table.menuItemID),
+    orderIndex: index("order_index_on_order_items").on(table.orderID),
+    menuItemIndex: index("menu_item_index_on_order_items").on(table.menuItemID),
   })
 )
