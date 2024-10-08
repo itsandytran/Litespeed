@@ -4,7 +4,6 @@ import { View, ScrollView, StyleSheet } from "react-native"
 import { MenuItemType, sampleMenuCategories } from "@lib/sample-data"
 import ItemCustomization from "../ItemCustomization"
 import MenuItem from "./MenuItem"
-import MenuCategories from "./MenuCategories"
 
 type MenuProps = {
   items?: MenuItemType[]
@@ -49,9 +48,6 @@ const Menu: FC<MenuProps> = ({ items = [] }) => {
           setCustomizationMenu({})
         }}
       />
-      <View>
-        <MenuCategories categories={sampleMenuCategories} />
-      </View>
       <ScrollView alwaysBounceVertical={false}>
         <View style={styles.menuItemsContainer}>{menuItems}</View>
       </ScrollView>
