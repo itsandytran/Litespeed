@@ -12,20 +12,20 @@ import Button from "./common/Button"
 import Colors from "@constants/colors"
 import MenuItem from "./menu/MenuItem"
 
-type ItemCustomizationProps = {
+type CustomizationMenuProps = {
   item?: MenuItemType
   onConfirm?: (event: GestureResponderEvent) => void
   onCancel?: (event: GestureResponderEvent) => void
 }
 
-const ItemCustomization: FC<ItemCustomizationProps> = ({
+const CustomizationMenu: FC<CustomizationMenuProps> = ({
   item,
   onConfirm = () => {},
   onCancel = () => {},
 }) => {
   const options = item?.customizatioinOptions ?? []
-  const customizationOptions = options.map(({ name, price, color }) => (
-    <MenuItem key={name} name={name} price={price} color={color} />
+  const customizationOptions = options.map((option) => (
+    <MenuItem key={option.name} {...option} />
   ))
 
   return (
@@ -63,7 +63,7 @@ const ItemCustomization: FC<ItemCustomizationProps> = ({
   )
 }
 
-export default ItemCustomization
+export default CustomizationMenu
 
 const styles = StyleSheet.create({
   button: {

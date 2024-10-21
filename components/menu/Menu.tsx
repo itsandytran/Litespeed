@@ -2,53 +2,50 @@ import { FC, useState } from "react"
 import { View, ScrollView, StyleSheet } from "react-native"
 
 import { MenuItemType, sampleMenuCategories } from "@lib/sample-data"
-import ItemCustomization from "../ItemCustomization"
-import MenuItem from "./MenuItem"
+import CustomizationMenu from "../CustomizationMenu"
 import MenuCategories from "./MenuCategories"
+import MenuItem from "./MenuItem"
 
 type MenuProps = {
   items?: MenuItemType[]
+  onAddItem?: (item: MenuItemType) => void
 }
 
-type CustomizationMenuState = {
-  item?: MenuItemType
-}
-
-const Menu: FC<MenuProps> = ({ items = [] }) => {
-  const [customizationMenu, setCustomizationMenu] = useState(
-    {} as CustomizationMenuState
+const Menu: FC<MenuProps> = ({ items = [], onAddItem = () => {} }) => {
+  const [selectedItem, setSelectedItem] = useState(
+    null as MenuItemType | null
   )
 
-  const menuItems = items.map((item) => {
-    return (
-      <MenuItem
-        key={item.name}
-        name={item.name}
-        price={item.price}
-        color={item.color}
-        customizatioinOptions={item.customizatioinOptions}
-        onPress={() => {
-          if ((item.customizatioinOptions ?? []).length > 0) {
-            setCustomizationMenu({ item })
-          } else {
-            // TODO: directly add the item to the order
-          }
-        }}
-      />
-    )
-  })
+  const customizationMenu = (selectedItem) ? (
+    <CustomizationMenu
+      item={selectedItem}
+      onConfirm={() => {
+        setSelectedItem(null)
+        onAddItem(selectedItem)
+      }}
+      onCancel={() => {
+        setSelectedItem(null)
+      }}
+    />
+  ) : null
+
+  const menuItems = items.map((item) => (
+    <MenuItem
+      key={item.name}
+      {...item}
+      onPress={() => {
+        if ((item.customizatioinOptions ?? []).length > 0) {
+          setSelectedItem(item)
+        } else {
+          onAddItem(item)
+        }
+      }}
+    />
+  ))
 
   return (
     <View style={styles.background}>
-      <ItemCustomization
-        item={customizationMenu.item}
-        onConfirm={() => {
-          // TODO: add item to order
-        }}
-        onCancel={() => {
-          setCustomizationMenu({})
-        }}
-      />
+      {customizationMenu}
       <View>
         <MenuCategories categories={sampleMenuCategories} />
       </View>

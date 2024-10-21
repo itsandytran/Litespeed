@@ -21,11 +21,7 @@ const MenuItem: FC<MenuItemProps> = ({
   onPress = () => {},
 }) => {
   return (
-    <Pressable
-      onPress={(event) => {
-        if (customizatioinOptions.length > 0) onPress(event)
-      }}
-    >
+    <Pressable onPress={onPress} >
       <View
         aria-label="menu item"
         style={[styles.button, { backgroundColor: color }]}

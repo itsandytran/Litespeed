@@ -1,20 +1,29 @@
+import { FC, useState } from "react"
 import { View, StyleSheet } from "react-native"
 
-import { sampleMenuItems } from "@lib/sample-data"
+import { sampleMenuItems, sampleOrderItems } from "@lib/sample-data"
 import TitleBar from "@components/TitleBar"
 import Menu from "@components/menu/Menu"
 import OrderSummary from "@components/order/OrderSummary"
 
-function RegisterScreen() {
+const RegisterScreen: FC = () => {
+  const [menuItems, setMenuItems] = useState(sampleMenuItems)
+  const [orderItems, setOrderItems] = useState(sampleOrderItems)
+
   return (
     <View style={styles.register}>
       <TitleBar />
       <View style={styles.menuAndSummary}>
         <View style={styles.menu}>
-          <Menu items={sampleMenuItems} />
+          <Menu items={menuItems} onAddItem={(item) => {
+            setOrderItems([
+              ...orderItems,
+              { menuItem: item, quantity: 1 }
+            ])
+          }} />
         </View>
         <View style={styles.orderSummary}>
-          <OrderSummary />
+          <OrderSummary items={orderItems} />
         </View>
       </View>
     </View>

@@ -83,6 +83,7 @@ type ReceiptItemProps = {
   price: string
   customization?: string
 }
+
 const ReceiptItem = (props: ReceiptItemProps) => {
   // Receipt item without customization options
   let item = (
