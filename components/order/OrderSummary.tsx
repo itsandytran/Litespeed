@@ -41,11 +41,11 @@ export default OrderSummary
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    backgroundColor: Colors.gray1,
+    backgroundColor: Colors.backgroundGray,
     justifyContent: "space-between",
   },
   OrderNumberContainer: {
-    borderBottomColor: Colors.gray3,
+    borderBottomColor: Colors.backgroundGray,
     borderBottomWidth: 2,
   },
   OrderNumberText: {
