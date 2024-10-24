@@ -13,7 +13,7 @@ export type OnDeleteCallBack<T> = {
 export const OrderItem: FC<OrderItemProps> = ({
   menuItem,
   quantity,
-  customizationOptions,
+  addOns: customizationOptions,
   onDelete,
 }) => {
   return (
@@ -21,11 +21,11 @@ export const OrderItem: FC<OrderItemProps> = ({
       <OrderItemDetails
         menuItem={menuItem}
         quantity={quantity}
-        customizationOptions={customizationOptions}
+        addOns={customizationOptions}
       />
       <OrderItemDeleteButton
         onDelete={onDelete}
-        item={{ menuItem, quantity, customizationOptions }}
+        item={{ menuItem, quantity, addOns: customizationOptions }}
       />
     </View>
   )
@@ -34,7 +34,7 @@ export const OrderItem: FC<OrderItemProps> = ({
 const OrderItemDetails: FC<OrderItemType> = ({
   menuItem,
   quantity,
-  customizationOptions = [],
+  addOns: customizationOptions = [],
 }) => {
   const nameText = (
     <Text aria-label="name" style={[style.text]}>

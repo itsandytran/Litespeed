@@ -1,22 +1,75 @@
-import { FC, useState } from "react"
-import { View, ScrollView, StyleSheet } from "react-native"
+import { useState } from "react"
+import { View } from "react-native"
+import DraggableGrid from "react-native-draggable-grid"
 
-import { MenuItemType, sampleMenuCategories } from "@lib/sample-data"
+import { MenuItemType } from "@lib/sample-data"
+import MenuItem from "@components/menu/MenuItem"
 import CustomizationMenu from "../CustomizationMenu"
-import MenuCategories from "./MenuCategories"
-import MenuItem from "./MenuItem"
 
-type MenuProps = {
-  items?: MenuItemType[]
+/**
+ * Props for the Menu component.
+ * -  `menuItemList`: Array of menu items to display in the menu
+ */
+export interface MenuProps {
+  menuItemList: MenuItemType[]
   onAddItem?: (item: MenuItemType) => void
 }
 
-const Menu: FC<MenuProps> = ({ items = [], onAddItem = () => {} }) => {
+/**
+ * The Menu component displays a "drag and drop" grid containing menu items.
+ * Each item can be customized if it has add-ons. 
+ * 
+ * @param props.MenuItemList - An array of menu items to be displayed in the grid.
+ * @returns A draggable grid of menu items, with customization options for items that have add-ons.
+ */
+const Menu = (props: MenuProps) => {
+  // Default value of {} for onAddItem prop
+  const onAddItem = props.onAddItem ?? (() => {})
+
+  // State for tracking the selected item in the AddOns modal.
   const [selectedItem, setSelectedItem] = useState(
     null as MenuItemType | null
   )
 
-  const customizationMenu = (selectedItem) ? (
+  // State for the menu items, making each item draggable by assigning a unique key to each.
+  const [menuItems, setMenuItems] = useState(
+    props.menuItemList.map((item, index) => ({ ...item, key: index.toString() }))
+  )
+
+  /**
+   * Renders a single menu item in the grid.
+   * If the item has add-ons, it opens the AddOnsModal on press. 
+   * If no add-ons are available, this item is directly added to the order (TODO)
+   * 
+   * @param item - The menu item to be rendered
+   * @returns A MenuItem component wrapped inside a View.
+   */
+  const renderMenuItem = (item: MenuItemType) => {
+    return (
+      <View>
+        <MenuItem
+          key={item.name}
+          {...item}
+          onPress={() => {
+            // Check if the item has add-ons, and open AddOnsModal if it does
+            if ((item.addOns ?? []).length > 0) {
+              setSelectedItem(item)
+            } else {
+              // Otherwise, add item to order summary
+              onAddItem(item)
+            }
+          }}
+        />
+      </View>
+    )
+  }
+
+  /**
+   * Renders a pop-up menu containing add-ons for the selected item.
+   * On confirm, the selected item is cleared and calls onAddItem callback.
+   * On cancel, the selected item is cleared and nothing is called.
+   */
+  const addOnsMenu = (selectedItem) ? (
     <CustomizationMenu
       item={selectedItem}
       onConfirm={() => {
@@ -29,46 +82,21 @@ const Menu: FC<MenuProps> = ({ items = [], onAddItem = () => {} }) => {
     />
   ) : null
 
-  const menuItems = items.map((item) => (
-    <MenuItem
-      key={item.name}
-      {...item}
-      onPress={() => {
-        if ((item.customizatioinOptions ?? []).length > 0) {
-          setSelectedItem(item)
-        } else {
-          onAddItem(item)
-        }
-      }}
-    />
-  ))
-
   return (
-    <View style={styles.background}>
-      {customizationMenu}
-      <View>
-        <MenuCategories categories={sampleMenuCategories} />
-      </View>
-      <ScrollView alwaysBounceVertical={false}>
-        <View style={styles.menuItemsContainer}>{menuItems}</View>
-      </ScrollView>
+    <View>
+      {/* Modal for customizing the seleted item with add-ons */ }
+      {addOnsMenu}
+      {/* Draggable grid of menu items */}
+      <DraggableGrid
+        numColumns={5}
+        renderItem={renderMenuItem}
+        data={menuItems}
+        onDragRelease={(data) => {
+          setMenuItems(data)
+        }}
+      />
     </View>
   )
 }
 
 export default Menu
-
-const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-    flexDirection: "row",
-    //backgroundColor: "blue",
-  },
-  menuItemsContainer: {
-    flexDirection: "row",
-    marginHorizontal: 8,
-    marginTop: 8,
-    flexWrap: "wrap",
-    //flex: 1,
-  },
-})

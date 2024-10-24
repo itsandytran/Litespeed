@@ -1,3 +1,4 @@
+import textStyles from "@constants/textStyles"
 import { FC } from "react"
 import {
   GestureResponderEvent,
@@ -8,54 +9,57 @@ import {
 } from "react-native"
 
 import { MenuItemType } from "@lib/sample-data"
+import Colors from "@constants/colors"
 
+/**
+ * Props for the MenuItem component, extending the MenuItemType with an optional onPress handler
+ * - `name`   : String representing name of the menu item
+ * - `price`  : Number representing the price of the menu item
+ * - `color`  : String representing the background color of the menu item's button in hexcode formatting
+ * - `addOns` : Array of AddOnType containing add-ons available for the menu item (optional)
+ * - `onPress`: Event handler to be executed when menu item is pressed (optional)
+ */
 type MenuItemProps = MenuItemType & {
   onPress?: (event: GestureResponderEvent) => void
 }
 
+/**
+ * The MenuItem component represents an individual menu item.
+ * It displays the item's name, price, and handles press events including
+ * opening a customization menu for add-ons and adding menu items to orders
+ * 
+ * @param name - The name of the menu item
+ * @param price - The price of the menu item
+ * @param color - The background color of the item's button
+ * @param addOns - Optional array of add-ons. If provided, a customization menu is displayed when pressed.
+ * @param onPress - Optional press handler (TODO: Should not be optional)
+ * 
+ * @returns A Pressable menu item component with name, price, and onPress behaviour
+ */
 const MenuItem: FC<MenuItemProps> = ({
   name,
   price,
-  color,
-  customizatioinOptions = [],
+  color = Colors.addOnsGray,
+  addOns = [],
   onPress = () => {},
 }) => {
   return (
-    <Pressable onPress={onPress} >
-      <View
-        aria-label="menu item"
-        style={[styles.button, { backgroundColor: color }]}
-      >
-        <Text aria-label="name" style={[styles.itemName, styles.itemNameText]}>
-          {name}
-        </Text>
-        <Text aria-label="price" style={styles.itemPriceText}>
-          {price}
-        </Text>
+    <Pressable onPress={onPress}>
+      <View aria-label="menu item" style={[styles.buttonContainer, { backgroundColor: color }]}>
+        <Text aria-label="name" style={[textStyles.bold, { flex: 1 }]}>{name}</Text>
+        <Text aria-label="price" style={textStyles.price}>{price.toFixed(2)}</Text>
       </View>
     </Pressable>
   )
 }
 
-export default MenuItem
-
 const styles = StyleSheet.create({
-  button: {
-    height: 130,
-    width: 120,
-    borderRadius: 7,
+  buttonContainer: {
+    height: 128,
+    width: 128,
+    borderRadius: 6,
     padding: 10,
-    margin: 2,
-  },
-  itemName: {
-    flex: 1,
-  },
-  itemNameText: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  itemPriceText: {
-    fontSize: 12,
-    textAlign: "right",
   },
 })
+
+export default MenuItem

@@ -19,5 +19,9 @@ export default StyleSheet.create({
   gray: {
     color: "#777777",
     fontSize: 20,
-  }
+  },
+  price: {
+    fontSize: 12,
+    textAlign: "right",
+  },
 })

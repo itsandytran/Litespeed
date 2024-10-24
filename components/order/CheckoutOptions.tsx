@@ -1,69 +1,84 @@
 import { FC, useEffect, useState } from "react"
 import { StyleSheet, Text, View } from "react-native"
 
-import CheckOutButton from "./CheckOutButton"
+import CheckOutButton from "../common/CheckOutButton"
 import Colors from "@constants/colors"
+import textStyles from "@constants/textStyles"
 
-const CheckoutOptions: FC = () => {
-  // Display and update the time every second
-  const [date, setDate] = useState(new Date())
-  useEffect(() => {
-    var timer = setInterval(() => setDate(new Date()), 1000)
-    return function cleanup() {
-      clearInterval(timer)
-    }
+type CheckoutOptionsProps = {
+  total: number
+}
+
+const generateCheckoutOptions = (total: number): number[] => {
+  let optionsSet = new Set<number>()
+
+  // Calculate checkout options (i.e., possible amounts tendered by customers)
+  // Options include the exact amount, an amount rounded to the nearest dollar, 5 dollars, 10 dollars, ... etc.
+  // Ensure that the options are unique
+  optionsSet.add(total) // Exact total
+  optionsSet.add(Math.ceil(total)) // Rounded to nearest dollar
+  optionsSet.add(Math.ceil(total / 5) * 5) // Rounded to nearest 5th
+  optionsSet.add(Math.ceil(total / 10) * 10) // Rounded to nearest 10th
+  optionsSet.add(Math.ceil(total / 20) * 20) // Rounded to nearest 20th
+  optionsSet.add(Math.ceil(total / 50) * 50) // Rounded to nearest 50th
+
+  // Convert the set to a sorted array
+  const optionsList = [...optionsSet].sort((a, b) => a - b)
+
+  // Limit to a maximum of 4 checkout options
+  return optionsList.slice(0, 4)
+}
+
+const CheckoutOptions: FC<CheckoutOptionsProps> = ({ total }) => {
+  // Calculate the current date and time
+  const date = new Date().toLocaleString("en-US", {
+    year: "numeric",
+    month: "numeric",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
   })
+  const checkoutOptions = generateCheckoutOptions(total)
 
   return (
-    <View style={styles.checkOutContainer}>
-      <View style={styles.orderTotalRow}>
-        <Text style={styles.dateTimeText}>
-          {date.toLocaleString("en-CA", {
-            timeZone: "America/Toronto",
-            timeStyle: "short",
-            dateStyle: "medium",
-          })}
-        </Text>
-        <Text style={styles.orderTotalText}>39.90</Text>
+    <View style={styles.background}>
+      <View style={styles.dateAndTotalAmountRow}>
+        <Text style={{ fontSize: 18 }}>{date}</Text>
+        <Text style={textStyles.bold}>{total}</Text>
       </View>
-      <View style={styles.checkOutButtonsRow}>
+      <View style={[styles.checkoutOptionsRow, { marginBottom: 4 }]}>
         <CheckOutButton buttonName="Cash" />
         <CheckOutButton buttonName="Card" />
       </View>
-      <View style={[styles.checkOutButtonsRow, { paddingBottom: 20 }]}>
-        <CheckOutButton buttonName="39.90" />
-        <CheckOutButton buttonName="40" />
-        <CheckOutButton buttonName="50" />
-        <CheckOutButton buttonName="60" />
+      <View style={styles.checkoutOptionsRow}>
+        {checkoutOptions.map((option) => (
+          <CheckOutButton key={option} buttonName={`${option.toFixed(2)}`} />
+        ))}
       </View>
     </View>
   )
 }
 
-export default CheckoutOptions
-
 const styles = StyleSheet.create({
-  checkOutContainer: {
-    backgroundColor: Colors.gray2,
-    paddingBottom: 5,
+  background: {
+    backgroundColor: Colors.checkoutOptionsGray,
+    borderRadius: 8,
+    shadowColor: "black",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    width: 500,
+    padding: 16,
+    marginBottom: 18,
   },
-  checkOutButtonsRow: {
+  dateAndTotalAmountRow: {
     flexDirection: "row",
-    paddingBottom: 4,
-    paddingHorizontal: 8,
-  },
-  orderTotalRow: {
-    flexDirection: "row",
-    padding: 20,
     justifyContent: "space-between",
+    marginBottom: 8,
   },
-  dateTimeText: {
-    color: "black",
-    fontSize: 20,
-  },
-  orderTotalText: {
-    color: "black",
-    fontSize: 24,
-    fontWeight: "bold",
+  checkoutOptionsRow: {
+    flexDirection: "row",
   },
 })
+
+export default CheckoutOptions
