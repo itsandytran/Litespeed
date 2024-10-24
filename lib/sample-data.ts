@@ -1,20 +1,20 @@
 import Colors from "@constants/colors"
 
 export interface MenuItemType {
-  name   : string
-  price  : number
-  color  : string // formatted in HEX representation
+  name: string
+  price: number
+  color: string // formatted in HEX representation
   addOns?: AddOnType[]
 }
 
 export interface OrderItemType {
   menuItem: MenuItemType
   quantity: number
-  customizationOptions?: AddOnType[]
+  addOns?: AddOnType[]
 }
 
 export interface AddOnType {
-  name : string
+  name: string
   price: number
 }
 
@@ -26,11 +26,11 @@ export const AddOns: {
   tomatoes: { name: "Roma Tomatoes", price: 0 },
   extraCheese: { name: "Extra Cheese", price: 1.5 },
   pickles: { name: "Pickled Cucumbers", price: 0.5 },
-  onions: {name: "Caramelized Onions", price: 0.5},
+  onions: { name: "Caramelized Onions", price: 0.5 },
   relish: { name: "Relish", price: 0 },
   mustard: { name: "Mustard", price: 0 },
   ketchup: { name: "House Ketchup", price: 0 },
-  mayonnaise: { name: "Mayo", price: 0},
+  mayonnaise: { name: "Mayo", price: 0 },
   salt: { name: "Salt", price: 0 },
   vinegar: { name: "Vinegar", price: 0 },
 }
@@ -42,11 +42,7 @@ export const MenuItems: {
     name: "Fries",
     price: 5,
     color: Colors.sample_yellow,
-    addOns: [
-      AddOns.ketchup,
-      AddOns.salt,
-      AddOns.vinegar,
-    ],
+    addOns: [AddOns.ketchup, AddOns.salt, AddOns.vinegar],
   },
   poutine: {
     name: "Poutine",
@@ -118,7 +114,7 @@ export const MenuItems: {
       AddOns.relish,
       AddOns.onions,
       AddOns.pickles,
-    ]
+    ],
   },
   cheeseDog: {
     name: "Cheese Dog",
@@ -131,7 +127,7 @@ export const MenuItems: {
       AddOns.relish,
       AddOns.onions,
       AddOns.pickles,
-    ]
+    ],
   },
   baconCheeseDog: {
     name: "Bacon Cheese Dog",
@@ -144,7 +140,7 @@ export const MenuItems: {
       AddOns.relish,
       AddOns.onions,
       AddOns.pickles,
-    ]
+    ],
   },
   italianSausage: {
     name: "Italian Sausage",
@@ -198,31 +194,44 @@ export const MenuItems: {
   },
 }
 
-export const SampleOrderItems: {
+export const orderItems: {
   [key: string]: OrderItemType
 } = {
   hamBurger: {
     menuItem: MenuItems.hamBurger,
     quantity: 1,
-    customizationOptions: [],
+    addOns: [
+      AddOns.lettuce,
+      AddOns.bacon,
+      AddOns.tomatoes,
+      AddOns.pickles,
+      AddOns.onions,
+      AddOns.mustard,
+      AddOns.ketchup,
+      AddOns.relish,
+      AddOns.mayonnaise,
+    ],
   },
   cheeseBurger: {
     menuItem: MenuItems.cheeseBurger,
     quantity: 1,
-    customizationOptions: [AddOns.tomatoes],
+    addOns: [AddOns.mustard, AddOns.ketchup],
   },
   baconCheeseBurger: {
     menuItem: MenuItems.baconCheeseBurger,
-    quantity: 2,
-    customizationOptions: [
+    quantity: 4,
+    addOns: [
+      AddOns.lettuce,
+      AddOns.bacon,
       AddOns.tomatoes,
-      AddOns.ketchup,
+      AddOns.pickles,
+      AddOns.onions,
     ],
   },
   deepFriedCheeseCurds: {
     menuItem: MenuItems.deepFriedCheeseCurds,
     quantity: 2,
-    customizationOptions: [],
+    addOns: [],
   },
 }
 
@@ -230,7 +239,7 @@ export const categories = [
   "Fries and Burgers",
   "Dessert",
   "Drinks",
-  "Breakfast"
+  "Breakfast",
 ]
 
 export const sampleAddOns: AddOnType[] = [
@@ -269,8 +278,8 @@ export const sampleMenuItems: MenuItemType[] = [
 ]
 
 export const sampleOrderItems: OrderItemType[] = [
-  SampleOrderItems.hamBurger,
-  SampleOrderItems.cheeseBurger,
-  SampleOrderItems.baconCheeseBurger,
-  SampleOrderItems.deepFriedCheeseCurds,
+  orderItems.hamBurger,
+  orderItems.cheeseBurger,
+  orderItems.baconCheeseBurger,
+  orderItems.deepFriedCheeseCurds,
 ]
