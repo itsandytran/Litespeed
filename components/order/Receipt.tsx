@@ -16,7 +16,7 @@ function Receipt() {
       <ReceiptItem
         quantity="1"
         item="Bacon Cheese Burger"
-        customization="Lettuce, Onions, Pickles, Ketchup, Mayonnaise, Mustard, Relish"
+        addOns="Lettuce, Onions, Pickles, Ketchup, Mayonnaise, Mustard, Relish"
         price="22.00"
       />
       <ReceiptItem
@@ -81,7 +81,7 @@ type ReceiptItemProps = {
   quantity: string
   item: string
   price: string
-  customization?: string
+  addOns?: string
 }
 const ReceiptItem = (props: ReceiptItemProps) => {
   // Receipt item without customization options
@@ -92,11 +92,11 @@ const ReceiptItem = (props: ReceiptItemProps) => {
   )
 
   // Receipt item WITH customization options
-  if (props.customization) {
+  if (props.addOns) {
     item = (
       <View style={styles.itemColumn}>
         <Text style={TextStyles.regular}>{props.item}</Text>
-        <Text style={TextStyles.italic}>{props.customization}</Text>
+        <Text style={TextStyles.italic}>{props.addOns}</Text>
       </View>
     )
   }
