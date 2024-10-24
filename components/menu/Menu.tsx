@@ -5,20 +5,20 @@ import DraggableGrid from "react-native-draggable-grid"
 import MenuItem from "./MenuItem"
 import ItemCustomization from "@components/ItemCustomization"
 
-type MenuProps = {
+export interface MenuProps {
   menuItemList: MenuItemType[]
 }
 
-type AddOnsModalState = {
+interface AddOnsModalState {
   item?: MenuItemType
 }
 
-const Menu: FC<MenuProps> = ({ menuItemList }) => {
+const Menu = (props: MenuProps) => {
   const [addOnsModal, setAddOnsModal] = useState({} as AddOnsModalState)
 
   // List of menu items to be rendered
   const [menuItems, setMenuItems] = useState(
-    menuItemList.map((item, index) => ({ ...item, key: index.toString() }))
+    props.menuItemList.map((item, index) => ({ ...item, key: index.toString() }))
   )
 
   const renderMenuItem = (item: MenuItemType) => {
