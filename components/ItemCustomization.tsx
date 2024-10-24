@@ -24,8 +24,8 @@ const ItemCustomization: FC<ItemCustomizationProps> = ({
   onCancel = () => {},
 }) => {
   const options = item?.addOns ?? []
-  const customizationOptions = options.map(({ name, price, color }) => (
-    <MenuItem key={name} name={name} price={price} color={color} />
+  const customizationOptions = options.map(({ name, price}) => (
+    <MenuItem key={name} name={name} price={price} color={Colors.sample_green} />
   ))
 
   return (
@@ -47,13 +47,13 @@ const ItemCustomization: FC<ItemCustomizationProps> = ({
             <Button
               text="OK"
               action={onConfirm}
-              buttonStyle={[styles.button, { backgroundColor: Colors.green2 }]}
+              buttonStyle={[styles.button, { backgroundColor: "white"}]}
               textStyle={styles.buttonText}
             />
             <Button
               text="Cancel"
               action={onCancel}
-              buttonStyle={[styles.button, { backgroundColor: Colors.red2 }]}
+              buttonStyle={[styles.button, { backgroundColor: "white" }]}
               textStyle={styles.buttonText}
             />
           </View>
@@ -106,7 +106,7 @@ const styles = StyleSheet.create({
     paddingBottom: 12,
   },
   shadow: {
-    shadowColor: Colors.gray5,
+    shadowColor: "black",
     shadowOpacity: 1,
     shadowRadius: 64,
   },
