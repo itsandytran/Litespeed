@@ -1,73 +1,67 @@
 import { FC, useState } from "react"
-import { View, ScrollView, StyleSheet } from "react-native"
-
-import {MenuItemType} from "@lib/sample-data"
-import ItemCustomization from "../ItemCustomization"
+import { MenuItemType } from "@lib/sample-data"
+import { StyleSheet, View } from "react-native"
+import DraggableGrid from "react-native-draggable-grid"
 import MenuItem from "./MenuItem"
+import ItemCustomization from "@components/ItemCustomization"
 
 type MenuProps = {
-  items?: MenuItemType[]
+  menuItemList: MenuItemType[]
 }
 
-type CustomizationMenuState = {
+type AddOnsModalState = {
   item?: MenuItemType
 }
 
-const Menu: FC<MenuProps> = ({ items = [] }) => {
-  const [customizationMenu, setCustomizationMenu] = useState(
-    {} as CustomizationMenuState
+const Menu: FC<MenuProps> = ({ menuItemList }) => {
+  const [addOnsModal, setAddOnsModal] = useState({} as AddOnsModalState)
+
+  // List of menu items to be rendered
+  const [menuItems, setMenuItems] = useState(
+    menuItemList.map((item, index) => ({ ...item, key: index.toString() }))
   )
 
-  const menuItems = items.map((item) => {
+  const renderMenuItem = (item: MenuItemType) => {
     return (
-      <MenuItem
-        key={item.name}
-        name={item.name}
-        price={item.price}
-        color={item.color}
-        addOns={item.addOns}
-        onPress={() => {
-          if ((item.addOns ?? []).length > 0) {
-            setCustomizationMenu({ item })
-          } else {
-            // TODO: directly add the item to the order
-          }
-        }}
-      />
+      <View>
+        <MenuItem
+          name={item.name}
+          price={item.price}
+          color={item.color}
+          addOns={item.addOns}
+          onPress={() => {
+            if ((item.addOns ?? []).length > 0) {
+              setAddOnsModal({ item })
+            } else {
+              // TODO: Add item to order
+            }
+          }}
+        />
+      </View>
     )
-  })
+  }
 
   return (
-    <View style={styles.background}>
+    <View>
       <ItemCustomization
-        item={customizationMenu.item}
+        item={addOnsModal.item}
         onConfirm={() => {
           // TODO: add item to order
         }}
         onCancel={() => {
-          setCustomizationMenu({})
+          setAddOnsModal({})
         }}
       />
-      <ScrollView alwaysBounceVertical={false}>
-        <View style={styles.menuItemsContainer}>{menuItems}</View>
-      </ScrollView>
+      <DraggableGrid
+        numColumns={5}
+        renderItem={renderMenuItem}
+        data={menuItems}
+        onDragRelease={(data) => {
+          setMenuItems(data)
+        }}
+      />
     </View>
   )
 }
 
 export default Menu
-
-const styles = StyleSheet.create({
-  background: {
-    flex: 1,
-    flexDirection: "row",
-    //backgroundColor: "blue",
-  },
-  menuItemsContainer: {
-    flexDirection: "row",
-    marginHorizontal: 8,
-    marginTop: 8,
-    flexWrap: "wrap",
-    //flex: 1,
-  },
-})

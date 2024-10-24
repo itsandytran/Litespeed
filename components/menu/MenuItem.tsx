@@ -1,3 +1,4 @@
+import textStyles from "@constants/textStyles"
 import { FC } from "react"
 import {
   GestureResponderEvent,
@@ -26,40 +27,21 @@ const MenuItem: FC<MenuItemProps> = ({
         if (addOns.length > 0) onPress(event)
       }}
     >
-      <View
-        aria-label="menu item"
-        style={[styles.button, { backgroundColor: color }]}
-      >
-        <Text aria-label="name" style={[styles.itemName, styles.itemNameText]}>
-          {name}
-        </Text>
-        <Text aria-label="price" style={styles.itemPriceText}>
-          {price}
-        </Text>
+      <View style={[styles.buttonContainer, { backgroundColor: color }]}>
+        <Text style={[textStyles.bold, { flex: 1 }]}>{name}</Text>
+        <Text style={textStyles.price}>{price.toFixed(2)}</Text>
       </View>
     </Pressable>
   )
 }
 
-export default MenuItem
-
 const styles = StyleSheet.create({
-  button: {
-    height: 130,
-    width: 120,
-    borderRadius: 7,
+  buttonContainer: {
+    height: 128,
+    width: 128,
+    borderRadius: 6,
     padding: 10,
-    margin: 2,
-  },
-  itemName: {
-    flex: 1,
-  },
-  itemNameText: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  itemPriceText: {
-    fontSize: 12,
-    textAlign: "right",
   },
 })
+
+export default MenuItem
