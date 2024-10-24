@@ -2,7 +2,7 @@ import "@testing-library/react-native/extend-expect"
 import { render, screen, userEvent } from "@testing-library/react-native"
 
 import { OrderItem } from "@components/order/OrderItem"
-import { sampleCustomizationOptions, sampleOrderItems } from "@lib/sample-data"
+import { sampleAddOns, sampleOrderItems } from "@lib/sample-data"
 
 describe("<OrderItem />", () => {
   const { menuItem, quantity } = sampleOrderItems[0]
@@ -26,9 +26,9 @@ describe("<OrderItem />", () => {
 
   it("shows special instructions when specified", () => {
     const customizationOptions = [
-      sampleCustomizationOptions[0],
-      sampleCustomizationOptions[1],
-      sampleCustomizationOptions[2],
+      sampleAddOns[0],
+      sampleAddOns[1],
+      sampleAddOns[2],
     ]
 
     const optionsText = customizationOptions
@@ -39,7 +39,7 @@ describe("<OrderItem />", () => {
       <OrderItem
         menuItem={menuItem}
         quantity={quantity}
-        customizationOptions={customizationOptions}
+        addOns={customizationOptions}
       />
     )
 
