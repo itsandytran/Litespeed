@@ -2,31 +2,11 @@ import { FC } from "react"
 import { StyleSheet, Text, View } from "react-native"
 import textStyles from "@constants/textStyles"
 
-import { AddOnType, MenuItemType, sampleOrderItems } from "@lib/sample-data"
+import { AddOnType, MenuItemType, sampleOrderItems, OrderItemType } from "@lib/sample-data"
 import { OrderItem } from "@components/order/OrderItem"
 
-/**
- * Renders an individual order item.
- * 
- * @param menuItem - The menu item associated with the order.
- * @param quantity - The quantity of the item ordered.
- * @param addOns - The add-ons selected for the item (optional).
- * 
- * @returns An OrderItem component with the given props.
- */
-const renderOrderItem = (props: {
-  menuItem: MenuItemType
-  quantity: number
-  addOns?: AddOnType[]
-}) => {
-  return (
-    <OrderItem
-      key={props.menuItem.name}
-      menuItem={props.menuItem}
-      quantity={props.quantity}
-      addOns={props.addOns}
-    />
-  )
+type OrderSummaryProps = {
+  items?: OrderItemType[]
 }
 
 /**
@@ -35,8 +15,12 @@ const renderOrderItem = (props: {
  * 
  * @returns A view displaying the order number and a list of ordered items.
  */
-const OrderSummary: FC = () => {
-  const orderItems = sampleOrderItems.map(renderOrderItem)
+const OrderSummary: FC<OrderSummaryProps> = ({ items = [] }) => {
+  // Renders all order items 
+  const orderItems = items.map((item) => (
+    <OrderItem key={item.menuItem.name} {...item} />
+  ))
+
   return (
     <View style={styles.background}>
       <Text style={textStyles.bold}>Order no. 134</Text>

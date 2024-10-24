@@ -1,5 +1,7 @@
-import { ScrollView, StyleSheet, View } from "react-native"
+import { FC, useState } from "react"
+import { ScrollView, View, StyleSheet } from "react-native"
 
+import { categories, sampleMenuItems, sampleOrderItems } from "@lib/sample-data"
 import TitleBar from "@components/TitleBar"
 import Menu from "@components/menu/Menu"
 import MenuCategory from "@components/menu/MenuCategory"
@@ -7,8 +9,6 @@ import OrderSummary from "@components/order/OrderSummary"
 import CheckoutOptions from "@components/order/CheckoutOptions"
 
 import Colors from "@constants/colors"
-import { sampleMenuItems, categories } from "@lib/sample-data"
-
 
 /**
  * The RegisterScreen component displays the main screen for registering an order.
@@ -16,7 +16,10 @@ import { sampleMenuItems, categories } from "@lib/sample-data"
  * 
  * @returns A view containing the title bar, menu, order summary, and checkout options.
  */
-export default function RegisterScreen() {
+const RegisterScreen: FC = () => {
+  const [menuItems, setMenuItems] = useState(sampleMenuItems)
+  const [orderItems, setOrderItems] = useState(sampleOrderItems)
+
   return (
     <View style={styles.screenBackground}>
       {/* Title bar displayed at the top of the screen */}
@@ -31,13 +34,18 @@ export default function RegisterScreen() {
 
           {/* Scrollable view for the menu items */}
           <ScrollView alwaysBounceVertical={false}>
-            <Menu menuItemList={sampleMenuItems} />
+            <Menu menuItemList={menuItems} onAddItem={(item) => {
+            setOrderItems([
+              ...orderItems,
+              { menuItem: item, quantity: 1 }
+            ])
+          }}/>
           </ScrollView>
         </View>
 
         <View style={styles.orderSummaryContainer}>
           {/* Displays the summary of the current order */}
-          <OrderSummary />
+          <OrderSummary items={orderItems}/>
           {/* Checkout options for completing the order */}
           <CheckoutOptions total={25.18} />
         </View>
@@ -45,6 +53,8 @@ export default function RegisterScreen() {
     </View>
   )
 }
+
+export default RegisterScreen
 
 const styles = StyleSheet.create({
   screenBackground: {

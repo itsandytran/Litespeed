@@ -9,6 +9,7 @@ import {
 } from "react-native"
 
 import { MenuItemType } from "@lib/sample-data"
+import Colors from "@constants/colors"
 
 /**
  * Props for the MenuItem component, extending the MenuItemType with an optional onPress handler
@@ -38,19 +39,15 @@ type MenuItemProps = MenuItemType & {
 const MenuItem: FC<MenuItemProps> = ({
   name,
   price,
-  color,
+  color = Colors.addOnsGray,
   addOns = [],
   onPress = () => {},
 }) => {
   return (
-    <Pressable
-      onPress={(event) => {
-        if (addOns.length > 0) onPress(event)
-      }}
-    >
-      <View style={[styles.buttonContainer, { backgroundColor: color }]}>
-        <Text style={[textStyles.bold, { flex: 1 }]}>{name}</Text>
-        <Text style={textStyles.price}>{price.toFixed(2)}</Text>
+    <Pressable onPress={onPress}>
+      <View aria-label="menu item" style={[styles.buttonContainer, { backgroundColor: color }]}>
+        <Text aria-label="name" style={[textStyles.bold, { flex: 1 }]}>{name}</Text>
+        <Text aria-label="price" style={textStyles.price}>{price.toFixed(2)}</Text>
       </View>
     </Pressable>
   )

@@ -4,7 +4,7 @@ import DraggableGrid from "react-native-draggable-grid"
 
 import { MenuItemType } from "@lib/sample-data"
 import MenuItem from "@components/menu/MenuItem"
-import ItemCustomization from "@components/ItemCustomization"
+import CustomizationMenu from "../CustomizationMenu"
 
 /**
  * Props for the Menu component.
@@ -12,14 +12,7 @@ import ItemCustomization from "@components/ItemCustomization"
  */
 export interface MenuProps {
   menuItemList: MenuItemType[]
-}
-
-/**
- * State for the AddOns modal.
- * - `item `: The menu item selected for customization (if any)
- */
-interface AddOnsModalState {
-  item?: MenuItemType
+  onAddItem?: (item: MenuItemType) => void
 }
 
 /**
@@ -30,8 +23,13 @@ interface AddOnsModalState {
  * @returns A draggable grid of menu items, with customization options for items that have add-ons.
  */
 const Menu = (props: MenuProps) => {
+  // Default value of {} for onAddItem prop
+  const onAddItem = props.onAddItem ?? (() => {})
+
   // State for tracking the selected item in the AddOns modal.
-  const [addOnsModal, setAddOnsModal] = useState({} as AddOnsModalState)
+  const [selectedItem, setSelectedItem] = useState(
+    null as MenuItemType | null
+  )
 
   // State for the menu items, making each item draggable by assigning a unique key to each.
   const [menuItems, setMenuItems] = useState(
@@ -50,16 +48,15 @@ const Menu = (props: MenuProps) => {
     return (
       <View>
         <MenuItem
-          name={item.name}
-          price={item.price}
-          color={item.color}
-          addOns={item.addOns}
+          key={item.name}
+          {...item}
           onPress={() => {
             // Check if the item has add-ons, and open AddOnsModal if it does
             if ((item.addOns ?? []).length > 0) {
-              setAddOnsModal({ item })
+              setSelectedItem(item)
             } else {
-              // TODO: Add item to order
+              // Otherwise, add item to order summary
+              onAddItem(item)
             }
           }}
         />
@@ -67,19 +64,28 @@ const Menu = (props: MenuProps) => {
     )
   }
 
+  /**
+   * Renders a pop-up menu containing add-ons for the selected item.
+   * On confirm, the selected item is cleared and calls onAddItem callback.
+   * On cancel, the selected item is cleared and nothing is called.
+   */
+  const addOnsMenu = (selectedItem) ? (
+    <CustomizationMenu
+      item={selectedItem}
+      onConfirm={() => {
+        setSelectedItem(null)
+        onAddItem(selectedItem)
+      }}
+      onCancel={() => {
+        setSelectedItem(null)
+      }}
+    />
+  ) : null
+
   return (
     <View>
       {/* Modal for customizing the seleted item with add-ons */ }
-      <ItemCustomization
-        item={addOnsModal.item}
-        onConfirm={() => {
-          // TODO: add item to order
-        }}
-        onCancel={() => {
-          setAddOnsModal({})
-        }}
-      />
-
+      {addOnsMenu}
       {/* Draggable grid of menu items */}
       <DraggableGrid
         numColumns={5}

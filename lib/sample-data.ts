@@ -3,7 +3,7 @@ import Colors from "@constants/colors"
 export interface MenuItemType {
   name: string
   price: number
-  color: string // formatted in HEX representation
+  color?: string // formatted in HEX representation
   addOns?: AddOnType[]
 }
 
