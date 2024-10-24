@@ -1,11 +1,11 @@
-import CheckOutButton from "@components/order/CheckOutButton"
+import CheckOutButton from "@components/common/CheckOutButton"
 import Receipt from "@components/order/Receipt"
 import TitleBar from "@components/TitleBar"
 import Colors from "@constants/colors"
 import TextStyles from "@constants/textStyles"
 import { StyleSheet, Text, TextInput, View } from "react-native"
 
-function CheckOutScreen() {
+function CheckoutScreen() {
   return (
     <View style={styles.screenBackground}>
       <TitleBar />
@@ -43,7 +43,7 @@ function CheckOutScreen() {
   )
 }
 
-export default CheckOutScreen
+export default CheckoutScreen
 
 const styles = StyleSheet.create({
   screenBackground: {
