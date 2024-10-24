@@ -17,13 +17,13 @@ const MenuItem: FC<MenuItemProps> = ({
   name,
   price,
   color,
-  customizatioinOptions = [],
+  addOns = [],
   onPress = () => {},
 }) => {
   return (
     <Pressable
       onPress={(event) => {
-        if (customizatioinOptions.length > 0) onPress(event)
+        if (addOns.length > 0) onPress(event)
       }}
     >
       <View

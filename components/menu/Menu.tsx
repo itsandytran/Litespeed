@@ -1,7 +1,7 @@
 import { FC, useState } from "react"
 import { View, ScrollView, StyleSheet } from "react-native"
 
-import { MenuItemType, sampleMenuCategories } from "@lib/sample-data"
+import {MenuItemType} from "@lib/sample-data"
 import ItemCustomization from "../ItemCustomization"
 import MenuItem from "./MenuItem"
 
@@ -25,9 +25,9 @@ const Menu: FC<MenuProps> = ({ items = [] }) => {
         name={item.name}
         price={item.price}
         color={item.color}
-        customizatioinOptions={item.customizatioinOptions}
+        addOns={item.addOns}
         onPress={() => {
-          if ((item.customizatioinOptions ?? []).length > 0) {
+          if ((item.addOns ?? []).length > 0) {
             setCustomizationMenu({ item })
           } else {
             // TODO: directly add the item to the order

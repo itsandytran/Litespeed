@@ -23,7 +23,7 @@ const ItemCustomization: FC<ItemCustomizationProps> = ({
   onConfirm = () => {},
   onCancel = () => {},
 }) => {
-  const options = item?.customizatioinOptions ?? []
+  const options = item?.addOns ?? []
   const customizationOptions = options.map(({ name, price, color }) => (
     <MenuItem key={name} name={name} price={price} color={color} />
   ))
