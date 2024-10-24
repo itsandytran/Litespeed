@@ -1,40 +1,56 @@
-import { View, StyleSheet } from "react-native"
-
-import { sampleMenuItems } from "@lib/sample-data"
+import { ScrollView, StyleSheet, Text, View } from "react-native"
 import TitleBar from "@components/TitleBar"
-import Menu from "@components/menu/Menu"
-import OrderSummary from "@components/order/OrderSummary"
+import Menu from "../components/menu/Menu"
 
-function RegisterScreen() {
+import { sampleMenuItems, categories } from "@lib/sample-data"
+import Colors from "@constants/colors"
+import MenuCategory from "@components/menu/MenuCategory"
+import OrderSummary from "@components/order/OrderSummary"
+import CheckoutOptions from "@components/order/CheckoutOptions"
+
+export default function RegisterScreen() {
   return (
-    <View style={styles.register}>
+    <View style={styles.screenBackground}>
       <TitleBar />
-      <View style={styles.menuAndSummary}>
-        <View style={styles.menu}>
-          <Menu items={sampleMenuItems} />
+      <View style={styles.menuAndOrderSummarycontainer}>
+        <View style={styles.menuContainer}>
+          <View style={styles.menuCategoryContainer}>
+            <MenuCategory categories={categories} />
+          </View>
+          <ScrollView alwaysBounceVertical={false}>
+            <Menu menuItemList={sampleMenuItems} />
+          </ScrollView>
         </View>
-        <View style={styles.orderSummary}>
+        <View style={styles.orderSummaryContainer}>
           <OrderSummary />
+          <CheckoutOptions total={99.18} />
         </View>
       </View>
     </View>
   )
 }
 
-export default RegisterScreen
-
 const styles = StyleSheet.create({
-  register: {
+  screenBackground: {
     flex: 1,
+    backgroundColor: Colors.backgroundGray,
   },
-  menuAndSummary: {
-    flex: 1,
+  menuAndOrderSummarycontainer: {
     flexDirection: "row",
-  },
-  menu: {
-    flex: 2,
-  },
-  orderSummary: {
     flex: 1,
+  },
+  menuContainer: {
+    flex: 1,
+    marginLeft: 16,
+  },
+  menuCategoryContainer: {
+    paddingTop: 24,
+    paddingBottom: 12,
+    paddingLeft: 12,
+  },
+  orderSummaryContainer: {
+    marginHorizontal: 16,
+    alignItems: "center",
+    justifyContent: "center",
   },
 })
