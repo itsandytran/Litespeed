@@ -30,7 +30,7 @@ function OrderSummary() {
         <CustomerInstructions />
       </View>
       <View>
-        <CheckoutOptions />
+        <CheckoutOptions total={12}/>
       </View>
     </View>
   )
