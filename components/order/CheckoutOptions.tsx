@@ -16,7 +16,7 @@ const generateCheckoutOptions = (total: number): number[] => {
   // Options include the exact amount, an amount rounded to the nearest dollar, 5 dollars, 10 dollars, ... etc.
   // Ensure that the options are unique
   optionsSet.add(total) // Exact total
-  optionsSet.add(Math.round(total)) // Rounded to nearest dollar
+  optionsSet.add(Math.ceil(total)) // Rounded to nearest dollar
   optionsSet.add(Math.ceil(total / 5) * 5) // Rounded to nearest 5th
   optionsSet.add(Math.ceil(total / 10) * 10) // Rounded to nearest 10th
   optionsSet.add(Math.ceil(total / 20) * 20) // Rounded to nearest 20th
@@ -69,6 +69,7 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     width: 500,
     padding: 16,
+    marginBottom: 18,
   },
   dateAndTotalAmountRow: {
     flexDirection: "row",
