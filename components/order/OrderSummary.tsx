@@ -1,37 +1,27 @@
-import { View, Text, StyleSheet } from "react-native"
+import textStyles from "@constants/textStyles"
+import { FC } from "react"
+import { StyleSheet, Text, View } from "react-native"
 
-import { OrderItem } from "./OrderItem"
 import { sampleOrderItems } from "@lib/sample-data"
-import CheckoutOptions from "./CheckoutOptions"
-import Colors from "@constants/colors"
-import CustomerInstructions from "./CustomerInstructions"
+import { OrderItem } from "./OrderItem"
 
-function OrderSummary() {
-  const orderItems = sampleOrderItems.map(
-    ({ menuItem, quantity, customizationOptions }) => {
-      return (
-        <OrderItem
-          key={menuItem.name}
-          menuItem={menuItem}
-          quantity={quantity}
-          customizationOptions={customizationOptions}
-        />
-      )
-    }
-  )
+// TODO: Dynamically generate an Order Number.
 
+const OrderSummary: FC = () => {
+  const orderItems = sampleOrderItems.map(({ menuItem, quantity, addOns }) => {
+    return (
+      <OrderItem
+        key={menuItem.name}
+        menuItem={menuItem}
+        quantity={quantity}
+        addOns={addOns}
+      />
+    )
+  })
   return (
     <View style={styles.background}>
-      <View>
-        <View style={styles.OrderNumberContainer}>
-          <Text style={styles.OrderNumberText}>Order no. 123</Text>
-        </View>
-        {orderItems}
-        <CustomerInstructions />
-      </View>
-      <View>
-        <CheckoutOptions total={12}/>
-      </View>
+      <Text style={textStyles.bold}>Order no. 134</Text>
+      {orderItems}
     </View>
   )
 }
@@ -41,16 +31,14 @@ export default OrderSummary
 const styles = StyleSheet.create({
   background: {
     flex: 1,
-    backgroundColor: Colors.backgroundGray,
-    justifyContent: "space-between",
-  },
-  OrderNumberContainer: {
-    borderBottomColor: Colors.backgroundGray,
-    borderBottomWidth: 2,
-  },
-  OrderNumberText: {
-    padding: 12,
-    fontSize: 24,
-    fontWeight: "bold",
+    backgroundColor: "white",
+    borderRadius: 8,
+    shadowColor: "black",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.16,
+    shadowRadius: 4,
+    padding: 24,
+    marginVertical: 18,
+    width: 500,
   },
 })
