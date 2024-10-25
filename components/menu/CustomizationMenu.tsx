@@ -8,8 +8,8 @@ import {
 } from "react-native"
 
 import { MenuItemType } from "@lib/sample-data"
-import Button from "./common/Button"
-import MenuItem from "./menu/MenuItem"
+import Button from "@components/common/Button"
+import MenuItem from "@components/menu/MenuItem"
 
 type CustomizationMenuProps = {
   item?: MenuItemType

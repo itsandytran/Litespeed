@@ -4,7 +4,7 @@ import DraggableGrid from "react-native-draggable-grid"
 
 import { MenuItemType } from "@lib/sample-data"
 import MenuItem from "@components/menu/MenuItem"
-import CustomizationMenu from "../CustomizationMenu"
+import CustomizationMenu from "@components/menu/CustomizationMenu"
 
 /**
  * Props for the Menu component.
