@@ -9,7 +9,6 @@ import {
 
 import { MenuItemType } from "@lib/sample-data"
 import Button from "./common/Button"
-import Colors from "@constants/colors"
 import MenuItem from "./menu/MenuItem"
 
 type CustomizationMenuProps = {
