@@ -3,7 +3,7 @@ import { StyleSheet, Text, View } from "react-native"
 import textStyles from "@constants/textStyles"
 
 import { AddOnType, MenuItemType, sampleOrderItems, OrderItemType } from "@lib/sample-data"
-import { OrderItem } from "@components/order/OrderItem"
+import OrderItem from "@components/order/OrderItem"
 
 type OrderSummaryProps = {
   items?: OrderItemType[]
@@ -23,7 +23,7 @@ const OrderSummary: FC<OrderSummaryProps> = ({ items = [] }) => {
 
   return (
     <View style={styles.background}>
-      <Text style={textStyles.bold}>Order no. 134</Text>
+      <Text style={[textStyles.bold, {paddingBottom: 8}]}>Order no. 134</Text>
       {orderItems}
     </View>
   )
