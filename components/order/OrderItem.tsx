@@ -46,7 +46,7 @@ const OrderItem: FC<OrderItemProps> = ({ menuItem, quantity, addOns = [] }) => {
 
       {/* The items' price is displayed on the rightmost column */}
       <View style={styles.priceColumn}>
-        <Text style={textStyles.regular}>{menuItem.price * quantity}</Text>
+        <Text style={textStyles.regular}>{menuItem.price.toFixed(2)}</Text>
       </View>
     </View>
   )
