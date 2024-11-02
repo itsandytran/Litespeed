@@ -80,6 +80,5 @@ const styles = StyleSheet.create({
   orderSummaryContainer: {
     marginHorizontal: 16,
     alignItems: "center",
-    justifyContent: "center",
   },
 })

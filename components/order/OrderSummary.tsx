@@ -2,12 +2,7 @@ import { FC } from "react"
 import { ScrollView, StyleSheet, Text, View } from "react-native"
 import textStyles from "@constants/textStyles"
 
-import {
-  AddOnType,
-  MenuItemType,
-  sampleOrderItems,
-  OrderItemType,
-} from "@lib/sample-data"
+import { OrderItemType } from "@lib/sample-data"
 import OrderItem from "@components/order/OrderItem"
 import CustomerInstructions from "./CustomerInstructions"
 
@@ -44,7 +39,7 @@ export default OrderSummary
 
 const styles = StyleSheet.create({
   background: {
-    //flex: 1,
+    flex: 1,
     backgroundColor: "white",
     borderRadius: 8,
     shadowColor: "black",
@@ -54,5 +49,6 @@ const styles = StyleSheet.create({
     padding: 24,
     marginVertical: 18,
     width: 500,
+    height: 512,
   },
 })
