@@ -1,9 +1,15 @@
 import { FC } from "react"
-import { StyleSheet, Text, View } from "react-native"
+import { ScrollView, StyleSheet, Text, View } from "react-native"
 import textStyles from "@constants/textStyles"
 
-import { AddOnType, MenuItemType, sampleOrderItems, OrderItemType } from "@lib/sample-data"
+import {
+  AddOnType,
+  MenuItemType,
+  sampleOrderItems,
+  OrderItemType,
+} from "@lib/sample-data"
 import OrderItem from "@components/order/OrderItem"
+import CustomerInstructions from "./CustomerInstructions"
 
 type OrderSummaryProps = {
   items?: OrderItemType[]
@@ -12,20 +18,25 @@ type OrderSummaryProps = {
 /**
  * The OrderSummary component displays a summary of the current order,
  * including all ordered items with their respective quantities and add-ons.
- * 
+ *
  * @returns A view displaying the order number and a list of ordered items.
  */
 const OrderSummary: FC<OrderSummaryProps> = ({ items = [] }) => {
-  // Renders all order items 
+  // Renders all order items
   const orderItems = items.map((item) => (
     <OrderItem key={item.menuItem.name} {...item} />
   ))
 
   return (
-    <View style={styles.background}>
-      <Text style={[textStyles.bold, {paddingBottom: 8}]}>Order no. 134</Text>
-      {orderItems}
-    </View>
+    <ScrollView>
+      <View style={styles.background}>
+        <Text style={[textStyles.bold, { paddingBottom: 8 }]}>
+          Order no. 134
+        </Text>
+        {orderItems}
+        <CustomerInstructions />
+      </View>
+    </ScrollView>
   )
 }
 
@@ -33,7 +44,7 @@ export default OrderSummary
 
 const styles = StyleSheet.create({
   background: {
-    flex: 1,
+    //flex: 1,
     backgroundColor: "white",
     borderRadius: 8,
     shadowColor: "black",
