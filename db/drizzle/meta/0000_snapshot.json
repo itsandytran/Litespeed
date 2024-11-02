@@ -1,0 +1,454 @@
+{
+  "version": "6",
+  "dialect": "sqlite",
+  "id": "15f2f74f-326b-4d36-ae6d-7a96c9ef163c",
+  "prevId": "00000000-0000-0000-0000-000000000000",
+  "tables": {
+    "add_on_items": {
+      "name": "add_on_items",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "price": {
+          "name": "price",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false,
+          "default": 0
+        }
+      },
+      "indexes": {
+        "add_on_items_name_unique": {
+          "name": "add_on_items_name_unique",
+          "columns": [
+            "name"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "menu_items": {
+      "name": "menu_items",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "name": {
+          "name": "name",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "price": {
+          "name": "price",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "menu_color": {
+          "name": "menu_color",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "menu_items_name_unique": {
+          "name": "menu_items_name_unique",
+          "columns": [
+            "name"
+          ],
+          "isUnique": true
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "order_items": {
+      "name": "order_items",
+      "columns": {
+        "order_id": {
+          "name": "order_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "menu_item_id": {
+          "name": "menu_item_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "quantity": {
+          "name": "quantity",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "add_on_combination_id": {
+          "name": "add_on_combination_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "order_index_on_order_items": {
+          "name": "order_index_on_order_items",
+          "columns": [
+            "order_id"
+          ],
+          "isUnique": false
+        },
+        "menu_item_index_on_order_items": {
+          "name": "menu_item_index_on_order_items",
+          "columns": [
+            "menu_item_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "order_items_order_id_orders_id_fk": {
+          "name": "order_items_order_id_orders_id_fk",
+          "tableFrom": "order_items",
+          "tableTo": "orders",
+          "columnsFrom": [
+            "order_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "order_items_menu_item_id_menu_items_id_fk": {
+          "name": "order_items_menu_item_id_menu_items_id_fk",
+          "tableFrom": "order_items",
+          "tableTo": "menu_items",
+          "columnsFrom": [
+            "menu_item_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "order_items_add_on_combination_id_add_on_combinations_of_order_items_id_fk": {
+          "name": "order_items_add_on_combination_id_add_on_combinations_of_order_items_id_fk",
+          "tableFrom": "order_items",
+          "tableTo": "add_on_combinations_of_order_items",
+          "columnsFrom": [
+            "add_on_combination_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "order_items_order_id_menu_item_id_quantity_add_on_combination_id_pk": {
+          "columns": [
+            "order_id",
+            "menu_item_id",
+            "quantity",
+            "add_on_combination_id"
+          ],
+          "name": "order_items_order_id_menu_item_id_quantity_add_on_combination_id_pk"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "orders": {
+      "name": "orders",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "date_time": {
+          "name": "date_time",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "subtotal": {
+          "name": "subtotal",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "tax": {
+          "name": "tax",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "total": {
+          "name": "total",
+          "type": "real",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "instructions": {
+          "name": "instructions",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "date_time_index_on_orders": {
+          "name": "date_time_index_on_orders",
+          "columns": [
+            "date_time"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    },
+    "add_on_items_of_menu_items": {
+      "name": "add_on_items_of_menu_items",
+      "columns": {
+        "menu_item_id": {
+          "name": "menu_item_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "add_on_item_id": {
+          "name": "add_on_item_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "menu_item_index_on_add_ons_of_menu_items": {
+          "name": "menu_item_index_on_add_ons_of_menu_items",
+          "columns": [
+            "menu_item_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "add_on_items_of_menu_items_menu_item_id_menu_items_id_fk": {
+          "name": "add_on_items_of_menu_items_menu_item_id_menu_items_id_fk",
+          "tableFrom": "add_on_items_of_menu_items",
+          "tableTo": "menu_items",
+          "columnsFrom": [
+            "menu_item_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "add_on_items_of_menu_items_add_on_item_id_add_on_items_id_fk": {
+          "name": "add_on_items_of_menu_items_add_on_item_id_add_on_items_id_fk",
+          "tableFrom": "add_on_items_of_menu_items",
+          "tableTo": "add_on_items",
+          "columnsFrom": [
+            "add_on_item_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "add_on_items_of_menu_items_menu_item_id_add_on_item_id_pk": {
+          "columns": [
+            "menu_item_id",
+            "add_on_item_id"
+          ],
+          "name": "add_on_items_of_menu_items_menu_item_id_add_on_item_id_pk"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "add_on_combination_items": {
+      "name": "add_on_combination_items",
+      "columns": {
+        "combination_id": {
+          "name": "combination_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "menu_item_id": {
+          "name": "menu_item_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        },
+        "add_on_item_id": {
+          "name": "add_on_item_id",
+          "type": "integer",
+          "primaryKey": false,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {
+        "menu_item_index_on_add_on_combination_items": {
+          "name": "menu_item_index_on_add_on_combination_items",
+          "columns": [
+            "menu_item_id"
+          ],
+          "isUnique": false
+        },
+        "menu_item_and_add_on_index_on_add_on_combination_items": {
+          "name": "menu_item_and_add_on_index_on_add_on_combination_items",
+          "columns": [
+            "menu_item_id",
+            "add_on_item_id"
+          ],
+          "isUnique": false
+        }
+      },
+      "foreignKeys": {
+        "add_on_combination_items_combination_id_add_on_combinations_of_order_items_id_fk": {
+          "name": "add_on_combination_items_combination_id_add_on_combinations_of_order_items_id_fk",
+          "tableFrom": "add_on_combination_items",
+          "tableTo": "add_on_combinations_of_order_items",
+          "columnsFrom": [
+            "combination_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "add_on_combination_items_menu_item_id_menu_items_id_fk": {
+          "name": "add_on_combination_items_menu_item_id_menu_items_id_fk",
+          "tableFrom": "add_on_combination_items",
+          "tableTo": "menu_items",
+          "columnsFrom": [
+            "menu_item_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "add_on_combination_items_add_on_item_id_add_on_items_id_fk": {
+          "name": "add_on_combination_items_add_on_item_id_add_on_items_id_fk",
+          "tableFrom": "add_on_combination_items",
+          "tableTo": "add_on_items",
+          "columnsFrom": [
+            "add_on_item_id"
+          ],
+          "columnsTo": [
+            "id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        },
+        "add_on_combination_items_menu_item_id_add_on_item_id_add_on_items_of_menu_items_menu_item_id_add_on_item_id_fk": {
+          "name": "add_on_combination_items_menu_item_id_add_on_item_id_add_on_items_of_menu_items_menu_item_id_add_on_item_id_fk",
+          "tableFrom": "add_on_combination_items",
+          "tableTo": "add_on_items_of_menu_items",
+          "columnsFrom": [
+            "menu_item_id",
+            "add_on_item_id"
+          ],
+          "columnsTo": [
+            "menu_item_id",
+            "add_on_item_id"
+          ],
+          "onDelete": "no action",
+          "onUpdate": "no action"
+        }
+      },
+      "compositePrimaryKeys": {
+        "add_on_combination_items_combination_id_menu_item_id_add_on_item_id_pk": {
+          "columns": [
+            "combination_id",
+            "menu_item_id",
+            "add_on_item_id"
+          ],
+          "name": "add_on_combination_items_combination_id_menu_item_id_add_on_item_id_pk"
+        }
+      },
+      "uniqueConstraints": {}
+    },
+    "add_on_combinations_of_order_items": {
+      "name": "add_on_combinations_of_order_items",
+      "columns": {
+        "id": {
+          "name": "id",
+          "type": "integer",
+          "primaryKey": true,
+          "notNull": true,
+          "autoincrement": false
+        }
+      },
+      "indexes": {},
+      "foreignKeys": {},
+      "compositePrimaryKeys": {},
+      "uniqueConstraints": {}
+    }
+  },
+  "enums": {},
+  "_meta": {
+    "schemas": {},
+    "tables": {},
+    "columns": {}
+  },
+  "internal": {
+    "indexes": {}
+  }
+}
