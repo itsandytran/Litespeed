@@ -2,143 +2,75 @@ import { FC } from "react"
 import { StyleSheet, Text, View } from "react-native"
 
 import { OrderItemType } from "@lib/sample-data"
-import Button from "../common/Button"
+import textStyles from "@constants/textStyles"
 
-export type OrderItemProps = OrderItemType & OnDeleteCallBack<OrderItemType>
+/**
+ * Props for the OrderItem component.
+ * - `menuItem`: The menu item added to the order
+ * - `quantity`: Number representing the quantity of the menu item
+ * - `addOns?`: Optional list of add-ons to customize the menu item
+ */
+export type OrderItemProps = OrderItemType
 
-export type OnDeleteCallBack<T> = {
-  onDelete?: (item: T) => void
-}
-
-export const OrderItem: FC<OrderItemProps> = ({
-  menuItem,
-  quantity,
-  addOns: customizationOptions,
-  onDelete,
-}) => {
+/**
+ * The OrderItem component displays a row containing the name of a menu item,
+ * its quantity, and the item's price.
+ * If applicable, any selected add ons for this menu item are displayed in a row underneath
+ *
+ * Format: <Quantity>   <Menu Item Name>   <Price>
+ *                          <Add Ons>
+ *
+ * @param menuItem
+ * @param quantity
+ * @param addOns
+ * @returns
+ */
+const OrderItem: FC<OrderItemProps> = ({ menuItem, quantity, addOns = [] }) => {
   return (
-    <View>
-      <OrderItemDetails
-        menuItem={menuItem}
-        quantity={quantity}
-        addOns={customizationOptions}
-      />
-      <OrderItemDeleteButton
-        onDelete={onDelete}
-        item={{ menuItem, quantity, addOns: customizationOptions }}
-      />
-    </View>
-  )
-}
-
-const OrderItemDetails: FC<OrderItemType> = ({
-  menuItem,
-  quantity,
-  addOns: customizationOptions = [],
-}) => {
-  const nameText = (
-    <Text aria-label="name" style={[style.text]}>
-      {menuItem.name}
-    </Text>
-  )
-
-  const itemCustomizationText = customizationOptions.length > 0 && (
-    <Text
-      aria-label="item customization"
-      style={[style.text, style.itemCustomization]}
-    >
-      {customizationOptions.map((option) => option.name).join(", ")}
-    </Text>
-  )
-
-  const priceText = (
-    <Text
-      aria-label="price"
-      style={[style.text, style.number, style.itemPrice]}
-    >
-      {menuItem.price}
-    </Text>
-  )
-
-  const quantityText = (
-    <Text
-      aria-label="quantity"
-      style={[style.text, style.number, style.itemQuantity]}
-    >
-      {quantity}
-    </Text>
-  )
-
-  return (
-    <View style={[style.orderItem]}>
-      {quantityText}
-      <View style={[style.itemNameAndInstructions]}>
-        {nameText}
-        {itemCustomizationText}
+    <View style={styles.underlinedRow}>
+      {/* The item's quantity is displayed on the leftmost column */}
+      <View style={styles.quantityColumn}>
+        <Text style={textStyles.regular}>{quantity}</Text>
       </View>
-      {priceText}
+
+      {/* The item's name is displayed in the middle column
+          If any add-ons were selected for this item, they are displayed in a row below */}
+      <View style={styles.itemColumn}>
+        <Text style={textStyles.regular}>{menuItem.name}</Text>
+        {addOns.length > 0 && (
+          <Text style={textStyles.italic}>
+            {addOns.map((option) => option.name).join(", ")}
+          </Text>
+        )}
+      </View>
+
+      {/* The items' price is displayed on the rightmost column */}
+      <View style={styles.priceColumn}>
+        <Text style={textStyles.regular}>{menuItem.price.toFixed(2)}</Text>
+      </View>
     </View>
   )
 }
 
-const OrderItemDeleteButton: FC<
-  OnDeleteCallBack<OrderItemType> & { item: OrderItemType }
-> = ({ onDelete, item }) => (
-  <Button
-    action={() => {
-      if (onDelete) onDelete(item)
-    }}
-    buttonStyle={[
-      style.deleteButton,
-      {
-        opacity: 0,
-      },
-    ]}
-    text="Delete"
-    textStyle={[style.text, style.deleteButtonText]}
-  />
-)
+export default OrderItem
 
-const style = StyleSheet.create({
-  orderItem: {
-    borderBottomColor: "darkgray",
-    borderBottomWidth: 1,
-    display: "flex",
+const styles = StyleSheet.create({
+  underlinedRow: {
     flexDirection: "row",
-    justifyContent: "space-between",
-    paddingHorizontal: 16,
-    paddingVertical: 8,
+    paddingBottom: 8,
+    marginBottom: 8,
+    borderBottomColor: "#D2D2D2",
+    borderBottomWidth: 0.5,
   },
-  itemNameAndInstructions: {
-    display: "flex",
-    flexDirection: "column",
-    width: "65%",
+  quantityColumn: {
+    width: "10%",
   },
-  itemCustomization: {
-    color: "darkgray",
+  itemColumn: {
+    width: "70%",
   },
-  itemPrice: {
-    width: "18%",
-  },
-  itemQuantity: {
-    width: "9%",
-  },
-  deleteButton: {
-    backgroundColor: "red",
-    height: "100%",
-    justifyContent: "center",
-    paddingHorizontal: 8,
-    position: "absolute",
-    right: 0,
-    zIndex: -1,
-  },
-  deleteButtonText: {
-    color: "white",
-  },
-  text: {
-    fontSize: 22,
-  },
-  number: {
-    textAlign: "right",
+  priceColumn: {
+    width: "20%",
+    justifyContent: "flex-end",
+    flexDirection: "row",
   },
 })

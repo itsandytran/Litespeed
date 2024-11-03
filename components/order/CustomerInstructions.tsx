@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Image, View, TextInput, StyleSheet } from "react-native"
-import Colors from "@constants/colors"
+import textStyles from "@constants/textStyles"
 
 function CustomerInstructions() {
   const [instructionsText, onChangeText] = useState("Add note")
@@ -9,11 +9,11 @@ function CustomerInstructions() {
     <View style={styles.background}>
       <Image
         source={require("@assets/icons/Interface-Essential-Edit-Fill--Streamline-Pixel.png")}
-        style={styles.icon}
+        style={styles.notepad_icon}
       />
       <TextInput
-        style={styles.textInput}
-        placeholder="Add note"
+        style={[textStyles.italic, {marginHorizontal: 12}]}
+        placeholder="Customer Instructions"
         onChangeText={onChangeText}
         multiline={true}
       />
@@ -28,16 +28,9 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     paddingBottom: 12,
   },
-  textInput: {
-    marginHorizontal: 12,
-    fontSize: 20,
-    color: Colors.gray4,
-  },
-  icon: {
-    tintColor: Colors.gray4,
-    height: 24,
-    width: 24,
-    marginLeft: 8,
+  notepad_icon: {
+    height: 20,
+    width: 20,
     marginTop: 8,
   },
 })

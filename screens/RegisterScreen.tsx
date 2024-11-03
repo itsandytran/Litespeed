@@ -1,7 +1,7 @@
 import { FC, useState } from "react"
 import { ScrollView, View, StyleSheet } from "react-native"
 
-import { categories, sampleMenuItems, sampleOrderItems } from "@lib/sample-data"
+import { categories, OrderItemType, sampleMenuItems } from "@lib/sample-data"
 import TitleBar from "@components/TitleBar"
 import Menu from "@components/menu/Menu"
 import MenuCategory from "@components/menu/MenuCategory"
@@ -13,12 +13,15 @@ import Colors from "@constants/colors"
 /**
  * The RegisterScreen component displays the main screen for registering an order.
  * It includes a title bar, a menu with selectable items, an order summary, and checkout options.
- * 
+ *
  * @returns A view containing the title bar, menu, order summary, and checkout options.
  */
 const RegisterScreen: FC = () => {
+  // State for displaying menu items in the Menu component
   const [menuItems, setMenuItems] = useState(sampleMenuItems)
-  const [orderItems, setOrderItems] = useState(sampleOrderItems)
+
+  // State for tracking order items in the Order Summary
+  const [orderItems, setOrderItems] = useState(new Array<OrderItemType>())
 
   return (
     <View style={styles.screenBackground}>
@@ -34,18 +37,18 @@ const RegisterScreen: FC = () => {
 
           {/* Scrollable view for the menu items */}
           <ScrollView alwaysBounceVertical={false}>
-            <Menu menuItemList={menuItems} onAddItem={(item) => {
-            setOrderItems([
-              ...orderItems,
-              { menuItem: item, quantity: 1 }
-            ])
-          }}/>
+            <Menu
+              menuItemList={menuItems}
+              onAddItem={(item) => {
+                setOrderItems([...orderItems, { menuItem: item, quantity: 1 }])
+              }}
+            />
           </ScrollView>
         </View>
 
         <View style={styles.orderSummaryContainer}>
           {/* Displays the summary of the current order */}
-          <OrderSummary items={orderItems}/>
+          <OrderSummary items={orderItems} />
           {/* Checkout options for completing the order */}
           <CheckoutOptions total={25.18} />
         </View>
@@ -77,6 +80,5 @@ const styles = StyleSheet.create({
   orderSummaryContainer: {
     marginHorizontal: 16,
     alignItems: "center",
-    justifyContent: "center",
   },
 })
