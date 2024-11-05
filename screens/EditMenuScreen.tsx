@@ -43,17 +43,17 @@ const styles = StyleSheet.create({
   },
   editPanelContainer: {
     flex: 0.4,
-    //paddingHorizontal: 16,
-    //marginHorizontal: 16,
+    paddingVertical: 32,
+    marginLeft: 18,
   },
   menuContainer: {
     backgroundColor: Colors.medium_gray,
     flex: 0.6,
     borderRadius: 8,
     shadowColor: "black",
-    shadowOffset: { width: 2, height: 2 },
+    shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 0.25,
-    shadowRadius: 4,
+    shadowRadius: 1,
     margin: 18,
     padding:12,
   }
