@@ -4,9 +4,10 @@ import { sampleMenuItems } from "@lib/sample-data";
 import Menu from "@components/menu/Menu";
 import Colors from "@constants/colors";
 import TitleBar from "@components/TitleBar";
+import textStyles from "@constants/textStyles";
 
 export type EditMenuProps = {
-  greeting: string;
+  greeting: string
 };
 
 const EditMenuScreen: FC<EditMenuProps> = (greeting) => {
@@ -14,13 +15,13 @@ const EditMenuScreen: FC<EditMenuProps> = (greeting) => {
     <View style={styles.backgroundContainer}>
       <TitleBar />
       <View>
-        <Text>Editing Panel</Text>
+        <Text style={textStyles.header}>Editing Panel</Text>
       </View>
 
       {/* Menu Grid  */}
       <View>
-        <Text>Menu</Text>
-        <Text> Hello world! </Text>
+        <Text style={textStyles.regular}>Menu</Text>
+        <Text style={textStyles.italic}> Hello world! </Text>
       </View>
     </View>
   );
