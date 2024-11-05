@@ -39,7 +39,7 @@ type MenuItemProps = MenuItemType & {
 const MenuItem: FC<MenuItemProps> = ({
   name,
   price,
-  color = Colors.addOnsGray,
+  color = Colors.addOns_gray,
   addOns = [],
   onPress = () => {},
 }) => {
