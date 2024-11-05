@@ -34,7 +34,7 @@ export default EditMenuScreen
 
 const styles = StyleSheet.create({
   backgroundContainer: {
-    backgroundColor: Colors.backgroundGray,
+    backgroundColor: Colors.background_gray,
     flex: 1,
   },
   editPanel_Menu_Container: {
@@ -42,11 +42,19 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   editPanelContainer: {
-    backgroundColor: "red",
-    flex: 0.4
+    flex: 0.4,
+    //paddingHorizontal: 16,
+    //marginHorizontal: 16,
   },
   menuContainer: {
-    backgroundColor: "blue",
-    flex: 0.6
+    backgroundColor: Colors.medium_gray,
+    flex: 0.6,
+    borderRadius: 8,
+    shadowColor: "black",
+    shadowOffset: { width: 2, height: 2 },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    margin: 18,
+    padding:12,
   }
 })
