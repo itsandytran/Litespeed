@@ -13,6 +13,7 @@ import Menu from "@components/menu/Menu"
 import Colors from "@constants/colors"
 import TitleBar from "@components/TitleBar"
 import textStyles from "@constants/textStyles"
+import SwipeableListItem from "@components/common/SwipeableListItem"
 
 export type EditMenuProps = {
   greeting: string
@@ -23,7 +24,7 @@ export type EditMenuProps = {
  * It includes a title bar, an edit menu panel, and a menu grid.
  * TODO: Decide on parameters for the component.
  * @param param0
- * @returns
+ * @returns A EditMenuScreen component
  */
 const EditMenuScreen: FC<EditMenuProps> = ({ greeting }) => {
   return (
@@ -41,8 +42,7 @@ const EditMenuScreen: FC<EditMenuProps> = ({ greeting }) => {
               <View style={styles.editPanelHeader}>
                 <Text style={textStyles.header}>Edit Menu</Text>
               </View>
-
-              
+              <SwipeableListItem itemName="Hello"/>
             </View>
 
             {/* Menu Grid */}
