@@ -1,7 +1,7 @@
 import { FC } from "react"
 import {
   KeyboardAvoidingView,
-  ScrollView, // Add ScrollView to allow for scrolling when keyboard is up
+  ScrollView,
   StyleSheet,
   Text,
   TextInput,
@@ -18,30 +18,38 @@ export type EditMenuProps = {
   greeting: string
 }
 
+/**
+ * The EditMenuScreen component displays the screen for editing the menu.
+ * It includes a title bar, an edit menu panel, and a menu grid.
+ * TODO: Decide on parameters for the component.
+ * @param param0
+ * @returns
+ */
 const EditMenuScreen: FC<EditMenuProps> = ({ greeting }) => {
   return (
-    // Use KeyboardAvoidingView with behavior depending on platform
     <KeyboardAvoidingView
       behavior={Platform.OS === "ios" ? "padding" : "height"}
-      style={styles.container} // Make sure the container takes full height
+      style={styles.keyboardAvoidingViewContainter}
     >
-      {/* ScrollView allows for smooth scrolling when keyboard is visible */}
-      <ScrollView contentContainerStyle={styles.scrollContainer}>
+      <ScrollView contentContainerStyle={styles.scrollViewContainer}>
         <View style={styles.backgroundContainer}>
           <TitleBar />
           <View style={styles.editPanel_Menu_Container}>
             {/* Edit Menu Panel */}
             <View style={styles.editPanelContainer}>
-              <Text style={textStyles.header}>Edit Menu</Text>
-              <TextInput style={styles.input} placeholder="Enter Item Name" />
+              {/* Edit Menu Header */}
+              <View style={styles.editPanelHeader}>
+                <Text style={textStyles.header}>Edit Menu</Text>
+              </View>
+
+              
             </View>
 
             {/* Menu Grid */}
             <View style={styles.menuContainer}>
-              <View style={{paddingVertical: 18}}>
+              <View style={{ paddingVertical: 18 }}>
                 <Text style={textStyles.header}>Fries and Burgers</Text>
               </View>
-
               <Menu menuItemList={sampleMenuItems} />
             </View>
           </View>
@@ -54,23 +62,25 @@ const EditMenuScreen: FC<EditMenuProps> = ({ greeting }) => {
 export default EditMenuScreen
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1, // Ensure the KeyboardAvoidingView takes full height
+  keyboardAvoidingViewContainter: {
+    flex: 1,
+  },
+  scrollViewContainer: {
+    flexGrow: 1,
   },
   backgroundContainer: {
     backgroundColor: Colors.background_gray,
     flex: 1,
   },
-  scrollContainer: {
-    flexGrow: 1, // Allow ScrollView to grow and take full height
-  },
   editPanel_Menu_Container: {
     flexDirection: "row",
     flex: 1,
   },
+  editPanelHeader: {
+    paddingVertical: 32,
+  },
   editPanelContainer: {
     flex: 0.42,
-    paddingVertical: 32,
     marginLeft: 18,
   },
   menuContainer: {
@@ -83,14 +93,5 @@ const styles = StyleSheet.create({
     shadowRadius: 1,
     margin: 18,
     paddingHorizontal: 16,
-  },
-  input: {
-    height: 40,
-    borderColor: "gray",
-    borderWidth: 1,
-    borderRadius: 8,
-    paddingHorizontal: 8,
-    marginVertical: 8,
-    color: "blue", // Your text color for the input field
   },
 })
