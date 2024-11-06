@@ -7,21 +7,22 @@ We were inspired by Lightspeed's fantastic payments platform to design our own p
 Litespeed is tailor-made to streamline operations for fast food restaurants. With Litespeed, you will be able to setup a POS for your physical storefront, intake and process orders from customers, print receipts, and gain valuable business insights!
 ## Screenshots
 
-Digitize your restaurant's menu.
+### Digitize your restaurant's menu
+![App Screenshot](https://github.com/itsandytran/Litespeed/blob/developer/assets/screenshots/Digitize%20Menu.png)
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
 
-Intake customer orders and quickly calculate their total.
+### Intake customer orders and quickly calculate their total
+![App Screenshot](https://github.com/itsandytran/Litespeed/blob/developer/assets/screenshots/Customer%20Order%20Intake%20(1).png)
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+![App Screenshot](https://github.com/itsandytran/Litespeed/blob/developer/assets/screenshots/Customer%20Order%20Intake%20(2).png)
 
-Process transactions and print receipts.
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+### Process transactions and print receipts
+![App Screenshot](https://github.com/itsandytran/Litespeed/blob/developer/assets/screenshots/Process%20Transactions.png)
 
-Track your ongoing and completed orders.
 
-![App Screenshot](https://via.placeholder.com/468x300?text=App+Screenshot+Here)
+### Track your ongoing and completed orders
+![App Screenshot](https://github.com/itsandytran/Litespeed/blob/developer/assets/screenshots/Track%20Orders.png)
 
 
 ## Run Locally
