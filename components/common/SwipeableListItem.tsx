@@ -1,4 +1,4 @@
-import { StyleSheet, Text } from "react-native"
+import { StyleSheet, Text, View } from "react-native"
 import textStyles from "@constants/textStyles"
 import ReanimatedSwipeable from "react-native-gesture-handler/ReanimatedSwipeable"
 import { GestureHandlerRootView } from "react-native-gesture-handler"
@@ -6,9 +6,11 @@ import Reanimated, {
   SharedValue,
   useAnimatedStyle,
 } from "react-native-reanimated"
+import Colors from "@constants/colors"
 
 export type SwipeableListItemProps = {
     itemName: string
+    itemPrice: number
 }
 
 /**
@@ -19,17 +21,24 @@ export type SwipeableListItemProps = {
  * @param itemName - The name of the list item
  * @returns A SwipeableListItem component
  */
-const SwipeableListItem = ({ itemName }: SwipeableListItemProps) => {
+const SwipeableListItem = ({ itemName, itemPrice }: SwipeableListItemProps) => {
   return (
     <GestureHandlerRootView>
       <ReanimatedSwipeable
-        containerStyle={styles.swipeable}
         friction={2}
         enableTrackpadTwoFingerGesture
         rightThreshold={40}
         renderRightActions={RightAction}
       >
-        <Text style={textStyles.regular}>{itemName}</Text>
+        <View style={styles.underlinedRow}>
+          <View style={styles.itemColumn}>
+            <Text style={textStyles.regular}>{itemName}</Text>
+          </View>
+          <View style={styles.priceColumn}>
+            <Text style={textStyles.regular}>{itemPrice.toFixed(2)}</Text>
+          </View>
+
+        </View>
       </ReanimatedSwipeable>
     </GestureHandlerRootView>
   )
@@ -53,15 +62,28 @@ function RightAction(prog: SharedValue<number>, drag: SharedValue<number>) {
 }
 
 const styles = StyleSheet.create({
-  rightAction: { width: 100, backgroundColor: "red" },
+  rightAction: { 
+    backgroundColor: Colors.sample_red,
+    paddingHorizontal: 16,
+   },
   separator: {
     width: "100%",
     borderTopWidth: 1,
   },
-  swipeable: {
-    //height: 50,
-    backgroundColor: "papayawhip",
-    //alignItems: "center",
+  itemColumn: {
+    width: "70%",
+  },
+  priceColumn: {
+    width: "30%",
+    justifyContent: "flex-end",
+    flexDirection: "row",
+  },
+  underlinedRow: {
+    flexDirection: "row",
+    paddingBottom: 4,
+    marginBottom: 4,
+    borderBottomColor: "#D2D2D2",
+    borderBottomWidth: 0.5,
   },
 })
 

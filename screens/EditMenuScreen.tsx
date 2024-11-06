@@ -42,7 +42,22 @@ const EditMenuScreen: FC<EditMenuProps> = ({ greeting }) => {
               <View style={styles.editPanelHeader}>
                 <Text style={textStyles.header}>Edit Menu</Text>
               </View>
-              <SwipeableListItem itemName="Hello"/>
+
+              {/* Edit Menu Item Metadata (i.e., name, price, color) */}
+              <MenuItemMetadata data="Name" placeholder="Hamburger" />
+              <MenuItemMetadata data="Price" placeholder="10.00" />
+              <MenuItemMetadata data="Color" placeholder="FF123F9" />
+
+              <View style={styles.addOnsContainer}>
+                <SwipeableListItem itemName="Lettuce" itemPrice={0.00} />
+                <SwipeableListItem itemName="Onions" itemPrice={0.00} />
+                <SwipeableListItem itemName="Tomatoes" itemPrice={0.00} />
+                <SwipeableListItem itemName="Relish" itemPrice={0.00} />
+                <SwipeableListItem itemName="Extra Cheese" itemPrice={2.00} />
+                <SwipeableListItem itemName="Extra Bacon" itemPrice={1.50} />
+                <SwipeableListItem itemName="Ketchup" itemPrice={0.00} />
+                <SwipeableListItem itemName="Mustard" itemPrice={0.00} />
+              </View>
             </View>
 
             {/* Menu Grid */}
@@ -50,12 +65,31 @@ const EditMenuScreen: FC<EditMenuProps> = ({ greeting }) => {
               <View style={{ paddingVertical: 18 }}>
                 <Text style={textStyles.header}>Fries and Burgers</Text>
               </View>
-              <Menu menuItemList={sampleMenuItems} />
+              <View style={{ flex: 1, alignContent: "center" }}>
+                <Menu menuItemList={sampleMenuItems} />
+              </View>
             </View>
           </View>
         </View>
       </ScrollView>
     </KeyboardAvoidingView>
+  )
+}
+
+type MenuItemMetadataProps = {
+  data: string
+  placeholder: string
+}
+const MenuItemMetadata = (props: MenuItemMetadataProps) => {
+  return (
+    <View style={styles.menuItemMetadataContainer}>
+      <View style={{ width: "20%" }}>
+        <Text style={textStyles.bold}>{props.data}</Text>
+      </View>
+      <View style={{ width: "80%" }}>
+        <TextInput style={textStyles.regular} placeholder={props.placeholder} />
+      </View>
+    </View>
   )
 }
 
@@ -80,12 +114,12 @@ const styles = StyleSheet.create({
     paddingVertical: 32,
   },
   editPanelContainer: {
-    flex: 0.42,
-    marginLeft: 18,
+    flex: 0.38,
+    paddingHorizontal: 28,
   },
   menuContainer: {
     backgroundColor: Colors.medium_gray,
-    flex: 0.58,
+    flex: 0.62,
     borderRadius: 8,
     shadowColor: "black",
     shadowOffset: { width: 0, height: 4 },
@@ -94,4 +128,11 @@ const styles = StyleSheet.create({
     margin: 18,
     paddingHorizontal: 16,
   },
+  menuItemMetadataContainer: {
+    flexDirection: "row",
+    paddingVertical: 6,
+  },
+  addOnsContainer: {
+    paddingTop: 16,
+  }
 })
