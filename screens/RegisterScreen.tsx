@@ -62,7 +62,7 @@ export default RegisterScreen
 const styles = StyleSheet.create({
   screenBackground: {
     flex: 1,
-    backgroundColor: Colors.backgroundGray,
+    backgroundColor: Colors.background_gray,
   },
   menuAndOrderSummarycontainer: {
     flexDirection: "row",

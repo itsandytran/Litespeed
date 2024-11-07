@@ -61,7 +61,7 @@ const CheckoutOptions: FC<CheckoutOptionsProps> = ({ total }) => {
 
 const styles = StyleSheet.create({
   background: {
-    backgroundColor: Colors.checkoutOptionsGray,
+    backgroundColor: Colors.medium_gray,
     borderRadius: 8,
     shadowColor: "black",
     shadowOffset: { width: 0, height: 2 },

@@ -1,27 +1,30 @@
-import { StyleSheet } from "react-native"
+import { PixelRatio,StyleSheet } from "react-native"
+
+const fontScale = PixelRatio.getFontScale();
+const getFontSize = (size: number) => size / fontScale;
 
 export default StyleSheet.create({
   header: {
     fontWeight: "bold",
-    fontSize: 36,
+    fontSize: getFontSize(36),
   },
   regular: {
-    fontSize: 20,
+    fontSize: getFontSize(20),
   },
   bold: {
     fontWeight: "bold",
-    fontSize: 20,
+    fontSize: getFontSize(20),
   },
   italic: {
     fontStyle: "italic",
-    fontSize: 20,
+    fontSize: getFontSize(20),
   },
   gray: {
     color: "#777777",
-    fontSize: 20,
+    fontSize: getFontSize(20),
   },
   price: {
-    fontSize: 12,
+    fontSize: getFontSize(12),
     textAlign: "right",
   },
 })

@@ -48,7 +48,7 @@ export default CheckoutScreen
 const styles = StyleSheet.create({
   screenBackground: {
     flex: 1,
-    backgroundColor: Colors.backgroundGray,
+    backgroundColor: Colors.background_gray,
   },
   calculatorAndReceiptContainer: {
     flexDirection: "row",
@@ -92,7 +92,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   changeDueAmountContainer: {
-    backgroundColor: Colors.backgroundGray,
+    backgroundColor: Colors.background_gray,
     borderWidth: 1,
     borderRadius: 8,
     height: 64,
